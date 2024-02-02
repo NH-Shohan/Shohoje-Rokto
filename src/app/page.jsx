@@ -1,3 +1,3 @@
 export default function Home() {
-  return <main>Shohoj</main>;
+  return <main className="container">Home</main>;
 }

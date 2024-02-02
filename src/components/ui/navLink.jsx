@@ -10,13 +10,12 @@ const NavLink = ({ href, children, onClick }) => {
   };
 
   return (
-    <div
-      className={`group inline relative ${isActive ? "active" : ""}`}
-      onClick={handleClick}
-    >
+    <div className={`inline relative`} onClick={handleClick}>
       <Link
         href={href}
-        className={`hover:text-primary ${isActive ? "text-primary" : ""}`}
+        className={`hover:text-primary ${
+          isActive ? "text-primary" : "text-foreground"
+        }`}
       >
         {children}
       </Link>

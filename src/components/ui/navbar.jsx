@@ -1,12 +1,23 @@
 "use client";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@radix-ui/react-dropdown-menu";
+import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import logo from "../../../public/logo.png";
+import { Button } from "./button";
 import NavLink from "./navLink";
 
 const Navbar = () => {
   const [activeNavLink, setActiveNavLink] = useState(null);
+  const { setTheme } = useTheme();
 
   const handleNavLinkClick = (href) => {
     setActiveNavLink(href);
@@ -52,8 +63,39 @@ const Navbar = () => {
             About
           </NavLink>
         </div>
-        <div>
-          <Link href="/login">Login</Link>
+        <div className="flex items-center gap-3">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="icon">
+                <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="end"
+              className="shadow border rounded-lg"
+            >
+              <DropdownMenuItem
+                onClick={() => setTheme("light")}
+                className="cursor-pointer px-4 hover:bg-secondary rounded-sm outline-none py-1"
+              >
+                Light
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => setTheme("dark")}
+                className="cursor-pointer px-4 hover:bg-secondary rounded-sm outline-none py-1"
+              >
+                Dark
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => setTheme("system")}
+                className="cursor-pointer px-4 hover:bg-secondary rounded-sm outline-none py-1"
+              >
+                System
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <Button>Login</Button>
         </div>
       </div>
     </nav>
