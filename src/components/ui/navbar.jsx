@@ -73,7 +73,7 @@ const Navbar = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
-              className="shadow border rounded-lg"
+              className="shadow border rounded-lg p-1"
             >
               <DropdownMenuItem
                 onClick={() => setTheme("light")}
