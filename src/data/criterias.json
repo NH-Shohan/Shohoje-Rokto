@@ -1,0 +1,47 @@
+[
+  {
+    "icon": "/icons/age.svg",
+    "title": "Age",
+    "desc": "Most blood donation organizations require donors to be within a specific age range, often between 18 and 65."
+  },
+  {
+    "icon": "/icons/health.svg",
+    "title": "Health Status",
+    "desc": "Donors should be in good health on the day of donation, without symptoms of illness."
+  },
+  {
+    "icon": "/icons/medicalHistory.svg",
+    "title": "Medical History",
+    "desc": "Some medications or medical conditions may affect eligibility. Medical history and current medications are considered."
+  },
+  {
+    "icon": "/icons/lifeStyle.svg",
+    "title": "Lifestyle",
+    "desc": "Certain lifestyle choices, such as recent body piercings, tattoos, or use of intravenous drugs, may lead to deferral."
+  },
+  {
+    "icon": "/icons/pregnancy.svg",
+    "title": "Pregnancy",
+    "desc": "Pregnant individuals are typically deferred from donating, and guidelines may exist for breastfeeding individuals."
+  },
+  {
+    "icon": "/icons/frequency.svg",
+    "title": "Frequency",
+    "desc": "Guidelines exist on how often donors can give blood to allow for adequate recovery between donations."
+  },
+  {
+    "icon": "/icons/travel.svg",
+    "title": "Travel-Related",
+    "desc": "Travel to specific high-risk areas for infectious diseases may lead to temporary deferrals."
+  },
+  {
+    "icon": "/icons/specificHealth.svg",
+    "title": "Specific Health",
+    "desc": "Some health conditions, like certain blood disorders or transmissible diseases, may affect eligibility."
+  },
+  {
+    "icon": "/icons/covid.svg",
+    "title": "COVID-19",
+    "desc": "Blood donation organizations have established guidelines related to COVID-19 and vaccination status."
+  }
+]
