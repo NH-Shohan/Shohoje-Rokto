@@ -5,7 +5,7 @@ import bdMap from "../../../public/bdMap.svg";
 const Hero = () => {
   return (
     <div className="h-[calc(100vh-60px)] flex justify-center items-center flex-col relative">
-      <div className="w-full h-full rounded-full bg-primary blur-3xl opacity-10 absolute"></div>
+      <div className="w-full h-full rounded-full bg-primary blur-3xl opacity-10 absolute -z-10"></div>
       <Image src={bdMap} alt="Map Image" className="h-full w-1/3" />
       <div className="bg-light w-[25%] py-4  rounded-xl shadow-3xl border border-red-300 dark:border-red-800 absolute top-[15%] left-[5%]">
         <p className="text-center text-xl text-primary dark:text-white">
@@ -45,7 +45,9 @@ const Hero = () => {
       </div>
 
       <div className="z-50 absolute bottom-10">
-        <Button variant="outline">Search Donor</Button>
+        <Button variant="outline" size="lg">
+          Search Donor
+        </Button>
       </div>
     </div>
   );
