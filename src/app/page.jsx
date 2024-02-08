@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import BloodType from "./(home)/BloodType";
 import Criteria from "./(home)/Criteria";
 import Hero from "./(home)/Hero";
 
@@ -16,10 +17,9 @@ export default function Home() {
   return (
     <main className="container">
       <Hero />
-
       <div className="my-10"></div>
-
       <Criteria />
+      <BloodType />
     </main>
   );
 }

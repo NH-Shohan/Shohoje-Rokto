@@ -1,0 +1,32 @@
+[
+  {
+    "icon": "/icons/typeA.svg",
+    "title": "Type A",
+    "desc": "Individuals with Type A blood have A antigens on their red blood cells and B antibodies in their plasma."
+  },
+  {
+    "icon": "/icons/typeB.svg",
+    "title": "Type B",
+    "desc": "Individuals with Type A blood have A antigens on their red blood cells and B antibodies in their plasma."
+  },
+  {
+    "icon": "/icons/typeAB.svg",
+    "title": "Type AB",
+    "desc": "Individuals with Type A blood have A antigens on their red blood cells and B antibodies in their plasma."
+  },
+  {
+    "icon": "/icons/typeO.svg",
+    "title": "Type O",
+    "desc": "Individuals with Type A blood have A antigens on their red blood cells and B antibodies in their plasma."
+  },
+  {
+    "icon": "/icons/typeRH+.svg",
+    "title": "Rh-Positive",
+    "desc": "Red blood cells have the Rh antigen."
+  },
+  {
+    "icon": "/icons/typeRH-.svg",
+    "title": "Rh-Negative",
+    "desc": "Red blood cells lack the Rh antigen."
+  }
+]
