@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import bdMap from "../../../public/bdMap.svg";
+import bdMap from "../../../public/assets/bdMap.svg";
 
 const Hero = () => {
   return (
