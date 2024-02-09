@@ -1,0 +1,32 @@
+[
+  {
+    "image": "/assets/screening.svg",
+    "icon": "/icons/registrationNote.svg",
+    "title": "Registration and Screening",
+    "desc": "Begin your blood donation journey by registering at the donation center. After registration, you'll undergo a health screening to ensure you meet eligibility criteria. This includes a brief medical history review and vital sign checks, such as blood pressure and hemoglobin levels."
+  },
+  {
+    "image": "/assets/donation.svg",
+    "icon": "/icons/bloodBag.svg",
+    "title": "Donation",
+    "desc": "Once you've been cleared for donation, you'll be guided to a comfortable donation area. A trained phlebotomist will gently insert a sterile needle into a vein, typically in your arm, to collect blood. The donation process usually takes about 10-15 minutes."
+  },
+  {
+    "image": "/assets/postDonation.svg",
+    "icon": "/icons/rest.svg",
+    "title": "Post-Donation Rest",
+    "desc": "After your donation, you'll be encouraged to rest for a short period to ensure you're feeling well. Refreshments, including water, juice, and snacks, are often provided to help you recover and maintain your energy."
+  },
+  {
+    "image": "/assets/monitoring.svg",
+    "icon": "/icons/monitoring.svg",
+    "title": "Monitoring and Recovery",
+    "desc": "You'll be monitored for a brief period to ensure you don't experience any adverse reactions. It's common for donors to feel a bit lightheaded or dizzy after donation, but these feelings typically subside quickly. Once you're feeling well, you can resume your normal activities, including work and exercise."
+  },
+  {
+    "image": "/assets/impact.svg",
+    "icon": "/icons/heart.svg",
+    "title": "Impact and Repeat Donations",
+    "desc": "Donated blood is used for various medical procedures, surgeries, and to treat medical conditions, saving lives in the process. You can make a difference in your community by following guidelines for repeat donations and continuing to contribute to the well-being of others."
+  }
+]

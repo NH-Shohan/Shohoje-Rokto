@@ -30,7 +30,7 @@ const BloodType = () => {
 
         <div className="flex justify-between items-center">
           <h3 className="mt-3">ABO Blood Group System</h3>
-          <Link href="/" className="float-end">
+          <Link href="/be-donor" className="float-end">
             <p className="mt-5 body-bold flex items-center gap-2 hover:text-primary">
               Be Donor <FaArrowRight />
             </p>
