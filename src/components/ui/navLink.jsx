@@ -14,7 +14,7 @@ const NavLink = ({ href, children, onClick }) => {
       <Link
         href={href}
         className={`hover:text-primary ${
-          isActive ? "text-primary" : "text-foreground"
+          isActive ? "text-primary font-medium" : "text-foreground"
         }`}
       >
         {children}

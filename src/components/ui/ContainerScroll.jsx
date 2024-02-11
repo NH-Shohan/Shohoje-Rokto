@@ -32,7 +32,7 @@ export default function ContainerScroll() {
 
   return (
     <div
-      className="h-[75rem] flex items-center justify-center relative -my-32 -z-50"
+      className="h-[75rem] lg:mt-20 xl:-mt-12 2xl:-mt-40 flex items-center justify-center relative -mb-32 -z-50"
       ref={containerRef}
     >
       <div
