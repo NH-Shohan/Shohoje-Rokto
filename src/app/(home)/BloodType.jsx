@@ -10,7 +10,7 @@ const BloodType = () => {
 
   return (
     <div className="relative h-[80vh]">
-      <div className="w-2/3 h-2/3 rounded-full bg-primary blur-3xl opacity-10 dark:opacity-15 absolute bottom-5 left-1/2 -z-10"></div>
+      <div className="w-2/3 h-2/3 rounded-full bg-primary blur-3xl opacity-10 dark:opacity-15 absolute bottom-5 left-0 -z-10"></div>
 
       <div className="w-full flex flex-col items-center">
         <h1 className="text-center text-primary">Understanding Blood Types</h1>
@@ -41,7 +41,7 @@ const BloodType = () => {
           {groupSystem.map((bloodType, index) => (
             <div
               key={index}
-              className="border border-gray-300 dark:border-secondary rounded-xl flex items-start p-5 gap-3 hover:bg-light hover:shadow-3xl transition-all group"
+              className="border border-red-300 dark:border-red-800 rounded-xl flex items-start p-5 gap-3 hover:bg-light hover:shadow-3xl transition-all group"
             >
               <Image
                 src={bloodType.icon}
@@ -74,7 +74,7 @@ const BloodType = () => {
           {rhSystem.map((bloodType, index) => (
             <div
               key={index}
-              className="border border-gray-300 dark:border-secondary rounded-xl flex items-start p-5 gap-3 hover:bg-light hover:shadow-3xl transition-all group"
+              className="border border-red-300 dark:border-red-800 rounded-xl flex items-start p-5 gap-3 hover:bg-light hover:shadow-3xl transition-all group"
             >
               <Image
                 src={bloodType.icon}

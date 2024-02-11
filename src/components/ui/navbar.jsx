@@ -24,7 +24,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-transparent backdrop-blur-3xl">
+    <nav className="sticky top-0 z-[1000] bg-[rgb(255,255,255,50%)] dark:bg-[rgb(0,0,0,50%)] backdrop-blur-md">
       <div className="container flex justify-between items-center h-[60px]">
         <div>
           <Link href="/">
@@ -95,7 +95,7 @@ const Navbar = () => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          <Button>Login</Button>
+          <Button variant="outline">Login</Button>
         </div>
       </div>
     </nav>
