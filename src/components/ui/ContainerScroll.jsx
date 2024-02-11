@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import donationType from "../../../public/assets/donationType.png";
 
-export const ContainerScroll = () => {
+export default function ContainerScroll() {
   const containerRef = useRef();
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -45,7 +45,7 @@ export const ContainerScroll = () => {
       </div>
     </div>
   );
-};
+}
 
 export const Card = ({ rotate, scale }) => {
   return (

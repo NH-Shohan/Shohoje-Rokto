@@ -1,5 +1,5 @@
 "use client";
-import { ContainerScroll } from "@/components/ui/containerScroll";
+import ContainerScroll from "@/components/ui/containerScroll";
 import Footer from "@/components/ui/footer";
 import { useEffect } from "react";
 import BloodType from "./(home)/BloodType";
