@@ -1,7 +1,7 @@
 "use client";
+import ContainerScroll from "@/components/ui/ContainerScroll";
 import Footer from "@/components/ui/footer";
 import { useEffect } from "react";
-import ContainerScroll from "../components/ui/containerScroll";
 import BloodType from "./(home)/BloodType";
 import Criteria from "./(home)/Criteria";
 import DonationProcess from "./(home)/DonationProcess";
