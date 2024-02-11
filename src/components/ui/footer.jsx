@@ -85,7 +85,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-7 border border-primary rounded-xl p-10 shadow-3xl col-span-3 bg-white">
+        <div className="flex flex-col gap-7 border border-primary rounded-xl p-10 shadow-3xl col-span-3 bg-white dark:bg-black">
           <h3 className="text-primary">Support 🩸 Inquiries 🩸 Suggestions</h3>
 
           <div className="grid w-full items-center gap-1.5">
@@ -115,9 +115,11 @@ const Footer = () => {
 
       <div className="bg-primary h-16 flex justify-center items-center">
         <p className="text-light">
-          <span className="text-white">Copyright ©️ {year}</span> Shohoje Rokto.
-          All right reserved |{" "}
-          <span className="text-white">
+          <span className="text-white dark:text-black dark:font-medium">
+            Copyright ©️ {year}
+          </span>{" "}
+          Shohoje Rokto. All right reserved |{" "}
+          <span className="text-white dark:text-black dark:font-medium">
             <Link href={"https://github.com/nh-shohan"} target="_blank">
               Nahim Hossain Shohan
             </Link>
