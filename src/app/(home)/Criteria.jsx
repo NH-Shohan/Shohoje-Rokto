@@ -5,7 +5,7 @@ import { PiSealCheckDuotone } from "react-icons/pi";
 const Criteria = () => {
   return (
     <div className="relative h-[80vh]">
-      <div className="w-2/3 h-2/3 rounded-full bg-primary blur-3xl opacity-10 dark:opacity-15 absolute bottom-2 -left-1/2 -z-10"></div>
+      <div className="w-2/3 h-2/3 rounded-full bg-primary blur-3xl opacity-10 dark:opacity-15 absolute bottom-2 -left-1/2 -z-50"></div>
 
       <div className="w-full flex flex-col items-center">
         <h1 className="text-center text-primary">Donor Eligibility Criteria</h1>
@@ -16,7 +16,7 @@ const Criteria = () => {
         </p>
       </div>
 
-      <div className="mt-5">
+      <div className="mt-5 z-50">
         <div className="flex gap-1 items-center text-primary">
           <PiSealCheckDuotone className="text-primary w-8 h-8" />
           <h3>Who Can Donate?</h3>
@@ -26,7 +26,7 @@ const Criteria = () => {
           {criterias.map((criteria, index) => (
             <div
               key={index}
-              className="border border-gray-300 dark:border-secondary rounded-xl flex items-start p-5 gap-3 hover:bg-light hover:shadow-3xl transition-all group"
+              className="border border-red-400 dark:border-red-800 rounded-xl flex items-start p-5 gap-3 hover:bg-light hover:shadow-3xl transition-all group"
             >
               <Image
                 src={criteria.icon}

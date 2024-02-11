@@ -1,5 +1,6 @@
 "use client";
-import { ContainerScroll } from "@/components/ui/ContainerScroll";
+import { ContainerScroll } from "@/components/ui/containerScroll";
+import Footer from "@/components/ui/footer";
 import { useEffect } from "react";
 import BloodType from "./(home)/BloodType";
 import Criteria from "./(home)/Criteria";
@@ -18,19 +19,19 @@ export default function Home() {
     };
   }, []);
   return (
-    <main className="container">
-      <Hero />
-
-      <div className="my-10"></div>
-
-      <Criteria />
-      <ContainerScroll />
-      <BloodType />
-
-      <div className="my-10"></div>
-
-      <DonationProcess />
-      <MovingCards />
+    <main>
+      <section className="container">
+        <Hero />
+        <div className="my-10"></div>
+        <Criteria />
+        <ContainerScroll />
+        <BloodType />
+        <div className="my-20"></div>
+        <DonationProcess />
+        <MovingCards direction={"right"} />
+        <MovingCards direction={"left"} />
+      </section>
+      <Footer />
     </main>
   );
 }

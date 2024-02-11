@@ -2,10 +2,14 @@
 
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 
-export default function MovingCards() {
+export default function MovingCards({direction}) {
   return (
-    <div className="h-[25rem] flex flex-col antialiased items-center justify-center relative overflow-hidden">
-      <InfiniteMovingCards items={testimonials} direction={"left"} speed={""} />
+    <div className="flex flex-col antialiased items-center justify-center relative overflow-hidden">
+      <InfiniteMovingCards
+        items={testimonials}
+        direction={direction}
+        speed={""}
+      />
     </div>
   );
 }

@@ -56,7 +56,7 @@ export const InfiniteMovingCards = ({
       } else if (speed === "normal") {
         containerRef.current.style.setProperty("--animation-duration", "40s");
       } else {
-        containerRef.current.style.setProperty("--animation-duration", "80s");
+        containerRef.current.style.setProperty("--animation-duration", "100s");
       }
     }
   };
@@ -78,7 +78,7 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item, idx) => (
           <li
-            className="w-[350px] max-w-full relative rounded-xl border flex-shrink-0 border-primary dark:border-secondary px-8 py-6 md:w-[450px]"
+            className="w-[350px] max-w-full relative rounded-xl border flex-shrink-0 border-primary dark:border-secondary px-8 py-6 md:w-[450px] bg-white dark:bg-black"
             key={item.name}
           >
             <blockquote>
