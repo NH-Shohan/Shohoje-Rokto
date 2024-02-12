@@ -9,7 +9,7 @@ const BloodType = () => {
   const rhSystem = bloodTypes.slice(4, 6);
 
   return (
-    <div className="relative h-[80vh]">
+    <div className="relative">
       <div className="w-2/3 h-2/3 rounded-full bg-primary blur-3xl opacity-10 dark:opacity-15 absolute bottom-5 left-0 -z-10"></div>
 
       <div className="w-full flex flex-col items-center">

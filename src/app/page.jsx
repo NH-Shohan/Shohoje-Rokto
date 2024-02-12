@@ -26,7 +26,7 @@ export default function Home() {
         <Criteria />
         <ContainerScroll />
         <BloodType />
-        <div className="my-20"></div>
+        <div className="my-14"></div>
         <DonationProcess />
         <MovingCards direction={"right"} />
         <MovingCards direction={"left"} />

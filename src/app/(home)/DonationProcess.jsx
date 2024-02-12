@@ -4,7 +4,7 @@ import processes from "../../data/donationProcess";
 
 const DonationProcess = () => {
   return (
-    <div className="relative lg:mt-56 xl:-mt-10">
+    <div className="relative">
       <div className="w-2/3 h-2/3 rounded-full bg-primary blur-3xl opacity-10 dark:opacity-15 absolute bottom-2 -left-1/2 -z-10"></div>
 
       <div className="w-full flex flex-col items-center">
