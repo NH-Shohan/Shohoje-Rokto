@@ -21,8 +21,8 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${roboto.className}`}>
-        <ThemeProvider attribute="class" defaultTheme="dark">
+      <body className={`${roboto.className} bg-[#fff5f5] dark:bg-background`}>
+        <ThemeProvider attribute="class" defaultTheme="system">
           <Navbar />
           {children}
         </ThemeProvider>
