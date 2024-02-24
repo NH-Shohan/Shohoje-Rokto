@@ -23,17 +23,23 @@ import { PiSealCheckDuotone } from "react-icons/pi";
 const DonorCard = ({ donors }) => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [currentPage, setCurrentPage] = useState(
-    parseInt(localStorage.getItem("currentPage")) || 1
+    Number(localStorage.getItem("currentPage")) || 1
   );
+
+  useEffect(() => {
+    localStorage.setItem("currentPage", currentPage);
+  }, [currentPage]);
+
+  useEffect(() => {
+    const storedPage = Number(localStorage.getItem("currentPage"));
+    setCurrentPage(storedPage);
+  }, [currentPage]);
+
   const itemsPerPage = 20;
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = donors.slice(indexOfFirstItem, indexOfLastItem);
-
-  useEffect(() => {
-    localStorage.setItem("currentPage", currentPage);
-  }, [currentPage]);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -110,7 +116,7 @@ const DonorCard = ({ donors }) => {
                   </TooltipProvider>
                 </p>
                 <div className="flex gap-5">
-                  <p className="bg-light rounded-xl flex justify-center items-center w-1/2 text-[48px] text-primary dark:text-white uppercase">
+                  <p className="bg-light rounded-xl flex justify-center items-center w-1/2 text-[48px] text-primary dark:text-white uppercase font-medium">
                     {bloodGroup}
                   </p>
                   <div className="capitalize">
