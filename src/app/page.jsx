@@ -1,7 +1,5 @@
-"use client";
 import ContainerScroll from "@/components/ui/ContainerScroll";
 import Footer from "@/components/ui/footer";
-import { useEffect } from "react";
 import BloodType from "./(Home)/BloodType";
 import Criteria from "./(Home)/Criteria";
 import DonationProcess from "./(Home)/DonationProcess";
@@ -9,15 +7,6 @@ import Hero from "./(Home)/Hero";
 import MovingCards from "./(Home)/MovingCards";
 
 export default function Home() {
-  useEffect(() => {
-    const handleContextmenu = (e) => {
-      e.preventDefault();
-    };
-    document.addEventListener("contextmenu", handleContextmenu);
-    return function cleanup() {
-      document.removeEventListener("contextmenu", handleContextmenu);
-    };
-  }, []);
   return (
     <main>
       <section className="container">

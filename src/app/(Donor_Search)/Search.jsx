@@ -130,7 +130,7 @@ const Search = () => {
         <div className="flex items-center gap-1 text-blue-500 text-sm">
           <PiSealCheckDuotone />
           <p>
-            Donated less than 3 times <sub className="text-xs">(Verified)</sub>
+            Donated 3 times <sub className="text-xs">(Verified)</sub>
           </p>
         </div>
         <div className="flex items-center gap-1 text-green-600 text-sm">
