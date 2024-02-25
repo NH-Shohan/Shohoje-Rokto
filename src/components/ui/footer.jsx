@@ -113,13 +113,13 @@ const Footer = () => {
 
       <div className="bg-light h-[63%] w-full absolute bottom-0 -z-50"></div>
 
-      <div className="bg-primary h-16 flex justify-center items-center">
-        <p className="text-light">
-          <span className="text-white dark:text-black dark:font-medium">
+      <div className="bg-primary dark:bg-background dark:text-primary h-16 flex justify-center items-center">
+        <p className="text-light dark:text-primary">
+          <span className="text-white dark:text-primary dark:font-medium">
             Copyright ©️ {year}
           </span>{" "}
-          Shohoje Rokto. All right reserved |{" "}
-          <span className="text-white dark:text-black dark:font-medium">
+          <span>Shohoje Rokto. All right reserved | </span>
+          <span className="text-white dark:text-primary dark:font-medium">
             <Link href={"https://github.com/nh-shohan"} target="_blank">
               Nahim Hossain Shohan
             </Link>

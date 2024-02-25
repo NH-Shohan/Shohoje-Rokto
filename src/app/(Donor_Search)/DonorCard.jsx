@@ -15,16 +15,20 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useFilter } from "@/context/FilterContext";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { PiSealCheckDuotone } from "react-icons/pi";
 
 const DonorCard = ({ donors }) => {
-  const postsPerPage = 4;
+  const postsPerPage = 16;
   const [currentPage, setCurrentPage] = useState(1);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [filteredDonors, setFilteredDonors] = useState([]);
   const [isClient, setIsClient] = useState(false);
+  const { filterValues } = useFilter();
+  const { bloodGroup, area, gender, age, availability } = filterValues;
 
   useEffect(() => {
     setIsClient(true);
@@ -35,6 +39,49 @@ const DonorCard = ({ donors }) => {
   }, []);
 
   useEffect(() => {
+    setIsClient(true);
+    const storedData = localStorage.getItem("filterValues");
+    if (storedData) {
+      const filters = JSON.parse(storedData);
+      const filteredData = donors.filter((donor) => {
+        return (
+          (filters.bloodGroup.toLowerCase() === "" ||
+            donor.bloodGroup.toLowerCase() ===
+              filters.bloodGroup.toLowerCase()) &&
+          (filters.area.toLowerCase() === "" ||
+            donor.city.toLowerCase() === filters.area.toLowerCase()) &&
+          (filters.gender.toLowerCase() === "" ||
+            donor.gender.toLowerCase() === filters.gender.toLowerCase()) &&
+          isAgeInRange(filters.age, donor.age) &&
+          (filters.availability.toLowerCase() === "" ||
+            donor.availability.toLowerCase() ===
+              filters.availability.toLowerCase())
+        );
+      });
+      setFilteredDonors(filteredData);
+    } else {
+      setFilteredDonors(donors);
+    }
+  }, [donors, bloodGroup, area, gender, age, availability]);
+
+  const isAgeInRange = (filterAge, donorAge) => {
+    switch (filterAge) {
+      case "range1":
+        return donorAge >= 17 && donorAge <= 25;
+      case "range2":
+        return donorAge >= 26 && donorAge <= 35;
+      case "range3":
+        return donorAge >= 36 && donorAge <= 50;
+      case "range4":
+        return donorAge >= 52 && donorAge <= 60;
+      case "range5":
+        return donorAge >= 61 && donorAge <= 70;
+      default:
+        return true;
+    }
+  };
+
+  useEffect(() => {
     if (isClient) {
       localStorage.setItem("currentPage", currentPage);
     }
@@ -42,14 +89,14 @@ const DonorCard = ({ donors }) => {
 
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
-  const currentItems = donors.slice(firstPostIndex, lastPostIndex);
+  const currentItems = filteredDonors.slice(firstPostIndex, lastPostIndex);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <>
       {isClient ? (
-        <div className="grid grid-cols-4 mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-10">
           {currentItems.map(
             (
               {
@@ -170,7 +217,7 @@ const DonorCard = ({ donors }) => {
             }
 
             {Array.from({
-              length: Math.ceil(donors.length / postsPerPage),
+              length: Math.ceil(filteredDonors.length / postsPerPage),
             }).map((_, index) => {
               const pageNumber = index + 1;
               const isActive = pageNumber === currentPage;
@@ -181,7 +228,7 @@ const DonorCard = ({ donors }) => {
                 pageNumber === currentPage ||
                 pageNumber === currentPage + 1 ||
                 pageNumber === currentPage + 2 ||
-                pageNumber === Math.ceil(donors.length / postsPerPage)
+                pageNumber === Math.ceil(filteredDonors.length / postsPerPage)
               ) {
                 return (
                   <PaginationItem key={index} className="cursor-pointer">
@@ -211,7 +258,8 @@ const DonorCard = ({ donors }) => {
                 <PaginationNext
                   onClick={() => setCurrentPage(currentPage + 1)}
                   disabled={
-                    currentPage === Math.ceil(donors.length / postsPerPage)
+                    currentPage ===
+                    Math.ceil(filteredDonors.length / postsPerPage)
                   }
                 />
               </PaginationItem>

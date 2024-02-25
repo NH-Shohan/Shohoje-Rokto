@@ -1,3 +1,4 @@
+import { FilterProvider } from "@/context/FilterContext";
 import donors from "../../../data/donors.json";
 import DonorCard from "../DonorCard";
 import Search from "../Search";
@@ -5,8 +6,10 @@ import Search from "../Search";
 const DonorSearch = () => {
   return (
     <div className="container">
-      <Search />
-      <DonorCard donors={donors} />
+      <FilterProvider>
+        <Search />
+        <DonorCard donors={donors} />
+      </FilterProvider>
     </div>
   );
 };
