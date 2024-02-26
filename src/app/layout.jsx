@@ -1,5 +1,6 @@
 import Navbar from "@/components/ui/navbar";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
           <Navbar />
           {children}
         </ThemeProvider>
+          <SpeedInsights />
       </body>
     </html>
   );

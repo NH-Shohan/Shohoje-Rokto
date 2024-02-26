@@ -33,20 +33,6 @@ const DonorCard = ({ donors }) => {
 
   useEffect(() => {
     setIsClient(true);
-    const storedPage = localStorage.getItem("currentPage");
-    if (storedPage) {
-      setCurrentPage(parseInt(storedPage));
-    }
-
-    const timeoutId = setTimeout(() => {
-      localStorage.removeItem("currentPage");
-    }, 5 * 60 * 1000);
-
-    return () => clearTimeout(timeoutId);
-  }, []);
-
-  useEffect(() => {
-    setIsClient(true);
     const storedData = localStorage.getItem("filterValues");
     if (storedData) {
       const filters = JSON.parse(storedData);
@@ -70,6 +56,12 @@ const DonorCard = ({ donors }) => {
     } else {
       setFilteredDonors(donors);
     }
+
+    const timeoutId = setTimeout(() => {
+      localStorage.removeItem("filterValues");
+    }, 30 * 60 * 1000);
+
+    return () => clearTimeout(timeoutId);
   }, [donors, bloodGroup, area, gender, age, availability]);
 
   const isAgeInRange = (filterAge, donorAge) => {
@@ -89,12 +81,6 @@ const DonorCard = ({ donors }) => {
     }
   };
 
-  useEffect(() => {
-    if (isClient) {
-      localStorage.setItem("currentPage", currentPage);
-    }
-  }, [currentPage, isClient]);
-
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentItems = filteredDonors.slice(firstPostIndex, lastPostIndex);
@@ -108,7 +94,6 @@ const DonorCard = ({ donors }) => {
           <h1 className="font-light text-primary absolute top-[10%]">
             No Donors Found 😔
           </h1>
-          <p className>Sorry 😞</p>
           <div className="relative w-[100%] h-[80%]">
             <Image src={noData} alt="No data Found Image" fill />
           </div>
