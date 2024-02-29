@@ -12,6 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Select,
   SelectContent,
@@ -27,56 +28,17 @@ import { cn } from "@/lib/utils";
 import { CheckIcon, ChevronDownIcon, ResetIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import * as React from "react";
-import { useEffect, useState } from "react";
 import { PiSealCheckDuotone } from "react-icons/pi";
 import age from "../../../public/icons/age.svg";
 import bloodDrop from "../../../public/icons/bloodDrop.svg";
 import check from "../../../public/icons/check.svg";
 import gender from "../../../public/icons/gender.svg";
 import location from "../../../public/icons/location.svg";
-
-const areas = [
-  {
-    value: "dhaka",
-    label: "Dhaka",
-  },
-  {
-    value: "comilla",
-    label: "Comilla",
-  },
-  {
-    value: "barisal",
-    label: "Barisal",
-  },
-  {
-    value: "chittagong",
-    label: "Chittagong",
-  },
-  {
-    value: "khulna",
-    label: "Khulna",
-  },
-  {
-    value: "mymensingh",
-    label: "Mymensingh",
-  },
-  {
-    value: "rajshahi",
-    label: "Rajshahi",
-  },
-  {
-    value: "rangpur",
-    label: "Rangpur",
-  },
-  {
-    value: "sylhet",
-    label: "Sylhet",
-  },
-];
+import areas from "../../data/places.json";
 
 const Search = () => {
   const [open, setOpen] = React.useState(false);
-  const [isClient, setIsClient] = useState(false);
+  const [isClient, setIsClient] = React.useState(false);
   const { filterValues, setFilterValues } = useFilter();
 
   const handleValueChange = (name, value) => {
@@ -86,7 +48,7 @@ const Search = () => {
     }));
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     setIsClient(true);
     const storedData = localStorage.getItem("filterValues");
     if (storedData) {
@@ -94,7 +56,7 @@ const Search = () => {
     }
   }, [setFilterValues]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (isClient) {
       localStorage.setItem("filterValues", JSON.stringify(filterValues));
     }
@@ -165,38 +127,49 @@ const Search = () => {
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-full p-0">
-                <Command>
-                  <CommandInput placeholder="Search Areas" className="h-9" />
-                  <CommandEmpty>No framework found.</CommandEmpty>
-                  <CommandGroup>
-                    {areas.map((framework) => (
-                      <CommandItem
-                        key={framework.value}
-                        value={framework.value}
-                        onSelect={(currentValue) => {
-                          setFilterValues((prevValues) => ({
-                            ...prevValues,
-                            area:
-                              currentValue === filterValues.area
-                                ? ""
-                                : currentValue,
-                          }));
-                          setOpen(false);
-                        }}
-                      >
-                        {framework.label}
-                        <CheckIcon
-                          className={cn(
-                            "ml-auto h-5 w-5",
-                            filterValues === framework.value
-                              ? "opacity-100"
-                              : "opacity-0"
-                          )}
-                        />
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
-                </Command>
+                <ScrollArea className="h-96 rounded-md border">
+                  <Command>
+                    <CommandInput placeholder="Search Areas" className="h-9" />
+                    <CommandEmpty>No area found.</CommandEmpty>
+                    <CommandGroup>
+                      {areas.map((area, index) => (
+                        <React.Fragment key={index}>
+                          <div key={index} label={area.division} />
+                          {area.upazilas.map((upazila, upazilaIndex) => (
+                            <CommandItem
+                              key={upazilaIndex}
+                              value={upazila}
+                              onSelect={(currentValue) => {
+                                setFilterValues((prevValues) => ({
+                                  ...prevValues,
+                                  area:
+                                    currentValue === filterValues.area
+                                      ? ""
+                                      : currentValue,
+                                }));
+                                setOpen(false);
+                              }}
+                            >
+                              {upazila}
+                              {", "}
+                              {area.district}
+                              {", "}
+                              {area.division}
+                              <CheckIcon
+                                className={cn(
+                                  "ml-auto h-5 w-5",
+                                  filterValues === area.value
+                                    ? "opacity-100"
+                                    : "opacity-0"
+                                )}
+                              />
+                            </CommandItem>
+                          ))}
+                        </React.Fragment>
+                      ))}
+                    </CommandGroup>
+                  </Command>
+                </ScrollArea>
               </PopoverContent>
             </Popover>
 
