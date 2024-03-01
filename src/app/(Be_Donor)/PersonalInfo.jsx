@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
   Command,
-  CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
@@ -47,6 +46,11 @@ const PersonalInfo = () => {
   const [selectedDivision, setSelectedDivision] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [selectedSubdistrict, setSelectedSubdistrict] = useState("");
+  const [selectedDonation, setSelectedDonation] = useState("");
+
+  // const handleValueChange = (value) => {
+  //   setSelectedDonation(value);
+  // };
 
   return (
     <div className="flex flex-col gap-2">
@@ -65,7 +69,7 @@ const PersonalInfo = () => {
 
       <Input type="text" placeholder="Full Name" id={"name"} name="name" />
 
-      <Input type="email" placeholder="Your Email" id={"email"} name="email" />
+      <Input type="email" placeholder="Email" id={"email"} name="email" />
 
       <div className="flex gap-2">
         <Select
@@ -169,7 +173,6 @@ const PersonalInfo = () => {
           <PopoverContent className="w-full p-0">
             <Command>
               <CommandInput placeholder="Search Areas" className="h-9" />
-              <CommandEmpty>No area found.</CommandEmpty>
               <CommandGroup>
                 {areas.divisions.map((division, index) => (
                   <CommandItem
@@ -207,10 +210,11 @@ const PersonalInfo = () => {
           </PopoverTrigger>
           <PopoverContent className="w-full p-0">
             <Command>
-              <CommandInput placeholder="Search Areas" className="h-9" />
-              <CommandEmpty>No area found.</CommandEmpty>
+              {selectedDivision && (
+                <CommandInput placeholder="Search Areas" className="h-9" />
+              )}
               <CommandGroup>
-                {selectedDivision &&
+                {selectedDivision ? (
                   areas.divisions
                     .find(
                       (division) =>
@@ -232,7 +236,12 @@ const PersonalInfo = () => {
                       >
                         {district.name}
                       </CommandItem>
-                    ))}
+                    ))
+                ) : (
+                  <div className="text-center text-primary text-sm py-3 px-6">
+                    Select Your Division
+                  </div>
+                )}
               </CommandGroup>
             </Command>
           </PopoverContent>
@@ -257,10 +266,11 @@ const PersonalInfo = () => {
           </PopoverTrigger>
           <PopoverContent className="w-full p-0">
             <Command>
-              <CommandInput placeholder="Search Areas" className="h-9" />
-              <CommandEmpty>No area found.</CommandEmpty>
+              {selectedDistrict && (
+                <CommandInput placeholder="Search Areas" className="h-9" />
+              )}
               <CommandGroup>
-                {selectedDistrict &&
+                {selectedDistrict ? (
                   areas.divisions
                     .find(
                       (division) =>
@@ -287,11 +297,60 @@ const PersonalInfo = () => {
                       >
                         {subdistrict}
                       </CommandItem>
-                    ))}
+                    ))
+                ) : (
+                  <div className="text-center text-primary text-sm py-3 px-6">
+                    Select Your District
+                  </div>
+                )}
               </CommandGroup>
             </Command>
           </PopoverContent>
         </Popover>
+      </div>
+
+      <div className="flex gap-2">
+        <Select
+          value={selectedDonation}
+          onValueChange={(value) => setSelectedDonation(value)}
+        >
+          <SelectTrigger className="justify-start">
+            <SelectValue placeholder="Did You Donated Before?" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem value="yes">Yes</SelectItem>
+              <SelectItem value="no">No</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+
+        {selectedDonation === "yes" && (
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant={"dropdown"}
+                className={cn(
+                  "flex justify-start text-left font-normal pl-2 gap-3 bg-white dark:bg-background",
+                  !date && "text-foreground"
+                )}
+              >
+                <CalendarIcon className="h-5 w-auto pl-1" />
+                {date ? format(date, "PPP") : <span>Last Donation Date</span>}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-full p-0" align="center">
+              <Calendar
+                mode="single"
+                onSelect={setDate}
+                selected={date}
+                captionLayout="dropdown"
+                fromYear={1900}
+                toYear={new Date().getFullYear()}
+              />
+            </PopoverContent>
+          </Popover>
+        )}
       </div>
 
       <p className="text-sm mt-3 text-primary">(Optional Information)</p>
@@ -314,22 +373,12 @@ const PersonalInfo = () => {
           </SelectContent>
         </Select>
 
-        <Select
-        // value={filterValues.gender}
-        // onValueChange={(value) => handleValueChange("gender", value)}
-        >
-          <SelectTrigger className="justify-start">
-            <SelectValue placeholder="Marital Status" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Marital Status</SelectLabel>
-              <SelectSeparator />
-              <SelectItem value="male">Married</SelectItem>
-              <SelectItem value="female">Unmarried</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+        <Input
+          type="url"
+          placeholder="Social Media Link"
+          id={"link"}
+          name="link"
+        />
       </div>
 
       <Textarea
@@ -341,7 +390,7 @@ const PersonalInfo = () => {
         <p className="text-sm text-primary mb-1 dark:text-foreground">
           Preferred Contact Method
         </p>
-        <RadioGroup defaultValue="phone">
+        <RadioGroup defaultValue="phone" className="">
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="email" id="r1" />
             <Label htmlFor="r1">Email</Label>
