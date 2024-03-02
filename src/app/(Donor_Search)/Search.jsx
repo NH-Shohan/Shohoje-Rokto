@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import {
   Command,
-  CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
@@ -12,7 +11,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Select,
   SelectContent,
@@ -24,8 +22,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useFilter } from "@/context/FilterContext";
-import { cn } from "@/lib/utils";
-import { CheckIcon, ChevronDownIcon, ResetIcon } from "@radix-ui/react-icons";
+import { ChevronDownIcon, ResetIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import * as React from "react";
 import { PiSealCheckDuotone } from "react-icons/pi";
@@ -37,9 +34,15 @@ import location from "../../../public/icons/location.svg";
 import areas from "../../data/places.json";
 
 const Search = () => {
-  const [open, setOpen] = React.useState(false);
-  const [isClient, setIsClient] = React.useState(false);
   const { filterValues, setFilterValues } = useFilter();
+
+  const [isClient, setIsClient] = React.useState(false);
+  const [openDivision, setOpenDivision] = React.useState(false);
+  const [openDistrict, setOpenDistrict] = React.useState(false);
+  const [openSubdistrict, setOpenSubdistrict] = React.useState(false);
+  const [selectedDivision, setSelectedDivision] = React.useState("");
+  const [selectedDistrict, setSelectedDistrict] = React.useState("");
+  const [selectedSubdistrict, setSelectedSubdistrict] = React.useState("");
 
   const handleValueChange = (name, value) => {
     setFilterValues((prevValues) => ({
@@ -53,6 +56,7 @@ const Search = () => {
     const storedData = localStorage.getItem("filterValues");
     if (storedData) {
       setFilterValues(JSON.parse(storedData));
+      setSelectedDivision(JSON.parse(storedData).division);
     }
   }, [setFilterValues]);
 
@@ -64,9 +68,14 @@ const Search = () => {
 
   const resetLocalStorage = () => {
     localStorage.removeItem("filterValues");
+    setSelectedDivision("");
+    setSelectedDistrict("");
+    setSelectedSubdistrict("");
     setFilterValues({
       bloodGroup: "",
-      area: "",
+      division: "",
+      district: "",
+      subdistrict: "",
       gender: "",
       age: "",
       availability: "",
@@ -77,7 +86,7 @@ const Search = () => {
     <>
       {isClient ? (
         <>
-          <div className="bg-white dark:bg-secondary mt-5 p-4 rounded-2xl border flex justify-between gap-4 mx-20">
+          <div className="bg-white dark:bg-secondary mt-5 p-4 rounded-2xl border grid grid-cols-5 gap-2 mx-20">
             <Select
               value={filterValues.bloodGroup}
               onValueChange={(value) => handleValueChange("bloodGroup", value)}
@@ -100,78 +109,6 @@ const Search = () => {
                 </SelectGroup>
               </SelectContent>
             </Select>
-
-            <Popover open={open} onOpenChange={setOpen}>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="dropdown"
-                  role="combobox"
-                  aria-expanded={open}
-                  className="pl-2.5"
-                >
-                  <Image
-                    src={location}
-                    alt="blood drop icon"
-                    width={20}
-                    height={20}
-                    priority
-                  />
-                  <div className="flex justify-between items-center w-full font-normal">
-                    {filterValues.area
-                      ? areas.find(
-                          (framework) => framework.value === filterValues.area
-                        )?.label
-                      : "Select Area"}
-                    <ChevronDownIcon className="ml-2 h-5 w-5 shrink-0 opacity-50" />
-                  </div>
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-full p-0">
-                <ScrollArea className="h-96 rounded-md border">
-                  <Command>
-                    <CommandInput placeholder="Search Areas" className="h-9" />
-                    <CommandEmpty>No area found.</CommandEmpty>
-                    <CommandGroup>
-                      {areas.map((area, index) => (
-                        <React.Fragment key={index}>
-                          <div key={index} label={area.division} />
-                          {area.upazilas.map((upazila, upazilaIndex) => (
-                            <CommandItem
-                              key={upazilaIndex}
-                              value={upazila}
-                              onSelect={(currentValue) => {
-                                setFilterValues((prevValues) => ({
-                                  ...prevValues,
-                                  area:
-                                    currentValue === filterValues.area
-                                      ? ""
-                                      : currentValue,
-                                }));
-                                setOpen(false);
-                              }}
-                            >
-                              {upazila}
-                              {", "}
-                              {area.district}
-                              {", "}
-                              {area.division}
-                              <CheckIcon
-                                className={cn(
-                                  "ml-auto h-5 w-5",
-                                  filterValues === area.value
-                                    ? "opacity-100"
-                                    : "opacity-0"
-                                )}
-                              />
-                            </CommandItem>
-                          ))}
-                        </React.Fragment>
-                      ))}
-                    </CommandGroup>
-                  </Command>
-                </ScrollArea>
-              </PopoverContent>
-            </Popover>
 
             <Select
               value={filterValues.gender}
@@ -204,7 +141,7 @@ const Search = () => {
                   <SelectItem value="range1">17 - 25</SelectItem>
                   <SelectItem value="range2">26 - 35</SelectItem>
                   <SelectItem value="range3">36 - 50</SelectItem>
-                  <SelectItem value="range4">52 - 60</SelectItem>
+                  <SelectItem value="range4">51 - 60</SelectItem>
                   <SelectItem
                     value="range5"
                     className="text-primary hover:text-primary focus:text-primary"
@@ -251,6 +188,198 @@ const Search = () => {
             >
               <ResetIcon className="text-2xl" /> Reset
             </Button>
+
+            {/* Division */}
+            <Popover open={openDivision} onOpenChange={setOpenDivision}>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="dropdown"
+                  role="combobox"
+                  aria-expanded={openDivision}
+                  className="pl-2.5 bg-white dark:bg-background"
+                >
+                  <Image
+                    src={location}
+                    alt="location icon"
+                    width={20}
+                    height={20}
+                  />
+                  <div className="flex justify-between items-center w-full font-normal capitalize">
+                    {selectedDivision ? selectedDivision : "Select Division"}
+                    <ChevronDownIcon className="-mr-1 h-5 w-5 shrink-0 opacity-50" />
+                  </div>
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-full p-0">
+                <Command>
+                  <CommandInput placeholder="Search Division" className="h-9" />
+                  <CommandGroup>
+                    {areas.divisions.map((division, index) => (
+                      <CommandItem
+                        key={index}
+                        value={division.name}
+                        onSelect={(currentValue) => {
+                          setSelectedDivision(
+                            currentValue === selectedDivision
+                              ? ""
+                              : currentValue
+                          );
+                          handleValueChange(
+                            "division",
+                            currentValue === selectedDivision
+                              ? ""
+                              : currentValue
+                          );
+                          setOpenDivision(false);
+                        }}
+                      >
+                        {division.name}
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                </Command>
+              </PopoverContent>
+            </Popover>
+
+            {/* District */}
+            <Popover open={openDistrict} onOpenChange={setOpenDistrict}>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="dropdown"
+                  role="combobox"
+                  aria-expanded={openDistrict}
+                  className="pl-2.5 bg-white dark:bg-background"
+                >
+                  <Image
+                    src={location}
+                    alt="location icon"
+                    width={20}
+                    height={20}
+                  />
+                  <div className="flex justify-between items-center w-full font-normal capitalize">
+                    {selectedDistrict ? selectedDistrict : "Select District"}
+                    <ChevronDownIcon className="-mr-1 h-5 w-5 shrink-0 opacity-50" />
+                  </div>
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-full p-0">
+                <Command>
+                  {selectedDivision && (
+                    <CommandInput placeholder="Search Areas" className="h-9" />
+                  )}
+                  <CommandGroup>
+                    {selectedDivision ? (
+                      areas.divisions
+                        .find(
+                          (division) =>
+                            division.name.toLocaleLowerCase() ===
+                            selectedDivision.toLocaleLowerCase()
+                        )
+                        ?.districts.map((district, index) => (
+                          <CommandItem
+                            key={index}
+                            value={district.name}
+                            onSelect={(currentValue) => {
+                              setSelectedDistrict(
+                                currentValue === selectedDistrict
+                                  ? ""
+                                  : currentValue
+                              );
+                              handleValueChange(
+                                "district",
+                                currentValue === selectedDistrict
+                                  ? ""
+                                  : currentValue
+                              );
+                              setOpenDistrict(false);
+                            }}
+                          >
+                            {district.name}
+                          </CommandItem>
+                        ))
+                    ) : (
+                      <div className="text-center text-primary text-sm py-3 px-6">
+                        Select Your Division
+                      </div>
+                    )}
+                  </CommandGroup>
+                </Command>
+              </PopoverContent>
+            </Popover>
+
+            {/* Sub District */}
+            <Popover open={openSubdistrict} onOpenChange={setOpenSubdistrict}>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="dropdown"
+                  role="combobox"
+                  aria-expanded={openSubdistrict}
+                  className="pl-2.5 bg-white dark:bg-background"
+                >
+                  <Image
+                    src={location}
+                    alt="location icon"
+                    width={20}
+                    height={20}
+                  />
+                  <div className="flex justify-between items-center w-full font-normal capitalize">
+                    {selectedSubdistrict
+                      ? selectedSubdistrict
+                      : "Select Sub District"}
+                    <ChevronDownIcon className="-mr-1 h-5 w-5 shrink-0 opacity-50" />
+                  </div>
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-full p-0">
+                <Command>
+                  {selectedDistrict && (
+                    <CommandInput placeholder="Search Areas" className="h-9" />
+                  )}
+                  <CommandGroup>
+                    {selectedDistrict ? (
+                      areas.divisions
+                        .find(
+                          (division) =>
+                            division.name.toLocaleLowerCase() ===
+                            selectedDivision.toLocaleLowerCase()
+                        )
+                        ?.districts.find(
+                          (district) =>
+                            district.name.toLocaleLowerCase() ===
+                            selectedDistrict.toLocaleLowerCase()
+                        )
+                        ?.subdistricts.map((subdistrict, index) => (
+                          <CommandItem
+                            key={index}
+                            value={subdistrict}
+                            onSelect={(currentValue) => {
+                              setSelectedSubdistrict(
+                                currentValue === selectedSubdistrict
+                                  ? ""
+                                  : currentValue
+                              );
+                              setOpenSubdistrict(false);
+                            }}
+                          >
+                            {subdistrict}
+                          </CommandItem>
+                        ))
+                    ) : (
+                      <div className="text-center text-primary text-sm py-3 px-6">
+                        Select Your District
+                      </div>
+                    )}
+                  </CommandGroup>
+                </Command>
+              </PopoverContent>
+            </Popover>
+
+            <Command className="border col-span-2 bg-white dark:bg-background">
+              <CommandInput
+                placeholder="Search Donor Name"
+                className="h-9 bg-white dark:bg-background"
+              />
+            </Command>
           </div>
 
           <div className="mx-20 mt-1 flex gap-6 justify-center">

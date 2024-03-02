@@ -1,4 +1,5 @@
 "use client";
+import MedicalInfo from "../MedicalInfo";
 import PersonalInfo from "../PersonalInfo";
 import Stepper from "../Stepper";
 
@@ -9,7 +10,7 @@ const REGISTER_STEPS = [
   },
   {
     name: "Medical Info",
-    Component: () => <div>Medical Info</div>,
+    Component: () => <MedicalInfo />,
   },
   {
     name: "Registration",
