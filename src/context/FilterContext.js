@@ -6,7 +6,9 @@ const FilterContext = createContext();
 export const FilterProvider = ({ children }) => {
   const [filterValues, setFilterValues] = useState({
     bloodGroup: "",
-    area: "",
+    division: "",
+    district: "",
+    subdistrict: "",
     gender: "",
     age: "",
     availability: "",

@@ -48,10 +48,6 @@ const PersonalInfo = () => {
   const [selectedSubdistrict, setSelectedSubdistrict] = useState("");
   const [selectedDonation, setSelectedDonation] = useState("");
 
-  // const handleValueChange = (value) => {
-  //   setSelectedDonation(value);
-  // };
-
   return (
     <div className="flex flex-col gap-2">
       <div className="flex justify-between">
@@ -67,7 +63,13 @@ const PersonalInfo = () => {
         </Link>
       </div>
 
-      <Input type="text" placeholder="Full Name" id={"name"} name="name" />
+      <Input
+        type="text"
+        placeholder="Full Name"
+        id={"name"}
+        name="name"
+        required
+      />
 
       <Input type="email" placeholder="Email" id={"email"} name="email" />
 

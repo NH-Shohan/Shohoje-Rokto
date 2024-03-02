@@ -29,7 +29,7 @@ const DonorCard = ({ donors }) => {
   const [filteredDonors, setFilteredDonors] = useState([]);
   const [isClient, setIsClient] = useState(false);
   const { filterValues } = useFilter();
-  const { bloodGroup, area, gender, age, availability } = filterValues;
+  const { bloodGroup, division, gender, age, availability } = filterValues;
 
   useEffect(() => {
     setIsClient(true);
@@ -37,18 +37,28 @@ const DonorCard = ({ donors }) => {
     if (storedData) {
       const filters = JSON.parse(storedData);
       const filteredData = donors.filter((donor) => {
+        const bloodGroupMatch =
+          filters.bloodGroup.toLowerCase() === "" ||
+          donor.bloodGroup.toLowerCase() === filters.bloodGroup.toLowerCase();
+        const divisionMatch =
+          !filters.division ||
+          filters.division.toLowerCase() === "" ||
+          donor.division.toLowerCase() === filters.division.toLowerCase();
+        const genderMatch =
+          filters.gender.toLowerCase() === "" ||
+          donor.gender.toLowerCase() === filters.gender.toLowerCase();
+        const ageMatch = isAgeInRange(filters.age, donor.age);
+        const availabilityMatch =
+          filters.availability.toLowerCase() === "" ||
+          donor.availability.toLowerCase() ===
+            filters.availability.toLowerCase();
+
         return (
-          (filters.bloodGroup.toLowerCase() === "" ||
-            donor.bloodGroup.toLowerCase() ===
-              filters.bloodGroup.toLowerCase()) &&
-          (filters.area.toLowerCase() === "" ||
-            donor.city.toLowerCase() === filters.area.toLowerCase()) &&
-          (filters.gender.toLowerCase() === "" ||
-            donor.gender.toLowerCase() === filters.gender.toLowerCase()) &&
-          isAgeInRange(filters.age, donor.age) &&
-          (filters.availability.toLowerCase() === "" ||
-            donor.availability.toLowerCase() ===
-              filters.availability.toLowerCase())
+          bloodGroupMatch &&
+          divisionMatch &&
+          genderMatch &&
+          ageMatch &&
+          availabilityMatch
         );
       });
       setFilteredDonors(filteredData);
@@ -62,7 +72,7 @@ const DonorCard = ({ donors }) => {
     }, 30 * 60 * 1000);
 
     return () => clearTimeout(timeoutId);
-  }, [donors, bloodGroup, area, gender, age, availability]);
+  }, [donors, bloodGroup, division, gender, age, availability]);
 
   const isAgeInRange = (filterAge, donorAge) => {
     switch (filterAge) {
@@ -73,7 +83,7 @@ const DonorCard = ({ donors }) => {
       case "range3":
         return donorAge >= 36 && donorAge <= 50;
       case "range4":
-        return donorAge >= 52 && donorAge <= 60;
+        return donorAge >= 51 && donorAge <= 60;
       case "range5":
         return donorAge >= 61 && donorAge <= 70;
       default:
@@ -109,7 +119,7 @@ const DonorCard = ({ donors }) => {
                     name,
                     bloodGroup,
                     availability,
-                    city,
+                    division,
                     gender,
                     age,
                     type,
@@ -194,7 +204,7 @@ const DonorCard = ({ donors }) => {
                           >
                             {availability}
                           </li>
-                          <li>{city}</li>
+                          <li>{division}</li>
                           <li>{gender}</li>
                           <li>{age}</li>
                         </div>
