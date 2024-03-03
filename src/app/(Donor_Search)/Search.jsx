@@ -6,11 +6,13 @@ import {
   CommandInput,
   CommandItem,
 } from "@/components/ui/command";
+import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Select,
   SelectContent,
@@ -21,8 +23,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useDonorSearch } from "@/context/DonorSearchContext";
 import { useFilter } from "@/context/FilterContext";
-import { ChevronDownIcon, ResetIcon } from "@radix-ui/react-icons";
+import {
+  ChevronDownIcon,
+  MagnifyingGlassIcon,
+  ResetIcon,
+} from "@radix-ui/react-icons";
 import Image from "next/image";
 import * as React from "react";
 import { PiSealCheckDuotone } from "react-icons/pi";
@@ -31,10 +38,13 @@ import bloodDrop from "../../../public/icons/bloodDrop.svg";
 import check from "../../../public/icons/check.svg";
 import gender from "../../../public/icons/gender.svg";
 import location from "../../../public/icons/location.svg";
-import areas from "../../data/places.json";
+import areas from "../../data/bdLocation.json";
 
 const Search = () => {
   const { filterValues, setFilterValues } = useFilter();
+  const { searchQuery, setSearchQuery } = useDonorSearch();
+
+  const [isInputActive, setIsInputActive] = React.useState(false);
 
   const [isClient, setIsClient] = React.useState(false);
   const [openDivision, setOpenDivision] = React.useState(false);
@@ -44,11 +54,41 @@ const Search = () => {
   const [selectedDistrict, setSelectedDistrict] = React.useState("");
   const [selectedSubdistrict, setSelectedSubdistrict] = React.useState("");
 
+  const handleSearchInputChange = (e) => {
+    setSearchQuery(e.target.value);
+    setIsInputActive(true);
+  };
+
+  const handleInputBlur = () => {
+    setIsInputActive(false);
+  };
+
   const handleValueChange = (name, value) => {
-    setFilterValues((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }));
+    if (name === "division") {
+      setSelectedDistrict("");
+      setSelectedSubdistrict("");
+
+      const updatedFilterValues = {
+        ...filterValues,
+        division: value,
+        district: "",
+        subdistrict: "",
+      };
+      setFilterValues(updatedFilterValues);
+      localStorage.setItem("filterValues", JSON.stringify(updatedFilterValues));
+    } else {
+      setFilterValues((prevValues) => ({
+        ...prevValues,
+        [name]: value,
+      }));
+      localStorage.setItem(
+        "filterValues",
+        JSON.stringify({
+          ...filterValues,
+          [name]: value,
+        })
+      );
+    }
   };
 
   React.useEffect(() => {
@@ -57,6 +97,8 @@ const Search = () => {
     if (storedData) {
       setFilterValues(JSON.parse(storedData));
       setSelectedDivision(JSON.parse(storedData).division);
+      setSelectedDistrict(JSON.parse(storedData).district);
+      setSelectedSubdistrict(JSON.parse(storedData).subdistrict);
     }
   }, [setFilterValues]);
 
@@ -213,30 +255,35 @@ const Search = () => {
               <PopoverContent className="w-full p-0">
                 <Command>
                   <CommandInput placeholder="Search Division" className="h-9" />
-                  <CommandGroup>
-                    {areas.divisions.map((division, index) => (
-                      <CommandItem
-                        key={index}
-                        value={division.name}
-                        onSelect={(currentValue) => {
-                          setSelectedDivision(
-                            currentValue === selectedDivision
-                              ? ""
-                              : currentValue
-                          );
-                          handleValueChange(
-                            "division",
-                            currentValue === selectedDivision
-                              ? ""
-                              : currentValue
-                          );
-                          setOpenDivision(false);
-                        }}
-                      >
-                        {division.name}
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
+                  <ScrollArea className="h-full">
+                    <CommandGroup>
+                      {areas.divisions
+                        .slice()
+                        .sort((a, b) => a.name.localeCompare(b.name))
+                        .map((division, index) => (
+                          <CommandItem
+                            key={index}
+                            value={division.name}
+                            onSelect={(currentValue) => {
+                              setSelectedDivision(
+                                currentValue === selectedDivision
+                                  ? ""
+                                  : currentValue
+                              );
+                              handleValueChange(
+                                "division",
+                                currentValue === selectedDivision
+                                  ? ""
+                                  : currentValue
+                              );
+                              setOpenDivision(false);
+                            }}
+                          >
+                            {division.name}
+                          </CommandItem>
+                        ))}
+                    </CommandGroup>
+                  </ScrollArea>
                 </Command>
               </PopoverContent>
             </Popover>
@@ -268,40 +315,44 @@ const Search = () => {
                     <CommandInput placeholder="Search Areas" className="h-9" />
                   )}
                   <CommandGroup>
-                    {selectedDivision ? (
-                      areas.divisions
-                        .find(
-                          (division) =>
-                            division.name.toLocaleLowerCase() ===
-                            selectedDivision.toLocaleLowerCase()
-                        )
-                        ?.districts.map((district, index) => (
-                          <CommandItem
-                            key={index}
-                            value={district.name}
-                            onSelect={(currentValue) => {
-                              setSelectedDistrict(
-                                currentValue === selectedDistrict
-                                  ? ""
-                                  : currentValue
-                              );
-                              handleValueChange(
-                                "district",
-                                currentValue === selectedDistrict
-                                  ? ""
-                                  : currentValue
-                              );
-                              setOpenDistrict(false);
-                            }}
-                          >
-                            {district.name}
-                          </CommandItem>
-                        ))
-                    ) : (
-                      <div className="text-center text-primary text-sm py-3 px-6">
-                        Select Your Division
-                      </div>
-                    )}
+                    <ScrollArea>
+                      {selectedDivision ? (
+                        areas.divisions
+                          .find(
+                            (division) =>
+                              division.name.toLocaleLowerCase() ===
+                              selectedDivision.toLocaleLowerCase()
+                          )
+                          ?.districts.slice()
+                          .sort((a, b) => a.name.localeCompare(b.name))
+                          .map((district, index) => (
+                            <CommandItem
+                              key={index}
+                              value={district.name}
+                              onSelect={(currentValue) => {
+                                setSelectedDistrict(
+                                  currentValue === selectedDistrict
+                                    ? ""
+                                    : currentValue
+                                );
+                                handleValueChange(
+                                  "district",
+                                  currentValue === selectedDistrict
+                                    ? ""
+                                    : currentValue
+                                );
+                                setOpenDistrict(false);
+                              }}
+                            >
+                              {district.name}
+                            </CommandItem>
+                          ))
+                      ) : (
+                        <div className="text-center text-primary text-sm py-3 px-6">
+                          Select Your Division
+                        </div>
+                      )}
+                    </ScrollArea>
                   </CommandGroup>
                 </Command>
               </PopoverContent>
@@ -336,50 +387,69 @@ const Search = () => {
                     <CommandInput placeholder="Search Areas" className="h-9" />
                   )}
                   <CommandGroup>
-                    {selectedDistrict ? (
-                      areas.divisions
-                        .find(
-                          (division) =>
-                            division.name.toLocaleLowerCase() ===
-                            selectedDivision.toLocaleLowerCase()
-                        )
-                        ?.districts.find(
-                          (district) =>
-                            district.name.toLocaleLowerCase() ===
-                            selectedDistrict.toLocaleLowerCase()
-                        )
-                        ?.subdistricts.map((subdistrict, index) => (
-                          <CommandItem
-                            key={index}
-                            value={subdistrict}
-                            onSelect={(currentValue) => {
-                              setSelectedSubdistrict(
-                                currentValue === selectedSubdistrict
-                                  ? ""
-                                  : currentValue
-                              );
-                              setOpenSubdistrict(false);
-                            }}
-                          >
-                            {subdistrict}
-                          </CommandItem>
-                        ))
-                    ) : (
-                      <div className="text-center text-primary text-sm py-3 px-6">
-                        Select Your District
-                      </div>
-                    )}
+                    <ScrollArea className="h-[200px]">
+                      {selectedDistrict ? (
+                        areas.divisions
+                          .find(
+                            (division) =>
+                              division.name.toLocaleLowerCase() ===
+                              selectedDivision.toLocaleLowerCase()
+                          )
+                          ?.districts.find(
+                            (district) =>
+                              district.name.toLocaleLowerCase() ===
+                              selectedDistrict.toLocaleLowerCase()
+                          )
+                          ?.subdistricts.slice()
+                          .sort()
+                          .map((subdistrict, index) => (
+                            <CommandItem
+                              key={index}
+                              value={subdistrict}
+                              onSelect={(currentValue) => {
+                                setSelectedSubdistrict(
+                                  currentValue === selectedSubdistrict
+                                    ? ""
+                                    : currentValue
+                                );
+                                handleValueChange(
+                                  "subdistrict",
+                                  currentValue === selectedSubdistrict
+                                    ? ""
+                                    : currentValue
+                                );
+                                setOpenSubdistrict(false);
+                              }}
+                            >
+                              {subdistrict}
+                            </CommandItem>
+                          ))
+                      ) : (
+                        <div className="text-center text-primary text-sm py-3 px-6">
+                          Select Your District
+                        </div>
+                      )}
+                    </ScrollArea>
                   </CommandGroup>
                 </Command>
               </PopoverContent>
             </Popover>
 
-            <Command className="border col-span-2 bg-white dark:bg-background">
-              <CommandInput
+            <div
+              className={`col-span-2 bg-white dark:bg-background border flex gap-1 items-center rounded-md h-[35px] overflow-hidden ${
+                isInputActive ? "border-primary" : ""
+              }`}
+            >
+              <MagnifyingGlassIcon className="ml-3 -mr-2 h-5 w-5 shrink-0 text-primary" />
+              <Input
+                value={searchQuery}
+                onChange={handleSearchInputChange}
+                onBlur={handleInputBlur}
+                onClick={() => setIsInputActive((prevState) => !prevState)}
                 placeholder="Search Donor Name"
-                className="h-9 bg-white dark:bg-background"
+                className="h-9 bg-white dark:bg-background focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-ring border-none"
               />
-            </Command>
+            </div>
           </div>
 
           <div className="mx-20 mt-1 flex gap-6 justify-center">

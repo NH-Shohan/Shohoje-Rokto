@@ -36,7 +36,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import flag from "../../../public/icons/flag.svg";
-import areas from "../../data/places.json";
+import areas from "../../data/bdLocation.json";
 
 const PersonalInfo = () => {
   const [date, setDate] = useState();
