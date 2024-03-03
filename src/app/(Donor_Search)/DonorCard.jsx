@@ -15,6 +15,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useDonorSearch } from "@/context/DonorSearchContext";
 import { useFilter } from "@/context/FilterContext";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
@@ -24,12 +25,15 @@ import noData from "../../../public/assets/noData.svg";
 
 const DonorCard = ({ donors }) => {
   const postsPerPage = 16;
+  const { filterValues } = useFilter();
+  const { searchQuery } = useDonorSearch();
+
+  const { bloodGroup, division, gender, age, availability } = filterValues;
+
   const [currentPage, setCurrentPage] = useState(1);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [filteredDonors, setFilteredDonors] = useState([]);
   const [isClient, setIsClient] = useState(false);
-  const { filterValues } = useFilter();
-  const { bloodGroup, division, gender, age, availability } = filterValues;
 
   useEffect(() => {
     setIsClient(true);
@@ -90,6 +94,13 @@ const DonorCard = ({ donors }) => {
         return true;
     }
   };
+
+  useEffect(() => {
+    const filteredDonorsByName = donors.filter((donor) =>
+      donor.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredDonors(filteredDonorsByName);
+  }, [searchQuery, donors]);
 
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
