@@ -8,7 +8,7 @@ export const FilterProvider = ({ children }) => {
     bloodGroup: "",
     division: "",
     district: "",
-    subdistrict: "",
+    subDistrict: "",
     gender: "",
     age: "",
     availability: "",

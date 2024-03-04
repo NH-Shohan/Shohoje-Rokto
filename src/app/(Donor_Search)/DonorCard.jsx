@@ -28,7 +28,15 @@ const DonorCard = ({ donors }) => {
   const { filterValues } = useFilter();
   const { searchQuery } = useDonorSearch();
 
-  const { bloodGroup, division, gender, age, availability } = filterValues;
+  const {
+    bloodGroup,
+    division,
+    district,
+    subDistrict,
+    gender,
+    age,
+    availability,
+  } = filterValues;
 
   const [currentPage, setCurrentPage] = useState(1);
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -48,6 +56,14 @@ const DonorCard = ({ donors }) => {
           !filters.division ||
           filters.division.toLowerCase() === "" ||
           donor.division.toLowerCase() === filters.division.toLowerCase();
+        const districtMatch =
+          !filters.district ||
+          filters.district.toLowerCase() === "" ||
+          donor.district.toLowerCase() === filters.district.toLowerCase();
+        const subDistrictMatch =
+          !filters.subDistrict ||
+          filters.subDistrict.toLowerCase() === "" ||
+          donor.subDistrict.toLowerCase() === filters.subDistrict.toLowerCase();
         const genderMatch =
           filters.gender.toLowerCase() === "" ||
           donor.gender.toLowerCase() === filters.gender.toLowerCase();
@@ -60,6 +76,8 @@ const DonorCard = ({ donors }) => {
         return (
           bloodGroupMatch &&
           divisionMatch &&
+          districtMatch &&
+          subDistrictMatch &&
           genderMatch &&
           ageMatch &&
           availabilityMatch
@@ -76,7 +94,16 @@ const DonorCard = ({ donors }) => {
     }, 30 * 60 * 1000);
 
     return () => clearTimeout(timeoutId);
-  }, [donors, bloodGroup, division, gender, age, availability]);
+  }, [
+    donors,
+    bloodGroup,
+    division,
+    district,
+    subDistrict,
+    gender,
+    age,
+    availability,
+  ]);
 
   const isAgeInRange = (filterAge, donorAge) => {
     switch (filterAge) {
