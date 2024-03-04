@@ -71,7 +71,13 @@ const PersonalInfo = () => {
         required
       />
 
-      <Input type="email" placeholder="Email" id={"email"} name="email" />
+      <Input
+        type="email"
+        placeholder="Email"
+        id={"email"}
+        name="email"
+        required
+      />
 
       <div className="flex gap-2">
         <Select
@@ -142,7 +148,7 @@ const PersonalInfo = () => {
         </Select>
 
         <div className="flex w-1/2">
-          <div className="flex border px-3 gap-1 rounded-tl-md rounded-bl-md items-center bg-white dark:bg-background">
+          <div className="flex border px-3 gap-2 rounded-tl-md rounded-bl-md items-center bg-white dark:bg-background">
             <Image src={flag} alt="flag bd icon" width={22} height={22} />
             <p className="mr-3 text-sm">+88</p>
           </div>

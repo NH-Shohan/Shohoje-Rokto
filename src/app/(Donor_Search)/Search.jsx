@@ -72,7 +72,7 @@ const Search = () => {
         ...filterValues,
         division: value,
         district: "",
-        subdistrict: "",
+        subDistrict: "",
       };
       setFilterValues(updatedFilterValues);
       localStorage.setItem("filterValues", JSON.stringify(updatedFilterValues));
@@ -98,7 +98,7 @@ const Search = () => {
       setFilterValues(JSON.parse(storedData));
       setSelectedDivision(JSON.parse(storedData).division);
       setSelectedDistrict(JSON.parse(storedData).district);
-      setSelectedSubdistrict(JSON.parse(storedData).subdistrict);
+      setSelectedSubdistrict(JSON.parse(storedData).subDistrict);
     }
   }, [setFilterValues]);
 
@@ -117,7 +117,7 @@ const Search = () => {
       bloodGroup: "",
       division: "",
       district: "",
-      subdistrict: "",
+      subDistrict: "",
       gender: "",
       age: "",
       availability: "",
@@ -387,7 +387,9 @@ const Search = () => {
                     <CommandInput placeholder="Search Areas" className="h-9" />
                   )}
                   <CommandGroup>
-                    <ScrollArea className="h-[200px]">
+                    <ScrollArea
+                      className={`${selectedDistrict ? "h-[240px]" : "h-full"}`}
+                    >
                       {selectedDistrict ? (
                         areas.divisions
                           .find(
@@ -402,10 +404,10 @@ const Search = () => {
                           )
                           ?.subdistricts.slice()
                           .sort()
-                          .map((subdistrict, index) => (
+                          .map((subDistrict, index) => (
                             <CommandItem
                               key={index}
-                              value={subdistrict}
+                              value={subDistrict}
                               onSelect={(currentValue) => {
                                 setSelectedSubdistrict(
                                   currentValue === selectedSubdistrict
@@ -413,7 +415,7 @@ const Search = () => {
                                     : currentValue
                                 );
                                 handleValueChange(
-                                  "subdistrict",
+                                  "subDistrict",
                                   currentValue === selectedSubdistrict
                                     ? ""
                                     : currentValue
@@ -421,7 +423,7 @@ const Search = () => {
                                 setOpenSubdistrict(false);
                               }}
                             >
-                              {subdistrict}
+                              {subDistrict}
                             </CommandItem>
                           ))
                       ) : (
