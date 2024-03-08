@@ -45,7 +45,6 @@ const Search = () => {
   const { searchQuery, setSearchQuery } = useDonorSearch();
 
   const [isInputActive, setIsInputActive] = React.useState(false);
-
   const [isClient, setIsClient] = React.useState(false);
   const [openDivision, setOpenDivision] = React.useState(false);
   const [openDistrict, setOpenDistrict] = React.useState(false);

@@ -40,7 +40,7 @@ const Stepper = ({ stepsConfig = [] }) => {
   const ActiveComponent = stepsConfig[currentStep - 1]?.Component;
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-3xl mx-auto pb-10">
       <div className="relative flex justify-center">
         <div className="flex justify-between my-10 w-[480px]">
           {stepsConfig.map((step, index) => (
@@ -80,13 +80,13 @@ const Stepper = ({ stepsConfig = [] }) => {
         {!isComplete && (
           <>
             {currentStep !== 1 && (
-              <Button onClick={handlePrev}>
+              <Button onClick={handlePrev} className="w-1/5">
                 {stepsConfig.length === currentStep ? "Previous" : "Previous"}
               </Button>
             )}
 
             {currentStep !== stepsConfig.length && (
-              <Button onClick={handleNext}>
+              <Button onClick={handleNext} className="w-1/5">
                 {stepsConfig.length === currentStep ? "Finish" : "Next"}
               </Button>
             )}
