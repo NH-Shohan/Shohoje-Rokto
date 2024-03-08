@@ -1,4 +1,5 @@
 import Navbar from "@/components/ui/navbar";
+import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Roboto } from "next/font/google";
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
         <ThemeProvider attribute="class" defaultTheme="system">
           <Navbar />
           {children}
+          <Toaster position="bottom-center" richColors expand={true} />
         </ThemeProvider>
         <SpeedInsights />
       </body>

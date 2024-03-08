@@ -38,6 +38,7 @@ import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import flag from "../../../public/icons/flag.svg";
 import areas from "../../data/bdLocation.json";
 
@@ -58,6 +59,15 @@ const PersonalInfo = () => {
   });
 
   useEffect(() => {
+    if (donorData.phoneNumber === "" && donorData.optionalPhoneNumber === "") {
+    } else if (donorData.phoneNumber === donorData.optionalPhoneNumber) {
+      toast("Same phone number", {
+        description:
+          "Phone number and optional phone number cannot be same! Please provide another phone number.",
+        duration: 7500,
+      });
+    }
+
     setIsClient(true);
     localStorage.setItem("donorData", JSON.stringify(donorData));
 
@@ -97,14 +107,13 @@ const PersonalInfo = () => {
               <ArrowRightIcon className="w-5 h-5" />
             </Link>
           </div>
-
           <Input
             type="text"
             placeholder="Full Name"
             id={"name"}
             name="name"
             defaultValue={donorData.name}
-            onBlur={(e) => handleValueChange("name", e.target.value)}
+            onChange={(e) => handleValueChange("name", e.target.value)}
             required
           />
 
@@ -114,10 +123,9 @@ const PersonalInfo = () => {
             id={"email"}
             name="email"
             defaultValue={donorData.email}
-            onBlur={(e) => handleValueChange("email", e.target.value)}
+            onChange={(e) => handleValueChange("email", e.target.value)}
             required
           />
-
           <div className="flex gap-2">
             <Select
               value={donorData.bloodGroup}
@@ -171,12 +179,11 @@ const PersonalInfo = () => {
                   selected={donorData.dateOfBirth}
                   captionLayout="dropdown"
                   fromYear={1900}
-                  toYear={new Date().getFullYear()}
+                  toYear={new Date().getFullYear() - 16}
                 />
               </PopoverContent>
             </Popover>
           </div>
-
           <div className="flex gap-2">
             <Select
               value={donorData.gender}
@@ -207,11 +214,12 @@ const PersonalInfo = () => {
                 id={"phoneNumber"}
                 name="phoneNumber"
                 defaultValue={donorData.phoneNumber}
-                onBlur={(e) => handleValueChange("phoneNumber", e.target.value)}
+                onChange={(e) =>
+                  handleValueChange("phoneNumber", e.target.value)
+                }
               />
             </div>
           </div>
-
           <div className="flex gap-2">
             {/* Division */}
             <Popover open={openDivision} onOpenChange={setOpenDivision}>
@@ -376,7 +384,6 @@ const PersonalInfo = () => {
               </PopoverContent>
             </Popover>
           </div>
-
           <div className="flex gap-2">
             <Select
               defaultValue={donorData.donatedBefore}
@@ -431,9 +438,7 @@ const PersonalInfo = () => {
               </Popover>
             )}
           </div>
-
           <p className="text-sm mt-3 text-primary">(Optional Information)</p>
-
           <div className="flex gap-2">
             <Select
               defaultValue={donorData.maritalStatus}
@@ -466,29 +471,28 @@ const PersonalInfo = () => {
                 id={"optionalPhoneNumber"}
                 name="optionalPhoneNumber"
                 defaultValue={donorData.optionalPhoneNumber}
-                onBlur={(e) =>
+                onChange={(e) =>
                   handleValueChange("optionalPhoneNumber", e.target.value)
                 }
               />
             </div>
           </div>
-
           <Input
             type="url"
             placeholder="Social Media Link"
             id={"socialMediaLink"}
             name="socialMediaLink"
             defaultValue={donorData.socialMediaLink}
-            onBlur={(e) => handleValueChange("socialMediaLink", e.target.value)}
+            onChange={(e) =>
+              handleValueChange("socialMediaLink", e.target.value)
+            }
           />
-
           <Textarea
             placeholder="Type Your Bio Here"
             className="bg-white dark:bg-background"
             defaultValue={donorData.bio}
-            onBlur={(e) => handleValueChange("bio", e.target.value)}
+            onChange={(e) => handleValueChange("bio", e.target.value)}
           />
-
           <div>
             <p className="text-sm text-primary mb-1 dark:text-foreground">
               Preferred Contact Method
