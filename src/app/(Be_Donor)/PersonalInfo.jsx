@@ -50,8 +50,11 @@ const PersonalInfo = () => {
   const { donorData: initialDonorData, setDonorData: setInitialDonorData } =
     useBeDonor();
   const [donorData, setDonorData] = useState(() => {
-    const storedData = localStorage.getItem("donorData");
-    return storedData ? JSON.parse(storedData) : initialDonorData;
+    if (typeof window !== "undefined") {
+      const storedData = localStorage.getItem("donorData");
+      return storedData ? JSON.parse(storedData) : initialDonorData;
+    }
+    return initialDonorData;
   });
 
   useEffect(() => {
