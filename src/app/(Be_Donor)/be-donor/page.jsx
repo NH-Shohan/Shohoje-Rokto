@@ -1,4 +1,5 @@
 "use client";
+import { BeDonorProvider } from "@/context/BeDonorContext";
 import MedicalInfo from "../MedicalInfo";
 import PersonalInfo from "../PersonalInfo";
 import Stepper from "../Stepper";
@@ -20,9 +21,11 @@ const REGISTER_STEPS = [
 
 const BeDonor = () => {
   return (
-    <div className="container">
-      <Stepper stepsConfig={REGISTER_STEPS} />
-    </div>
+    <BeDonorProvider>
+      <div className="container">
+        <Stepper stepsConfig={REGISTER_STEPS} />
+      </div>
+    </BeDonorProvider>
   );
 };
 

@@ -16,7 +16,7 @@ export const BeDonorProvider = ({ children }) => {
     district: "",
     subdistrict: "",
     donatedBefore: "",
-    donationDate: "",
+    lastDonationDate: "",
     maritalStatus: "",
     socialMediaLink: "",
     bio: "",
