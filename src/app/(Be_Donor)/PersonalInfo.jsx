@@ -42,7 +42,13 @@ import { toast } from "sonner";
 import flag from "../../../public/icons/flag.svg";
 import areas from "../../data/bdLocation.json";
 
-const PersonalInfo = () => {
+const PersonalInfo = ({
+  isComplete,
+  currentStep,
+  handlePrev,
+  handleNext,
+  stepsConfig,
+}) => {
   const [openDivision, setOpenDivision] = useState(false);
   const [openDistrict, setOpenDistrict] = useState(false);
   const [openSubdistrict, setOpenSubdistrict] = useState(false);
@@ -86,8 +92,78 @@ const PersonalInfo = () => {
         district: "",
         subdistrict: "",
       }));
+    } else if (key === "donatedBefore") {
+      setDonorData((prevData) => ({
+        ...prevData,
+        [key]: value,
+        lastDonationDate: "",
+      }));
     } else {
       setDonorData((prevData) => ({ ...prevData, [key]: value }));
+    }
+  };
+
+  const isAllFieldsFilled = () => {
+    return (
+      donorData.name &&
+      donorData.email &&
+      donorData.bloodGroup &&
+      donorData.dateOfBirth &&
+      donorData.gender &&
+      donorData.phoneNumber &&
+      donorData.division &&
+      donorData.district &&
+      donorData.subdistrict &&
+      donorData.donatedBefore &&
+      (donorData.donatedBefore === "no" || donorData.lastDonationDate)
+    );
+  };
+
+  const handleClickNext = () => {
+    if (isAllFieldsFilled()) {
+      handleNext();
+    } else {
+      const requiredFields = [
+        "name",
+        "email",
+        "bloodGroup",
+        "dateOfBirth",
+        "gender",
+        "phoneNumber",
+        "division",
+        "district",
+        "subdistrict",
+        "donatedBefore",
+      ];
+
+      const allFieldsEmpty = requiredFields.every((field) => !donorData[field]);
+      console.log(allFieldsEmpty);
+
+      if (allFieldsEmpty) {
+        toast.warning("Please fill up the required data to proceed.");
+      } else {
+        requiredFields.forEach((field) => {
+          if (!donorData[field]) {
+            const fieldType = ["name", "email", "phoneNumber"].includes(field)
+              ? "provide"
+              : "select";
+            toast.warning(
+              `Please ${fieldType} your ${field
+                .replace(/([A-Z])/g, " $1")
+                .toLowerCase()}.`
+            );
+          }
+        });
+
+        if (!donorData.donatedBefore) {
+          toast.warning("Please specify if you have donated before.");
+        } else if (
+          donorData.donatedBefore === "yes" &&
+          !donorData.lastDonationDate
+        ) {
+          toast.warning("Please select your last donation date.");
+        }
+      }
     }
   };
 
@@ -516,6 +592,26 @@ const PersonalInfo = () => {
                 <Label htmlFor="r3">SMS</Label>
               </div>
             </RadioGroup>
+          </div>
+
+          <div className="flex gap-4 mt-5">
+            {!isComplete && (
+              <>
+                {currentStep !== 1 && (
+                  <Button onClick={handlePrev} className="w-1/5">
+                    {stepsConfig.length === currentStep
+                      ? "Previous"
+                      : "Previous"}
+                  </Button>
+                )}
+
+                {currentStep !== stepsConfig.length && (
+                  <Button onClick={handleClickNext} className="w-1/5">
+                    {stepsConfig.length === currentStep ? "Finish" : "Next"}
+                  </Button>
+                )}
+              </>
+            )}
           </div>
         </div>
       ) : null}

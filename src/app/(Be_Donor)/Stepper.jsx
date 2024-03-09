@@ -1,5 +1,4 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useState } from "react";
 
@@ -74,25 +73,13 @@ const Stepper = ({ stepsConfig = [] }) => {
         />
       </div>
 
-      <ActiveComponent />
-
-      <div className="flex gap-4 mt-5">
-        {!isComplete && (
-          <>
-            {currentStep !== 1 && (
-              <Button onClick={handlePrev} className="w-1/5">
-                {stepsConfig.length === currentStep ? "Previous" : "Previous"}
-              </Button>
-            )}
-
-            {currentStep !== stepsConfig.length && (
-              <Button onClick={handleNext} className="w-1/5">
-                {stepsConfig.length === currentStep ? "Finish" : "Next"}
-              </Button>
-            )}
-          </>
-        )}
-      </div>
+      <ActiveComponent
+        isComplete={isComplete}
+        currentStep={currentStep}
+        handlePrev={handlePrev}
+        handleNext={handleNext}
+        stepsConfig={stepsConfig}
+      />
     </div>
   );
 };

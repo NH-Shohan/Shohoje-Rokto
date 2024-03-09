@@ -7,11 +7,11 @@ import Stepper from "../Stepper";
 const REGISTER_STEPS = [
   {
     name: "Personal Info",
-    Component: () => <PersonalInfo />,
+    Component: PersonalInfo,
   },
   {
     name: "Medical Info",
-    Component: () => <MedicalInfo />,
+    Component: MedicalInfo,
   },
   {
     name: "Registration",
