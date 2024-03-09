@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
         <ThemeProvider attribute="class" defaultTheme="system">
           <Navbar />
           {children}
-          <Toaster position="bottom-center" richColors expand={true} />
+          <Toaster position="bottom-center" richColors />
         </ThemeProvider>
         <SpeedInsights />
       </body>

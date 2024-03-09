@@ -1,8 +1,10 @@
+import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 const questions = [
   {
@@ -33,7 +35,13 @@ const questions = [
   },
 ];
 
-const MedicalInfo = () => {
+const MedicalInfo = ({
+  isComplete,
+  currentStep,
+  handlePrev,
+  handleNext,
+  stepsConfig,
+}) => {
   const [isClient, setIsClient] = useState(false);
   const [answers, setAnswers] = useState(() => {
     const storedData = localStorage.getItem("medicalData");
@@ -56,6 +64,25 @@ const MedicalInfo = () => {
       ...prevAnswers,
       [questionId]: value,
     }));
+  };
+
+  const isAllFieldsFilled = () => {
+    return questions.every(({ id }) => answers[id]);
+  };
+
+  const handleClickNext = () => {
+    if (isAllFieldsFilled()) {
+      handleNext();
+    } else {
+      const unansweredQuestions = questions.filter(
+        (question) => !answers[question.id]
+      );
+      unansweredQuestions.forEach((question) => {
+        toast.warning(
+          `Please answer question ${question.id}: ${question.question}`
+        );
+      });
+    }
   };
 
   return (
@@ -97,6 +124,26 @@ const MedicalInfo = () => {
               </RadioGroup>
             </div>
           ))}
+
+          <div className="flex gap-4 mt-5">
+            {!isComplete && (
+              <>
+                {currentStep !== 1 && (
+                  <Button onClick={handlePrev} className="w-1/5">
+                    {stepsConfig.length === currentStep
+                      ? "Previous"
+                      : "Previous"}
+                  </Button>
+                )}
+
+                {currentStep !== stepsConfig.length && (
+                  <Button onClick={handleClickNext} className="w-1/5">
+                    {stepsConfig.length === currentStep ? "Finish" : "Next"}
+                  </Button>
+                )}
+              </>
+            )}
+          </div>
         </div>
       ) : null}
     </>
