@@ -42,13 +42,7 @@ import { toast } from "sonner";
 import flag from "../../../public/icons/flag.svg";
 import areas from "../../data/bdLocation.json";
 
-const PersonalInfo = ({
-  isComplete,
-  currentStep,
-  handlePrev,
-  handleNext,
-  stepsConfig,
-}) => {
+const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
   const [openDivision, setOpenDivision] = useState(false);
   const [openDistrict, setOpenDistrict] = useState(false);
   const [openSubdistrict, setOpenSubdistrict] = useState(false);
@@ -202,6 +196,7 @@ const PersonalInfo = ({
             onChange={(e) => handleValueChange("email", e.target.value)}
             required
           />
+
           <div className="flex gap-2">
             <Select
               value={donorData.bloodGroup}
@@ -362,33 +357,39 @@ const PersonalInfo = ({
                     <CommandInput placeholder="Search Areas" className="h-9" />
                   )}
                   <CommandGroup>
-                    {donorData.division ? (
-                      areas.divisions
-                        .find(
-                          (division) =>
-                            division.name.toLocaleLowerCase() ===
-                            donorData.division.toLocaleLowerCase()
-                        )
-                        ?.districts.map((district, index) => (
-                          <CommandItem
-                            key={index}
-                            value={district.name}
-                            onSelect={(currentValue) => {
-                              setDonorData((prevData) => ({
-                                ...prevData,
-                                district: currentValue,
-                              }));
-                              setOpenDistrict(false);
-                            }}
-                          >
-                            {district.name}
-                          </CommandItem>
-                        ))
-                    ) : (
-                      <div className="text-center text-primary text-sm py-3 px-6">
-                        Select Your Division
-                      </div>
-                    )}
+                    <ScrollArea
+                      className={`${
+                        donorData.district ? "h-[240px]" : "h-full"
+                      }`}
+                    >
+                      {donorData.division ? (
+                        areas.divisions
+                          .find(
+                            (division) =>
+                              division.name.toLocaleLowerCase() ===
+                              donorData.division.toLocaleLowerCase()
+                          )
+                          ?.districts.map((district, index) => (
+                            <CommandItem
+                              key={index}
+                              value={district.name}
+                              onSelect={(currentValue) => {
+                                setDonorData((prevData) => ({
+                                  ...prevData,
+                                  district: currentValue,
+                                }));
+                                setOpenDistrict(false);
+                              }}
+                            >
+                              {district.name}
+                            </CommandItem>
+                          ))
+                      ) : (
+                        <div className="text-center text-primary text-sm py-3 px-6">
+                          Select Your Division
+                        </div>
+                      )}
+                    </ScrollArea>
                   </CommandGroup>
                 </Command>
               </PopoverContent>
@@ -597,17 +598,13 @@ const PersonalInfo = ({
           <div className="flex gap-4 mt-5">
             {!isComplete && (
               <>
-                {currentStep !== 1 && (
-                  <Button onClick={handlePrev} className="w-1/5">
-                    {stepsConfig.length === currentStep
-                      ? "Previous"
-                      : "Previous"}
-                  </Button>
-                )}
-
                 {currentStep !== stepsConfig.length && (
-                  <Button onClick={handleClickNext} className="w-1/5">
-                    {stepsConfig.length === currentStep ? "Finish" : "Next"}
+                  <Button
+                    variant="outline"
+                    onClick={handleClickNext}
+                    className="w-1/5"
+                  >
+                    Next
                   </Button>
                 )}
               </>
