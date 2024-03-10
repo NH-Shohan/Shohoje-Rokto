@@ -5,31 +5,40 @@ import { useState } from "react";
 const Stepper = ({ stepsConfig = [] }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isComplete, setIsComplete] = useState(false);
+  const [transitioning, setTransitioning] = useState(false);
 
   if (stepsConfig.length === 0) {
     return <></>;
   }
 
   const handleNext = () => {
-    setCurrentStep((prevStep) => {
-      if (prevStep === stepsConfig.length) {
-        setIsComplete(true);
-        return prevStep;
-      } else {
-        return prevStep + 1;
-      }
-    });
+    setTransitioning(true);
+    setTimeout(() => {
+      setCurrentStep((prevStep) => {
+        if (prevStep === stepsConfig.length) {
+          setIsComplete(true);
+          return prevStep;
+        } else {
+          return prevStep + 1;
+        }
+      });
+      setTransitioning(false);
+    }, 250);
   };
 
   const handlePrev = () => {
-    setCurrentStep((nextStep) => {
-      if (nextStep === stepsConfig[0]) {
-        setIsComplete(false);
-        return nextStep;
-      } else {
-        return nextStep - 1;
-      }
-    });
+    setTransitioning(true);
+    setTimeout(() => {
+      setCurrentStep((nextStep) => {
+        if (nextStep === stepsConfig[0]) {
+          setIsComplete(false);
+          return nextStep;
+        } else {
+          return nextStep - 1;
+        }
+      });
+      setTransitioning(false);
+    }, 250);
   };
 
   const calculateProgressBarWidth = () => {
@@ -73,13 +82,17 @@ const Stepper = ({ stepsConfig = [] }) => {
         />
       </div>
 
-      <ActiveComponent
-        isComplete={isComplete}
-        currentStep={currentStep}
-        handlePrev={handlePrev}
-        handleNext={handleNext}
-        stepsConfig={stepsConfig}
-      />
+      <div
+        style={{ opacity: transitioning ? 0 : 1, transition: "opacity 0.5s" }}
+      >
+        <ActiveComponent
+          isComplete={isComplete}
+          currentStep={currentStep}
+          handlePrev={handlePrev}
+          handleNext={handleNext}
+          stepsConfig={stepsConfig}
+        />
+      </div>
     </div>
   );
 };
