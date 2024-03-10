@@ -53,12 +53,12 @@ const Navbar = () => {
           >
             Request Blood
           </NavLink>
-          <NavLink
+          {/* <NavLink
             href="/blood-bank"
             onClick={() => handleNavLinkClick("/blood-bank")}
           >
             Blood Bank
-          </NavLink>
+          </NavLink> */}
           <NavLink href="/about" onClick={() => handleNavLinkClick("/about")}>
             About
           </NavLink>

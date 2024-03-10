@@ -131,7 +131,6 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
       ];
 
       const allFieldsEmpty = requiredFields.every((field) => !donorData[field]);
-      console.log(allFieldsEmpty);
 
       if (allFieldsEmpty) {
         toast.warning("Please fill up the required data to proceed.");
@@ -276,21 +275,39 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
             <div className="flex w-1/2">
               <div className="flex border px-3 gap-2 rounded-tl-md rounded-bl-md items-center bg-white dark:bg-background">
                 <Image src={flag} alt="flag bd icon" width={22} height={22} />
-                <p className="mr-3 text-sm">+88</p>
+                <p className="mr-3 text-sm">+880</p>
               </div>
               <Input
                 className="rounded-tl-none rounded-bl-none border-l-0"
                 type="text"
                 placeholder="Phone Number"
-                id={"phoneNumber"}
+                id="phoneNumber"
                 name="phoneNumber"
                 defaultValue={donorData.phoneNumber}
-                onChange={(e) =>
-                  handleValueChange("phoneNumber", e.target.value)
-                }
+                onChange={(e) => {
+                  let phoneNumber = e.target.value.trim();
+
+                  if (phoneNumber.startsWith("0")) {
+                    phoneNumber = phoneNumber.substring(1);
+                  }
+
+                  if (!/^\d*$/.test(phoneNumber)) {
+                    e.target.value = "";
+                    toast.warning("Only numbers are allowed.");
+                    return;
+                  }
+
+                  if (
+                    phoneNumber.length === 0 ||
+                    (phoneNumber.startsWith("1") && phoneNumber.length === 10)
+                  ) {
+                    handleValueChange("phoneNumber", phoneNumber);
+                  }
+                }}
               />
             </div>
           </div>
+
           <div className="flex gap-2">
             {/* Division */}
             <Popover open={openDivision} onOpenChange={setOpenDivision}>
@@ -359,7 +376,7 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
                   <CommandGroup>
                     <ScrollArea
                       className={`${
-                        donorData.district ? "h-[240px]" : "h-full"
+                        donorData.division ? "h-[240px]" : "h-full"
                       }`}
                     >
                       {donorData.division ? (
@@ -539,7 +556,7 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
             <div className="flex w-1/2">
               <div className="flex border px-3 gap-2 rounded-tl-md rounded-bl-md items-center bg-white dark:bg-background">
                 <Image src={flag} alt="flag bd icon" width={22} height={22} />
-                <p className="mr-3 text-sm">+88</p>
+                <p className="mr-3 text-sm">+880</p>
               </div>
               <Input
                 className="rounded-tl-none rounded-bl-none border-l-0"
@@ -548,9 +565,26 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
                 id={"optionalPhoneNumber"}
                 name="optionalPhoneNumber"
                 defaultValue={donorData.optionalPhoneNumber}
-                onChange={(e) =>
-                  handleValueChange("optionalPhoneNumber", e.target.value)
-                }
+                onChange={(e) => {
+                  let phoneNumber = e.target.value.trim();
+
+                  if (phoneNumber.startsWith("0")) {
+                    phoneNumber = phoneNumber.substring(1);
+                  }
+
+                  if (!/^\d*$/.test(phoneNumber)) {
+                    e.target.value = "";
+                    toast.warning("Only numbers are allowed.");
+                    return;
+                  }
+
+                  if (
+                    phoneNumber.length === 0 ||
+                    (phoneNumber.startsWith("1") && phoneNumber.length <= 10)
+                  ) {
+                    handleValueChange("optionalPhoneNumber", phoneNumber);
+                  }
+                }}
               />
             </div>
           </div>
