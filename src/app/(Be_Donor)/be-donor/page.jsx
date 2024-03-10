@@ -1,5 +1,6 @@
 "use client";
 import { BeDonorProvider } from "@/context/BeDonorContext";
+import DonorRegistration from "../DonorRegistration";
 import MedicalInfo from "../MedicalInfo";
 import PersonalInfo from "../PersonalInfo";
 import Stepper from "../Stepper";
@@ -15,7 +16,7 @@ const REGISTER_STEPS = [
   },
   {
     name: "Registration",
-    Component: () => <div>Registration</div>,
+    Component: DonorRegistration,
   },
 ];
 

@@ -129,16 +129,14 @@ const MedicalInfo = ({
             {!isComplete && (
               <>
                 {currentStep !== 1 && (
-                  <Button onClick={handlePrev} className="w-1/5">
-                    {stepsConfig.length === currentStep
-                      ? "Previous"
-                      : "Previous"}
+                  <Button variant="outline" onClick={handlePrev} className="w-1/5">
+                    Previous
                   </Button>
                 )}
 
                 {currentStep !== stepsConfig.length && (
-                  <Button onClick={handleClickNext} className="w-1/5">
-                    {stepsConfig.length === currentStep ? "Finish" : "Next"}
+                  <Button variant="outline" onClick={handleClickNext} className="w-1/5">
+                    Next
                   </Button>
                 )}
               </>
