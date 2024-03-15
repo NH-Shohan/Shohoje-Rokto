@@ -60,6 +60,22 @@
   }
 }
 
+::-webkit-scrollbar {
+  @apply w-1.5;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-border rounded-full my-1;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-[#ff3636];
+}
+
 h1 {
   font-size: 48px;
   font-weight: bold;
@@ -71,9 +87,6 @@ h2 {
 h3 {
   font-size: 24px;
   font-weight: 500;
-}
-body {
-  font-size: 16px;
 }
 .body-bold {
   font-size: 16px;
