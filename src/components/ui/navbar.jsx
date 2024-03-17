@@ -1,5 +1,4 @@
 "use client";
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,21 +9,15 @@ import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import logo from "../../../public/assets/logo.png";
 import { Button } from "./button";
 import NavLink from "./navLink";
 
 const Navbar = () => {
-  const [activeNavLink, setActiveNavLink] = useState(null);
   const { setTheme } = useTheme();
 
-  const handleNavLinkClick = (href) => {
-    setActiveNavLink(href);
-  };
-
   return (
-    <nav className="sticky top-0 z-[1000] bg-[rgb(255,255,255,50%)] dark:bg-[rgb(0,0,0,50%)] backdrop-blur-md">
+    <nav className="sticky top-0 z-[1000] bg-[#ffffff80] dark:bg-[#00000080] backdrop-blur-md">
       <div className="container flex justify-between items-center h-[60px]">
         <div>
           <Link href="/">
@@ -32,37 +25,15 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="flex gap-7">
-          <NavLink href="/" onClick={() => handleNavLinkClick("/")}>
-            Home
-          </NavLink>
-          <NavLink
-            href="/donor-search"
-            onClick={() => handleNavLinkClick("/donor-search")}
-          >
-            Donor Search
-          </NavLink>
-          <NavLink
-            href="/be-donor"
-            onClick={() => handleNavLinkClick("/be-donor")}
-          >
-            Be Donor
-          </NavLink>
-          <NavLink
-            href="/request-blood"
-            onClick={() => handleNavLinkClick("/request-blood")}
-          >
-            Request Blood
-          </NavLink>
-          {/* <NavLink
-            href="/blood-bank"
-            onClick={() => handleNavLinkClick("/blood-bank")}
-          >
-            Blood Bank
-          </NavLink> */}
-          <NavLink href="/about" onClick={() => handleNavLinkClick("/about")}>
-            About
-          </NavLink>
+          <NavLink href="/">Home</NavLink>
+          <NavLink href="/donor-search">Donor Search</NavLink>
+          <NavLink href="/be-donor">Be Donor</NavLink>
+          <NavLink href="/request-blood">Request Blood</NavLink>
+          <NavLink href="/requested-post">Requested Post</NavLink>
+          {/* <NavLink href="/blood-bank">Blood Bank</NavLink> */}
+          <NavLink href="/about">About</NavLink>
         </div>
+
         <div className="flex items-center gap-3">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -95,6 +66,7 @@ const Navbar = () => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+
           <Button variant="outline">Login</Button>
         </div>
       </div>
