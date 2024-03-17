@@ -163,7 +163,7 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
   return (
     <>
       {isClient ? (
-        <div className="flex flex-col gap-2">
+        <div className="space-y-2">
           <div className="flex justify-between">
             <p className="text-primary">
               Please fill up the form carefully for being a donor.
@@ -478,6 +478,7 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
               </PopoverContent>
             </Popover>
           </div>
+
           <div className="flex gap-2">
             <Select
               defaultValue={donorData.donatedBefore}
@@ -532,7 +533,9 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
               </Popover>
             )}
           </div>
+
           <p className="text-sm mt-3 text-primary">(Optional Information)</p>
+
           <div className="flex gap-2">
             <Select
               defaultValue={donorData.maritalStatus}
@@ -588,6 +591,7 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
               />
             </div>
           </div>
+
           <Input
             type="url"
             placeholder="Social Media Link"
@@ -598,12 +602,14 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
               handleValueChange("socialMediaLink", e.target.value)
             }
           />
+
           <Textarea
             placeholder="Type Your Bio Here"
             className="bg-white dark:bg-background"
             defaultValue={donorData.bio}
             onChange={(e) => handleValueChange("bio", e.target.value)}
           />
+
           <div>
             <p className="text-sm text-primary mb-1 dark:text-foreground">
               Preferred Contact Method

@@ -1,16 +1,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const NavLink = ({ href, children, onClick }) => {
+const NavLink = ({ href, children }) => {
   const path = usePathname();
   const isActive = path === href;
 
-  const handleClick = () => {
-    onClick && onClick();
-  };
-
   return (
-    <div className={`inline relative`} onClick={handleClick}>
+    <div className={`inline relative`}>
       <Link
         href={href}
         className={`hover:text-primary ${
@@ -19,6 +15,7 @@ const NavLink = ({ href, children, onClick }) => {
       >
         {children}
       </Link>
+      {isActive && <div className="w-5 h-[2px] rounded-full bg-primary"></div>}
     </div>
   );
 };
