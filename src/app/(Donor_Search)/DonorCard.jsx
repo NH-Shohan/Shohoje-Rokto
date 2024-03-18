@@ -224,6 +224,7 @@ const DonorCard = ({ donors }) => {
                           />
                         )}
                       </AnimatePresence>
+
                       <div className="border bg-white rounded-2xl p-6 flex flex-col gap-3 transition dark:bg-secondary relative group">
                         <Image
                           src={image}
@@ -348,8 +349,8 @@ const DonorCard = ({ donors }) => {
                         <div className="flex gap-2">
                           <p
                             className={`${
-                              selectedDonor[18] === "available"
-                                ? "bg-green-600/20 text-green-600"
+                              selectedDonor[18].toLowerCase() === "available"
+                                ? "bg-green-600/20 text-green-700"
                                 : "bg-red-600/20 text-primary"
                             } px-2 rounded-sm w-fit capitalize text-xs`}
                           >
@@ -359,7 +360,7 @@ const DonorCard = ({ donors }) => {
                             className={`${
                               selectedDonor[19] === "Certified" ||
                               selectedDonor[19] === "certified"
-                                ? "bg-green-600/20 text-green-600"
+                                ? "bg-green-600/20 text-green-700"
                                 : selectedDonor[19] === "Verified" ||
                                   selectedDonor[19] === "verified"
                                 ? "bg-blue-600/20 text-blue-600"

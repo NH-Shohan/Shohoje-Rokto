@@ -28,8 +28,8 @@ const Navbar = () => {
           <NavLink href="/">Home</NavLink>
           <NavLink href="/donor-search">Donor Search</NavLink>
           <NavLink href="/be-donor">Be Donor</NavLink>
-          <NavLink href="/request-blood">Request Blood</NavLink>
           <NavLink href="/requested-post">Requested Post</NavLink>
+          <NavLink href="/request-blood">Request Blood</NavLink>
           {/* <NavLink href="/blood-bank">Blood Bank</NavLink> */}
           <NavLink href="/about">About</NavLink>
         </div>

@@ -149,6 +149,8 @@ const RequestBlood = () => {
               .replace(/([A-Z])/g, " $1")
               .toLowerCase()}.`
           );
+        } else {
+          toast.warning("Yo yo yo")
         }
       });
     }
@@ -158,7 +160,7 @@ const RequestBlood = () => {
     <>
       {isClient ? (
         <div className="max-w-3xl mx-auto py-10 container">
-          <h3 className="mb-5 text-primary">Blood Request Form</h3>
+          {/* <h3 className="mb-5 text-primary">Blood Request Form</h3> */}
           <div className="space-y-2">
             <div className="flex justify-between">
               <p className="text-primary">
@@ -197,7 +199,7 @@ const RequestBlood = () => {
 
             <Input
               type="text"
-              placeholder="Medical Condition or Reason for Blood Request"
+              placeholder="Reason for Blood Request"
               id="condition"
               name="condition"
               value={formData.condition}
@@ -503,7 +505,7 @@ const RequestBlood = () => {
                     {formData.donationDate ? (
                       format(formData.donationDate, "PPP")
                     ) : (
-                      <span>Donation Date and Time</span>
+                      <span>Donation Date</span>
                     )}
                   </Button>
                 </PopoverTrigger>
@@ -546,7 +548,7 @@ const RequestBlood = () => {
               />
             </div>
 
-            <p className="text-sm mt-3 text-primary">(Optional Information)</p>
+            <p className="text-sm text-primary">(Optional Information)</p>
 
             <Input
               type="url"

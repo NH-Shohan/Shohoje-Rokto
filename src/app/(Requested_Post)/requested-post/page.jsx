@@ -1,5 +1,7 @@
+import RequestedCard from "../RequestCard";
+
 const RequestedPost = () => {
-  return <div className="container">RequestedPost</div>;
+  return <RequestedCard />;
 };
 
 export default RequestedPost;
