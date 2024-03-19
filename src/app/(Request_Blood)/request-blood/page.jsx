@@ -160,7 +160,7 @@ const RequestBlood = () => {
     <>
       {isClient ? (
         <div className="max-w-3xl mx-auto py-10 container">
-          {/* <h3 className="mb-5 text-primary">Blood Request Form</h3> */}
+          <h3 className="mb-5 text-primary">Blood Request Form</h3>
           <div className="space-y-2">
             <div className="flex justify-between">
               <p className="text-primary">
