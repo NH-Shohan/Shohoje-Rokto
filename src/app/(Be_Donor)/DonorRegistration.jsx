@@ -13,7 +13,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { Cross2Icon, EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
+import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -65,6 +65,12 @@ const DonorRegistration = ({ isComplete, currentStep, handlePrev }) => {
 
     return () => clearInterval(timerInterval);
   }, [minutes, seconds, open]);
+
+  useEffect(() => {
+    if (minutes === 0 && seconds === 0) {
+      setOpen(false);
+    }
+  }, [minutes, seconds]);
 
   useEffect(() => {
     const donorData = localStorage.getItem("donorData");
@@ -351,10 +357,10 @@ const DonorRegistration = ({ isComplete, currentStep, handlePrev }) => {
               </div>
             </AlertDialogHeader>
 
-            <Cross2Icon
+            {/* <Cross2Icon
               onClick={() => setOpen(!open)}
               className="h-5 w-5 top-4 right-4 absolute cursor-pointer"
-            />
+            /> */}
           </AlertDialogContent>
         </AlertDialog>
       </div>

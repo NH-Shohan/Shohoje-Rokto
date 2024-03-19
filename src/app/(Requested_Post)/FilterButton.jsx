@@ -60,6 +60,16 @@ const FilterButton = ({
     }
   };
 
+  const handleReset = () => {
+    setSelectedBloodGroup("");
+    setSelectedDivision("");
+    setSelectedDistrict("");
+    setSelectedSubdistrict("");
+    if (resetFilteredPosts) {
+      resetFilteredPosts();
+    }
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -170,7 +180,7 @@ const FilterButton = ({
         <Button
           variant="outline"
           className="flex items-center gap-2 font-light w-full"
-          onClick={resetFilteredPosts}
+          onClick={handleReset}
         >
           <ResetIcon className="text-2xl" /> Reset
         </Button>
