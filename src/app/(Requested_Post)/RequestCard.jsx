@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 import {
   Pagination,
   PaginationContent,
@@ -9,25 +10,27 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { Switch } from "@/components/ui/switch";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 import requestedPost from "../../data/requestedPost.json";
 import FilterButton from "./FilterButton";
 
-const isNewPost = (postedDate) => {
-  const dateDifference = Date.now() - new Date(postedDate).getTime();
-  const daysDifference = dateDifference / (1000 * 60 * 60 * 24);
-  return daysDifference <= 3;
-};
-
 const RequestedCard = () => {
+  const [isChecked, setChecked] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [selectedBloodGroup, setSelectedBloodGroup] = useState("");
   const [selectedDivision, setSelectedDivision] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [selectedSubdistrict, setSelectedSubdistrict] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+
+  const isNewPost = (postedDate) => {
+    const dateDifference = Date.now() - new Date(postedDate).getTime();
+    const daysDifference = dateDifference / (1000 * 60 * 60 * 24);
+    return daysDifference <= 3;
+  };
 
   const sortedPosts = requestedPost.sort((a, b) => {
     if (
@@ -50,7 +53,8 @@ const RequestedCard = () => {
       (!selectedBloodGroup || post.bloodGroup === selectedBloodGroup) &&
       (!selectedDivision || post.division === selectedDivision) &&
       (!selectedDistrict || post.district === selectedDistrict) &&
-      (!selectedSubdistrict || post.subdistrict === selectedSubdistrict)
+      (!selectedSubdistrict || post.subdistrict === selectedSubdistrict) &&
+      (!isChecked || isNewPost(post.postedDate))
     );
   });
 
@@ -73,10 +77,18 @@ const RequestedCard = () => {
     <div className="container scroll-smooth">
       <div className="my-5 flex justify-between items-center">
         <h3 className="text-primary">Requested Blood Posts</h3>
-        <div className="flex gap-2">
+        <div className="flex gap-3">
           <Link href="/request-blood">
             <Button>Request for blood</Button>
           </Link>
+          <div className="flex items-center space-x-2 border border-primary rounded-md px-2 py-1.5">
+            <Label htmlFor="newPost">All New Post</Label>
+            <Switch
+              id="newPost"
+              checked={isChecked}
+              onCheckedChange={setChecked}
+            />
+          </div>
           <FilterButton
             onBloodGroupChange={(value) => setSelectedBloodGroup(value)}
             onDivisionChange={(value) => setSelectedDivision(value)}
@@ -144,7 +156,7 @@ const RequestedCard = () => {
                 <div className="bg-secondary dark:bg-border w-full h-[1px] my-4"></div>
 
                 <div className="flex gap-5">
-                  <p className="border bg-transparent rounded-xl flex justify-center items-center w-2/5 text-[48px] text-primary dark:text-white uppercase font-medium dark:border-none dark:bg-light">
+                  <p className="border bg-transparent rounded-xl flex justify-center items-center w-2/5 text-[48px] text-primary dark:text-white uppercase font-medium">
                     {post.bloodGroup}
                   </p>
                   <div className="capitalize">

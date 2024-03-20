@@ -73,8 +73,9 @@ const FilterButton = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="px-3">
+        <Button variant="outline" className="px-3 flex items-center gap-1">
           <MixerVerticalIcon className="w-4 h-4" />
+          Filter
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
