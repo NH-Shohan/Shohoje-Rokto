@@ -1,7 +1,7 @@
 import { DonorSearchProvider } from "@/context/DonorSearchContext";
 import { FilterProvider } from "@/context/FilterContext";
 import donors from "../../../data/donors.json";
-import DonorCard from "../DonorCard";
+import DonorContainer from "../DonorContainer";
 import Search from "../Search";
 
 const DonorSearch = () => {
@@ -10,7 +10,7 @@ const DonorSearch = () => {
       <FilterProvider>
         <DonorSearchProvider>
           <Search />
-          <DonorCard donors={donors} />
+          <DonorContainer donors={donors} />
         </DonorSearchProvider>
       </FilterProvider>
     </div>

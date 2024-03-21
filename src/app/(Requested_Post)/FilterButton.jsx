@@ -28,6 +28,7 @@ const FilterButton = ({
   onDistrictChange,
   onSubdistrictChange,
   resetFilteredPosts,
+  setCurrentPage,
 }) => {
   const [selectedBloodGroup, setSelectedBloodGroup] = useState("");
   const [selectedDivision, setSelectedDivision] = useState("");
@@ -35,6 +36,7 @@ const FilterButton = ({
   const [selectedSubdistrict, setSelectedSubdistrict] = useState("");
 
   const handleValueChange = (type, value) => {
+    setCurrentPage(1);
     switch (type) {
       case "bloodGroup":
         setSelectedBloodGroup(value);
@@ -61,6 +63,7 @@ const FilterButton = ({
   };
 
   const handleReset = () => {
+    setCurrentPage(1);
     setSelectedBloodGroup("");
     setSelectedDivision("");
     setSelectedDistrict("");
