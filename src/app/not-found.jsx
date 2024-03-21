@@ -15,6 +15,7 @@ export default function NotFound() {
           height={0}
           sizes="100vw"
           style={{ width: "100%", height: "auto" }}
+          priority
         />
       </div>
       <Button onClick={() => router.back()}>Go Back</Button>

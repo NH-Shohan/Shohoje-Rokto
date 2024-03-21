@@ -18,7 +18,7 @@ const DonationProcess = () => {
 
       <div className="mt-5">
         <div className="flex gap-1 items-center text-primary">
-          <Image src={injection} alt="Injection icon" />
+          <Image src={injection} alt="Injection icon" priority />
           <h3>Blood Donation Procedure</h3>
         </div>
       </div>
@@ -40,6 +40,7 @@ const DonationProcess = () => {
                     alt="image"
                     width={250}
                     height={250}
+                    priority
                   />
                 </div>
                 <Image
@@ -47,6 +48,7 @@ const DonationProcess = () => {
                   alt={`${process.title} icon`}
                   width={40}
                   height={40}
+                  priority
                 />
                 <div className="w-1/2 flex justify-start">
                   <div className="w-2/3">
@@ -68,6 +70,7 @@ const DonationProcess = () => {
                   alt={`${process.title} icon`}
                   width={40}
                   height={40}
+                  priority
                 />
                 <div className="w-1/2 flex justify-start">
                   <Image
@@ -75,6 +78,7 @@ const DonationProcess = () => {
                     alt="image"
                     width={250}
                     height={250}
+                    priority
                   />
                 </div>
               </>

@@ -150,7 +150,7 @@ const RequestBlood = () => {
               .toLowerCase()}.`
           );
         } else {
-          toast.warning("Yo yo yo")
+          toast.warning("Yo yo yo");
         }
       });
     }
@@ -273,7 +273,13 @@ const RequestBlood = () => {
 
               <div className="flex w-1/2">
                 <div className="flex border px-3 gap-2 rounded-tl-md rounded-bl-md items-center bg-white dark:bg-background">
-                  <Image src={flag} alt="flag bd icon" width={22} height={22} />
+                  <Image
+                    src={flag}
+                    alt="flag bd icon"
+                    width={22}
+                    height={22}
+                    priority
+                  />
                   <p className="mr-3 text-sm">+880</p>
                 </div>
                 <Input
@@ -316,7 +322,7 @@ const RequestBlood = () => {
                     <div className="flex justify-between items-center w-full font-normal capitalize">
                       {formData.division
                         ? formData.division
-                        : "Select Division"}
+                        : "Donation Division"}
                       <ChevronDownIcon className="-mr-1 h-5 w-5 shrink-0 opacity-50" />
                     </div>
                   </Button>
@@ -358,7 +364,7 @@ const RequestBlood = () => {
                     <div className="flex justify-between items-center w-full font-normal capitalize">
                       {formData.district
                         ? formData.district
-                        : "Select District"}
+                        : "Donation District"}
                       <ChevronDownIcon className="-mr-1 h-5 w-5 shrink-0 opacity-50" />
                     </div>
                   </Button>
@@ -422,7 +428,7 @@ const RequestBlood = () => {
                     <div className="flex justify-between items-center w-full font-normal capitalize">
                       {formData.subdistrict
                         ? formData.subdistrict
-                        : "Select Sub District"}
+                        : "Donation Sub District"}
                       <ChevronDownIcon className="-mr-1 h-5 w-5 shrink-0 opacity-50" />
                     </div>
                   </Button>

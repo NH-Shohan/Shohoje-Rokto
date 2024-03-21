@@ -2,10 +2,8 @@
 import {
   AlertDialog,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
 import {
   Pagination,
   PaginationContent,
@@ -168,434 +166,381 @@ const DonorCard = ({ donors }) => {
         <>
           <AlertDialog open={open} onOpenChange={setOpen}>
             {isClient ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 mt-10">
-                {currentItems.map(
-                  (
-                    {
-                      image,
-                      name,
-                      age,
-                      email,
-                      bloodGroup,
-                      dateOfBirth,
-                      gender,
-                      phoneNumber,
-                      optionalPhoneNumber,
-                      division,
-                      district,
-                      subdistrict,
-                      donatedBefore,
-                      lastDonationDate,
-                      maritalStatus,
-                      socialMediaLink,
-                      bio,
-                      contectMethod,
-                      availability,
-                      type,
-                      question1,
-                      question2,
-                      question3,
-                      question4,
-                      question5,
-                      question6,
-                    },
-                    index
-                  ) => (
-                    <div
-                      key={index}
-                      className="relative group block p-2 h-full w-full"
-                      onMouseEnter={() => setHoveredIndex(index)}
-                      onMouseLeave={() => setHoveredIndex(null)}
-                    >
-                      <AnimatePresence>
-                        {hoveredIndex === index && (
-                          <motion.span
-                            className="absolute inset-0 h-full w-full bg-light dark:bg-muted block rounded-3xl -z-10"
-                            layoutId="hoverBackground"
-                            initial={{ opacity: 0 }}
-                            animate={{
-                              opacity: 1,
-                              transition: { duration: 0.15 },
-                            }}
-                            exit={{
-                              opacity: 0,
-                              transition: { duration: 0.15, delay: 0.2 },
-                            }}
-                          />
-                        )}
-                      </AnimatePresence>
-
-                      <div className="border bg-white rounded-2xl p-6 flex flex-col gap-3 transition dark:bg-secondary relative group">
-                        <Image
-                          src={image}
-                          alt="user image"
-                          width={120}
-                          height={120}
-                          className="mx-auto capitalize"
-                          priority
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 my-10">
+                {currentItems.map((donor, index) => (
+                  <div
+                    key={index}
+                    className="relative group block p-2 h-full w-full"
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                  >
+                    <AnimatePresence>
+                      {hoveredIndex === index && (
+                        <motion.span
+                          className="absolute inset-0 h-full w-full bg-light dark:bg-muted block rounded-3xl -z-10"
+                          layoutId="hoverBackground"
+                          initial={{ opacity: 0 }}
+                          animate={{
+                            opacity: 1,
+                            transition: { duration: 0.15 },
+                          }}
+                          exit={{
+                            opacity: 0,
+                            transition: { duration: 0.15, delay: 0.2 },
+                          }}
                         />
-                        <p className="w-full flex gap-2 justify-center items-center">
-                          {name}
-                          <TooltipProvider>
-                            <Tooltip>
-                              <TooltipTrigger>
-                                <PiSealCheckDuotone
-                                  className={
-                                    type === "Certified" || type === "certified"
-                                      ? "text-green-600"
-                                      : type === "Verified" ||
-                                        type === "verified"
-                                      ? "text-blue-500"
-                                      : "text-primary"
-                                  }
-                                />
-                              </TooltipTrigger>
-                              <TooltipContent className="flex flex-col gap-1">
-                                <p className="flex items-center gap-1 text-green-600">
-                                  <PiSealCheckDuotone />
-                                  Certified
-                                </p>
-                                <p className="flex items-center gap-1 text-blue-500">
-                                  <PiSealCheckDuotone />
-                                  Verified
-                                </p>
-                                <p className="flex items-center gap-1 text-primary">
-                                  <PiSealCheckDuotone />
-                                  Normal
-                                </p>
-                              </TooltipContent>
-                            </Tooltip>
-                          </TooltipProvider>
+                      )}
+                    </AnimatePresence>
+
+                    <div className="border bg-white rounded-2xl p-6 space-y-3 transition dark:bg-secondary relative group">
+                      <Image
+                        src={donor.image}
+                        alt="user image"
+                        width={120}
+                        height={120}
+                        className="mx-auto capitalize"
+                        priority
+                      />
+                      <p className="w-full flex gap-2 justify-center items-center">
+                        {donor.name}
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger>
+                              <PiSealCheckDuotone
+                                className={
+                                  donor.type === "Certified" ||
+                                  donor.type === "certified"
+                                    ? "text-green-600"
+                                    : donor.type === "Verified" ||
+                                      donor.type === "verified"
+                                    ? "text-blue-500"
+                                    : "text-primary"
+                                }
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent className="flex flex-col gap-1">
+                              <div className="flex items-center gap-1 text-green-600">
+                                <PiSealCheckDuotone />
+                                Certified
+                              </div>
+                              <div className="flex items-center gap-1 text-blue-500">
+                                <PiSealCheckDuotone />
+                                Verified
+                              </div>
+                              <div className="flex items-center gap-1 text-primary">
+                                <PiSealCheckDuotone />
+                                Normal
+                              </div>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </p>
+                      <div className="flex gap-5">
+                        <p className="bg-light rounded-xl flex justify-center items-center w-1/2 text-[48px] text-primary dark:text-white uppercase font-medium">
+                          {donor.bloodGroup}
                         </p>
-                        <div className="flex gap-5">
-                          <p className="bg-light rounded-xl flex justify-center items-center w-1/2 text-[48px] text-primary dark:text-white uppercase font-medium">
-                            {bloodGroup}
-                          </p>
-                          <div className="capitalize">
-                            <li
-                              className={
-                                availability.toLowerCase() === "available"
-                                  ? "text-green-600"
-                                  : "text-primary"
-                              }
-                            >
-                              {availability}
-                            </li>
-                            <li>{division}</li>
-                            <li>{gender}</li>
-                            <li>{age}</li>
-                          </div>
-                        </div>
-                        <AlertDialogTrigger className="w-full">
-                          <Button
-                            variant="outline"
-                            className="w-full"
-                            onClick={() =>
-                              handleSeeDetails([
-                                image,
-                                name,
-                                age,
-                                email,
-                                bloodGroup,
-                                dateOfBirth,
-                                gender,
-                                phoneNumber,
-                                optionalPhoneNumber,
-                                division,
-                                district,
-                                subdistrict,
-                                donatedBefore,
-                                lastDonationDate,
-                                maritalStatus,
-                                socialMediaLink,
-                                bio,
-                                contectMethod,
-                                availability,
-                                type,
-                                question1,
-                                question2,
-                                question3,
-                                question4,
-                                question5,
-                                question6,
-                              ])
+                        <div className="capitalize">
+                          <li
+                            className={
+                              donor.availability.toLowerCase() === "available"
+                                ? "text-green-600"
+                                : "text-primary"
                             }
                           >
-                            See Details
-                          </Button>
-                        </AlertDialogTrigger>
-                      </div>
-                    </div>
-                  )
-                )}
-              </div>
-            ) : (
-              <div className="grid grid-cols-4 mt-10"></div>
-            )}
-
-            <AlertDialogContent>
-              <AlertDialogDescription>
-                {selectedDonor && (
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-4 relative">
-                      <Image
-                        src={selectedDonor[0]}
-                        alt="Donor Image"
-                        width={70}
-                        height={70}
-                      />
-                      <div className="space-y-2">
-                        <h3 className="text-foreground">{selectedDonor[1]}</h3>
-                        <div className="flex gap-2">
-                          <p
-                            className={`${
-                              selectedDonor[18].toLowerCase() === "available"
-                                ? "bg-green-600/20 text-green-700"
-                                : "bg-red-600/20 text-primary"
-                            } px-2 rounded-sm w-fit capitalize text-xs`}
-                          >
-                            {selectedDonor[18]}
-                          </p>
-                          <p
-                            className={`${
-                              selectedDonor[19] === "Certified" ||
-                              selectedDonor[19] === "certified"
-                                ? "bg-green-600/20 text-green-700"
-                                : selectedDonor[19] === "Verified" ||
-                                  selectedDonor[19] === "verified"
-                                ? "bg-blue-600/20 text-blue-600"
-                                : "bg-red-600/20 text-primary"
-                            } px-2 rounded-sm w-fit capitalize text-xs`}
-                          >
-                            {selectedDonor[19]}
-                          </p>
+                            {donor.availability}
+                          </li>
+                          <li>{donor.division}</li>
+                          <li>{donor.gender}</li>
+                          <li>{donor.age}</li>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="grid grid-cols-4 divide-x gap-x-2 text-center">
-                      <p>
-                        Blood Group
-                        <span className="capitalize text-foreground block">
-                          {selectedDonor[4]}
-                        </span>
-                      </p>
-                      <p>
-                        Division
-                        <span className="capitalize text-foreground block">
-                          {selectedDonor[9]}
-                        </span>
-                      </p>
-                      <p>
-                        Gender
-                        <span className="capitalize text-foreground block">
-                          {selectedDonor[6]}
-                        </span>
-                      </p>
-                      <p>
-                        Age
-                        <span className="capitalize text-foreground block">
-                          {selectedDonor[2]}
-                        </span>
-                      </p>
-                    </div>
-
-                    <div className="w-full border bg-border"></div>
-
-                    <div>
-                      <p className="text-foreground font-medium mb-1">Bio</p>
-                      {selectedDonor[16] && <p>{selectedDonor[16]}</p>}
-                    </div>
-
-                    <div>
-                      <p className="text-foreground font-medium mb-1">
-                        Contact Details
-                      </p>
-                      <div className="flex gap-2 items-center">
-                        <LiaPhoneVolumeSolid />
-                        <Link target="_blank" href={`tel:${selectedDonor[7]}`}>
-                          +880{selectedDonor[7]}
-                        </Link>
-                      </div>
-                      <div className="flex gap-2 items-center">
-                        <IoMailOpenOutline />
-                        <Link
-                          target="_blank"
-                          href={`mailto:${selectedDonor[3]}`}
+                      <AlertDialogTrigger className="w-full">
+                        <p
+                          className="border border-primary bg-white dark:bg-secondary hover:bg-primary dark:hover:bg-primary hover:text-primary-foreground transition-all h-9 px-4 rounded-lg flex items-center justify-center text-sm"
+                          onClick={() => handleSeeDetails(donor)}
                         >
-                          {selectedDonor[3]}
-                        </Link>
-                      </div>
-                      <div className="flex gap-2 items-center">
-                        <TfiLink />
-                        <Link target="_blank" href={selectedDonor[15] || "#"}>
-                          {selectedDonor[15]}
-                        </Link>
-                      </div>
-                      <div className="flex gap-2 items-center">
-                        <HiOutlineHome />
-                        <p>
-                          {selectedDonor[11]}, {selectedDonor[10]},{" "}
-                          {selectedDonor[9]}
+                          See Details
+                        </p>
+                      </AlertDialogTrigger>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : null}
+
+            <AlertDialogContent>
+              {selectedDonor && (
+                <div className="space-y-4 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-4 relative">
+                    <Image
+                      src={selectedDonor.image}
+                      alt="Donor Image"
+                      width={70}
+                      height={70}
+                    />
+                    <div className="space-y-2">
+                      <h3 className="text-foreground">{selectedDonor.name}</h3>
+                      <div className="flex gap-2">
+                        <p
+                          className={`${
+                            selectedDonor.availability.toLowerCase() ===
+                            "available"
+                              ? "bg-green-600/20 text-green-700"
+                              : "bg-red-600/20 text-primary"
+                          } px-2 rounded-sm w-fit capitalize text-xs`}
+                        >
+                          {selectedDonor.availability}
+                        </p>
+                        <p
+                          className={`${
+                            selectedDonor.type === "Certified" ||
+                            selectedDonor.type === "certified"
+                              ? "bg-green-600/20 text-green-700"
+                              : selectedDonor.type === "Verified" ||
+                                selectedDonor.type === "verified"
+                              ? "bg-blue-600/20 text-blue-600"
+                              : "bg-red-600/20 text-primary"
+                          } px-2 rounded-sm w-fit capitalize text-xs`}
+                        >
+                          {selectedDonor.type}
                         </p>
                       </div>
                     </div>
+                  </div>
 
-                    <div>
-                      <p className="text-foreground font-medium mb-1">
-                        More Info
+                  <div className="grid grid-cols-4 divide-x gap-x-2 text-center">
+                    <p>
+                      Blood Group
+                      <span className="capitalize text-foreground block">
+                        {selectedDonor.bloodGroup}
+                      </span>
+                    </p>
+                    <p>
+                      Division
+                      <span className="capitalize text-foreground block">
+                        {selectedDonor.division}
+                      </span>
+                    </p>
+                    <p>
+                      Gender
+                      <span className="capitalize text-foreground block">
+                        {selectedDonor.gender}
+                      </span>
+                    </p>
+                    <p>
+                      Age
+                      <span className="capitalize text-foreground block">
+                        {selectedDonor.age}
+                      </span>
+                    </p>
+                  </div>
+
+                  <div className="w-full border bg-border"></div>
+
+                  <div>
+                    <p className="text-foreground font-medium mb-1">Bio</p>
+                    {selectedDonor.bio && <p>{selectedDonor.bio}</p>}
+                  </div>
+
+                  <div>
+                    <p className="text-foreground font-medium mb-1">
+                      Contact Details
+                    </p>
+                    <div className="flex gap-2 items-center">
+                      <LiaPhoneVolumeSolid />
+                      <Link
+                        target="_blank"
+                        href={`tel:${selectedDonor.phoneNumber}`}
+                      >
+                        +880{selectedDonor.phoneNumber}
+                      </Link>
+                    </div>
+                    <div className="flex gap-2 items-center">
+                      <IoMailOpenOutline />
+                      <Link
+                        target="_blank"
+                        href={`mailto:${selectedDonor.email}`}
+                      >
+                        {selectedDonor.email}
+                      </Link>
+                    </div>
+                    <div className="flex gap-2 items-center">
+                      <TfiLink />
+                      <Link
+                        target="_blank"
+                        href={selectedDonor.socialMediaLink || "#"}
+                      >
+                        {selectedDonor.socialMediaLink}
+                      </Link>
+                    </div>
+                    <div className="flex gap-2 items-center">
+                      <HiOutlineHome />
+                      <p>
+                        {selectedDonor.subdistrict}, {selectedDonor.district},{" "}
+                        {selectedDonor.division}
                       </p>
+                    </div>
+                  </div>
 
-                      <table class="table-auto w-full text-left">
+                  <div>
+                    <p className="text-foreground font-medium mb-1">
+                      More Info
+                    </p>
+
+                    <table className="table-auto w-full text-left">
+                      <tbody>
                         <tr className="border-y">
                           <td>Date Of Birth</td>
                           <td className="text-foreground">
-                            {selectedDonor[5]}
+                            {selectedDonor.dateOfBirth}
                           </td>
                         </tr>
                         <tr className="border-b">
                           <td>Optional Phone Number</td>
                           <td className="text-foreground">
-                            +880{selectedDonor[8]}
+                            +880{selectedDonor.optionalPhoneNumber}
                           </td>
                         </tr>
                         <tr className="border-b">
                           <td>Donated Before</td>
                           <td className="text-foreground">
-                            {selectedDonor[12]}
+                            {selectedDonor.donatedBefore}
                           </td>
                         </tr>
-                        {selectedDonor[12].toLowerCase() === "yes" && (
+                        {selectedDonor.donatedBefore.toLowerCase() ===
+                          "yes" && (
                           <tr className="border-b">
                             <td>Last Donation Date</td>
                             <td className="text-foreground">
-                              {selectedDonor[13]}
+                              {selectedDonor.lastDonationDate}
                             </td>
                           </tr>
                         )}
-                        {selectedDonor[14] && (
+                        {selectedDonor.maritalStatus && (
                           <tr className="border-b">
                             <td>Marital Status</td>
                             <td className="text-foreground">
-                              {selectedDonor[14]}
+                              {selectedDonor.maritalStatus}
                             </td>
                           </tr>
                         )}
-                        {selectedDonor[17] && (
+                        {selectedDonor.contactMethod && (
                           <tr className="border-b">
                             <td>Prefered Contect Method</td>
                             <td className="text-foreground">
-                              {selectedDonor[17]}
+                              {selectedDonor.contactMethod}
                             </td>
                           </tr>
                         )}
-                      </table>
-                    </div>
-
-                    <div>
-                      <p className="text-foreground font-medium mb-1">
-                        Medical Info
-                      </p>
-
-                      {selectedDonor[20] === "yes" && (
-                        <li>
-                          Has pre-existing medical conditions (e.g. Diabetes,
-                          Thyroid, etc.)
-                        </li>
-                      )}
-                      {selectedDonor[21] === "yes" && (
-                        <li>Currently taking antibiotics</li>
-                      )}
-                      {selectedDonor[22] === "yes" && (
-                        <li>Received vaccinations in the past four weeks?</li>
-                      )}
-                      {selectedDonor[23] === "yes" && (
-                        <li>Has allergies to medicine or other substances</li>
-                      )}
-                      {selectedDonor[24] === "yes" && (
-                        <li>Received COVID-19 vaccine</li>
-                      )}
-                      {selectedDonor[25] === "yes" && (
-                        <li>
-                          Got a tattoo or permanent makeup in the past six
-                          months
-                        </li>
-                      )}
-                    </div>
+                      </tbody>
+                    </table>
                   </div>
-                )}
-              </AlertDialogDescription>
+
+                  <div>
+                    <p className="text-foreground font-medium mb-1">
+                      Medical Info
+                    </p>
+
+                    {selectedDonor.question1 === "yes" && (
+                      <li>
+                        Has pre-existing medical conditions (e.g. Diabetes,
+                        Thyroid, etc.)
+                      </li>
+                    )}
+                    {selectedDonor.question2 === "yes" && (
+                      <li>Currently taking antibiotics</li>
+                    )}
+                    {selectedDonor.question3 === "yes" && (
+                      <li>Received vaccinations in the past four weeks?</li>
+                    )}
+                    {selectedDonor.question4 === "yes" && (
+                      <li>Has allergies to medicine or other substances</li>
+                    )}
+                    {selectedDonor.question5 === "yes" && (
+                      <li>Received COVID-19 vaccine</li>
+                    )}
+                    {selectedDonor.question6 === "yes" && (
+                      <li>
+                        Got a tattoo or permanent makeup in the past six months
+                      </li>
+                    )}
+                  </div>
+                </div>
+              )}
               <Cross2Icon
                 onClick={() => setOpen(!open)}
-                className="h-5 w-5 top-4 right-4 absolute cursor-pointer"
+                className="h-5 w-5 top-4 right-4 absolute cursor-pointer text-zinc-500 hover:text-foreground"
               />
             </AlertDialogContent>
           </AlertDialog>
 
-          <div className="my-10 w-full">
-            <Pagination>
-              <PaginationContent>
-                {
-                  <PaginationItem className="cursor-pointer">
-                    <PaginationPrevious
-                      onClick={() => setCurrentPage(currentPage - 1)}
-                      disabled={currentPage === 1}
-                    />
-                  </PaginationItem>
-                }
-
-                {Array.from({
-                  length: Math.ceil(filteredDonors.length / postsPerPage),
-                }).map((_, index) => {
-                  const pageNumber = index + 1;
-                  const isActive = pageNumber === currentPage;
-                  if (
-                    pageNumber === 1 ||
-                    pageNumber === currentPage - 2 ||
-                    pageNumber === currentPage - 1 ||
-                    pageNumber === currentPage ||
-                    pageNumber === currentPage + 1 ||
-                    pageNumber === currentPage + 2 ||
-                    pageNumber ===
-                      Math.ceil(filteredDonors.length / postsPerPage)
-                  ) {
-                    return (
-                      <PaginationItem key={index} className="cursor-pointer">
-                        <PaginationLink
-                          onClick={() => paginate(pageNumber)}
-                          isActive={isActive}
-                        >
-                          {pageNumber}
-                        </PaginationLink>
-                      </PaginationItem>
-                    );
-                  } else if (
-                    pageNumber === currentPage - 3 ||
-                    pageNumber === currentPage + 3
-                  ) {
-                    return (
-                      <PaginationItem key={index}>
-                        <PaginationEllipsis />
-                      </PaginationItem>
-                    );
+          {filteredDonors.length > 16 && (
+            <div className="my-10 w-full">
+              <Pagination>
+                <PaginationContent>
+                  {
+                    <PaginationItem className="cursor-pointer">
+                      <PaginationPrevious
+                        onClick={() => setCurrentPage(currentPage - 1)}
+                        disabled={currentPage === 1}
+                      />
+                    </PaginationItem>
                   }
-                  return null;
-                })}
 
-                {
-                  <PaginationItem className="cursor-pointer">
-                    <PaginationNext
-                      onClick={() => setCurrentPage(currentPage + 1)}
-                      disabled={
-                        currentPage ===
+                  {Array.from({
+                    length: Math.ceil(filteredDonors.length / postsPerPage),
+                  }).map((_, index) => {
+                    const pageNumber = index + 1;
+                    const isActive = pageNumber === currentPage;
+                    if (
+                      pageNumber === 1 ||
+                      pageNumber === currentPage - 2 ||
+                      pageNumber === currentPage - 1 ||
+                      pageNumber === currentPage ||
+                      pageNumber === currentPage + 1 ||
+                      pageNumber === currentPage + 2 ||
+                      pageNumber ===
                         Math.ceil(filteredDonors.length / postsPerPage)
-                      }
-                    />
-                  </PaginationItem>
-                }
-              </PaginationContent>
-            </Pagination>
-          </div>
+                    ) {
+                      return (
+                        <PaginationItem key={index} className="cursor-pointer">
+                          <PaginationLink
+                            onClick={() => paginate(pageNumber)}
+                            isActive={isActive}
+                          >
+                            {pageNumber}
+                          </PaginationLink>
+                        </PaginationItem>
+                      );
+                    } else if (
+                      pageNumber === currentPage - 3 ||
+                      pageNumber === currentPage + 3
+                    ) {
+                      return (
+                        <PaginationItem key={index}>
+                          <PaginationEllipsis />
+                        </PaginationItem>
+                      );
+                    }
+                    return null;
+                  })}
+
+                  {
+                    <PaginationItem className="cursor-pointer">
+                      <PaginationNext
+                        onClick={() => setCurrentPage(currentPage + 1)}
+                        disabled={
+                          currentPage ===
+                          Math.ceil(filteredDonors.length / postsPerPage)
+                        }
+                      />
+                    </PaginationItem>
+                  }
+                </PaginationContent>
+              </Pagination>
+            </div>
+          )}
         </>
       )}
     </>

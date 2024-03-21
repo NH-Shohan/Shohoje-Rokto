@@ -21,7 +21,13 @@ const Navbar = () => {
       <div className="container flex justify-between items-center h-[60px]">
         <div>
           <Link href="/">
-            <Image src={logo} alt="Logo Image" width={120} />
+            <Image
+              src={logo}
+              alt="Logo Image"
+              width={120}
+              height={"auto"}
+              priority
+            />
           </Link>
         </div>
         <div className="flex gap-7">

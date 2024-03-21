@@ -1,7 +1,7 @@
 import bloodTypes from "@/data/bloodType.json";
+import { ArrowRightIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
-import { FaArrowRight } from "react-icons/fa";
 import { PiDropDuotone } from "react-icons/pi";
 
 const BloodType = () => {
@@ -28,12 +28,14 @@ const BloodType = () => {
           <h3>Blood Types Explained</h3>
         </div>
 
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-end">
           <h3 className="mt-3">ABO Blood Group System</h3>
-          <Link href="/be-donor" className="float-end">
-            <p className="mt-5 body-bold flex items-center gap-2 hover:text-primary">
-              Be Donor <FaArrowRight />
-            </p>
+          <Link
+            href="/be-donor"
+            className="text-green-600 hover:text-green-700 hover:underline flex gap-1 items-center text-lg"
+          >
+            Be Donor
+            <ArrowRightIcon className="w-5 h-5" />
           </Link>
         </div>
 
@@ -41,7 +43,7 @@ const BloodType = () => {
           {groupSystem.map((bloodType, index) => (
             <div
               key={index}
-              className="border border-red-300 dark:border-red-800 rounded-xl flex items-start p-5 gap-3 hover:bg-light hover:shadow-3xl transition-all group"
+              className="border border-red-300 dark:border-red-800 rounded-xl flex items-start p-5 gap-3 hover:bg-light hover:shadow-3xl transition-all group bg-background"
             >
               <Image
                 src={bloodType.icon}
@@ -49,6 +51,7 @@ const BloodType = () => {
                 className="w-8 h-8 text-primary"
                 width={10}
                 height={10}
+                priority
               />
               <div className="flex flex-col gap-2">
                 <h3>
@@ -74,7 +77,7 @@ const BloodType = () => {
           {rhSystem.map((bloodType, index) => (
             <div
               key={index}
-              className="border border-red-300 dark:border-red-800 rounded-xl flex items-start p-5 gap-3 hover:bg-light hover:shadow-3xl transition-all group"
+              className="border border-red-300 dark:border-red-800 rounded-xl flex items-start p-5 gap-3 hover:bg-light hover:shadow-3xl transition-all group bg-background"
             >
               <Image
                 src={bloodType.icon}
@@ -82,6 +85,7 @@ const BloodType = () => {
                 className="w-8 h-8 text-primary"
                 width={10}
                 height={10}
+                priority
               />
               <div className="flex flex-col gap-2">
                 <h3>

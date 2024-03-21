@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Spotlight } from "@/components/ui/spotlight";
 import Image from "next/image";
+import Link from "next/link";
 import bdMap from "../../../public/assets/bdMap.svg";
 
 const Hero = () => {
@@ -11,7 +12,7 @@ const Hero = () => {
         fill="white"
       />
       <div className="w-full h-full rounded-full bg-primary blur-3xl opacity-10 absolute -z-10"></div>
-      <Image src={bdMap} alt="Map Image" className="h-full w-1/3" />
+      <Image src={bdMap} alt="Map Image" className="h-full w-1/3" priority />
       <div className="bg-light w-[25%] py-4  rounded-xl shadow-3xl border border-red-300 dark:border-red-800 absolute top-[15%] left-[5%]">
         <p className="text-center text-xl text-primary dark:text-white">
           তুচ্ছ নয় রক্তদান, <br />
@@ -49,11 +50,11 @@ const Hero = () => {
         </p>
       </div>
 
-      <div className="z-50 absolute bottom-10">
+      <Link href={"/donor-search"} className="z-50 absolute bottom-10">
         <Button variant="outline" size="lg">
           Search Donor
         </Button>
-      </div>
+      </Link>
     </div>
   );
 };

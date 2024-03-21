@@ -26,6 +26,7 @@ const Footer = () => {
                   alt="Mail Icon"
                   width={20}
                   height={20}
+                  priority
                 />
                 <p>shohojerokto@gmail.com</p>
               </div>
@@ -35,6 +36,7 @@ const Footer = () => {
                   alt="FaceBook Icon"
                   width={20}
                   height={20}
+                  priority
                 />
                 <p>WWW.FACEBOOK.COM/SHOHOJEROKTO</p>
               </div>
@@ -49,6 +51,7 @@ const Footer = () => {
                   alt="Logo"
                   width={200}
                   height={100}
+                  priority
                 />
               </Link>
               <p className="text-justify mt-5">

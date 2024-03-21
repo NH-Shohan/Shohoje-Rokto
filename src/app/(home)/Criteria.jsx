@@ -26,7 +26,7 @@ const Criteria = () => {
           {criterias.map((criteria, index) => (
             <div
               key={index}
-              className="border border-red-400 dark:border-red-800 rounded-xl flex items-start p-5 gap-3 hover:bg-light hover:shadow-3xl transition-all group"
+              className="border border-red-400 dark:border-red-800 rounded-xl flex items-start p-5 gap-3 hover:bg-light hover:shadow-3xl transition-all group bg-background"
             >
               <Image
                 src={criteria.icon}
@@ -34,6 +34,7 @@ const Criteria = () => {
                 className="w-8 h-8 text-primary"
                 width={10}
                 height={10}
+                priority
               />
               <div className="flex flex-col gap-2">
                 <h3 className="uppercase group-hover:text-primary">

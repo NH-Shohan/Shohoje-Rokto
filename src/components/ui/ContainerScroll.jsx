@@ -59,7 +59,12 @@ export const Card = ({ rotate, scale }) => {
       className="max-w-5xl -mt-12 mx-auto h-[30rem] md:h-[40rem] w-full border-4 border-[#363636] p-6 bg-[#363636] rounded-[30px] shadow-2xl dark:shadow-white"
     >
       <div className="bg-white dark:bg-black h-full w-full rounded-2xl overflow-hidden p-4">
-        <Image src={donationType} alt="Donation" className="w-full h-full" />
+        <Image
+          src={donationType}
+          alt="Donation"
+          className="w-full h-full"
+          priority
+        />
       </div>
     </motion.div>
   );

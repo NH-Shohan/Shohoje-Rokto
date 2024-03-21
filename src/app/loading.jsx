@@ -4,7 +4,7 @@ import loadingImage from "../../public/assets/loading.svg";
 const loading = () => {
   return (
     <div className="grid place-content-center h-[calc(100vh-200px)]">
-      <Image src={loadingImage} alt="Loading Image" />
+      <Image src={loadingImage} alt="Loading Image" priority />
     </div>
   );
 };
