@@ -1,5 +1,5 @@
 "use client";
-import { AlertDialog } from "@/components/ui/alert-dialog";
+import { AlertDialog, AlertDialogContent } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import Celebrate from "../../../public/assets/celebrate.gif";
 import noData from "../../../public/assets/noData.svg";
 import requestedPost from "../../data/requestedPost.json";
 import FilterButton from "./FilterButton";
@@ -15,9 +16,11 @@ import RequestCard from "./RequestCard";
 import RequestPagination from "./RequestPagination";
 
 const RequestedContainer = () => {
-  const [open, setOpen] = useState(false);
+  const [openFirstAlert, setOpenFirstAlert] = useState(false);
+  const [openSecondAlert, setOpenSecondAlert] = useState(false);
   const [isChecked, setChecked] = useState(false);
   const [isClient, setIsClient] = useState(false);
+  const [isConfirmed, setIsConfirmed] = useState(false);
   const [selectedBloodGroup, setSelectedBloodGroup] = useState("");
   const [selectedDivision, setSelectedDivision] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
@@ -26,9 +29,29 @@ const RequestedContainer = () => {
   const [selectedPost, setSelectedPost] = useState();
   const [iframeSrc, setIframeSrc] = useState("");
 
+  const handleConfirm = () => {
+    setIsConfirmed(true);
+  };
+
+  const handleDonateClick = () => {
+    setOpenFirstAlert(false);
+    setOpenSecondAlert(true);
+  };
+
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  useEffect(() => {
+    if (isConfirmed) {
+      const timer = setTimeout(() => {
+        setOpenSecondAlert(false);
+        setIsConfirmed(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isConfirmed]);
 
   const isNewPost = (postedDate) => {
     const dateDifference = Date.now() - new Date(postedDate).getTime();
@@ -127,6 +150,55 @@ const RequestedContainer = () => {
             </div>
           </div>
 
+          {/* Confirmation Alert */}
+          <AlertDialog open={openSecondAlert} onOpenChange={setOpenSecondAlert}>
+            <AlertDialogContent>
+              {!isConfirmed ? (
+                <>
+                  <div className="text-green-600 text-2xl mx-auto">
+                    <div>Confirmation</div>
+                  </div>
+
+                  <p className="text-center mx-[5%]">
+                    Your information will be sent to{" "}
+                    <span className="text-primary">
+                      {selectedPost?.requesterName}
+                    </span>{" "}
+                    and he will be able to contact you through you phone number.
+                  </p>
+
+                  <p className="text-primary text-center py-3 text-lg">
+                    Are you sure you want to donate?
+                  </p>
+                </>
+              ) : (
+                <>
+                  <div className="mx-auto">
+                    <Image src={Celebrate} alt="Thank you image" width={170} />
+                    <div className="text-center text-3xl py-4 text-primary">
+                      Thank You!
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {!isConfirmed && (
+                <div className="flex gap-2 justify-center w-full">
+                  <Button
+                    variant="outline"
+                    className="w-1/3"
+                    onClick={() => setOpenSecondAlert(!open)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button className="w-1/3" onClick={handleConfirm}>
+                    Confirm
+                  </Button>
+                </div>
+              )}
+            </AlertDialogContent>
+          </AlertDialog>
+
           {filteredPosts.length === 0 ? (
             <div className="flex flex-col justify-center items-center h-[calc(100vh-174px)] w-full relative">
               <h1 className="font-normal text-primary absolute top-[10%]">
@@ -138,7 +210,10 @@ const RequestedContainer = () => {
             </div>
           ) : (
             <>
-              <AlertDialog open={open} onOpenChange={setOpen}>
+              <AlertDialog
+                open={openFirstAlert}
+                onOpenChange={setOpenFirstAlert}
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 mb-5">
                   {currentItems.map((post, index) => (
                     <RequestCard
@@ -152,8 +227,9 @@ const RequestedContainer = () => {
                 </div>
                 <PostAlert
                   selectedPost={selectedPost}
-                  setOpen={setOpen}
                   iframeSrc={iframeSrc}
+                  setOpenFirstAlert={setOpenFirstAlert}
+                  handleDonateClick={handleDonateClick}
                 />
               </AlertDialog>
 

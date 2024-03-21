@@ -3,7 +3,12 @@ import { AlertDialogContent } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Cross2Icon } from "@radix-ui/react-icons";
 
-const PostAlert = ({ selectedPost, setOpen, iframeSrc }) => {
+const PostAlert = ({
+  selectedPost,
+  setOpenFirstAlert,
+  iframeSrc,
+  handleDonateClick,
+}) => {
   return (
     <AlertDialogContent>
       <div className="space-y-3 text-sm">
@@ -27,7 +32,9 @@ const PostAlert = ({ selectedPost, setOpen, iframeSrc }) => {
 
         <div className="flex justify-between items-end">
           <p className="font-medium text-foreground">Information</p>
-          <Button variant="outline">Want to Donate</Button>
+          <Button variant="outline" onClick={handleDonateClick}>
+            Want to Donate
+          </Button>
         </div>
 
         <table className="table-auto w-full text-left border text-zinc-500">
@@ -116,7 +123,7 @@ const PostAlert = ({ selectedPost, setOpen, iframeSrc }) => {
       </div>
 
       <Cross2Icon
-        onClick={() => setOpen(!open)}
+        onClick={() => setOpenFirstAlert(!open)}
         className="h-5 w-5 top-4 right-4 absolute cursor-pointer text-zinc-500 hover:text-foreground"
       />
     </AlertDialogContent>
