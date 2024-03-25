@@ -20,7 +20,7 @@ const Navbar = () => {
 
   return (
     <>
-      {path !== "/login" && (
+      {path !== "/sign-in" && path !== "/sign-up" && (
         <nav className="sticky top-0 z-[1000] bg-[#ffffff80] dark:bg-[#00000080] backdrop-blur-md">
           <div className="container flex justify-between items-center h-[60px]">
             <div>
@@ -77,8 +77,8 @@ const Navbar = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              <Link href={"login"}>
-                <Button variant="outline">Login</Button>
+              <Link href={"sign-in"}>
+                <Button variant="outline">Sign In</Button>
               </Link>
             </div>
           </div>

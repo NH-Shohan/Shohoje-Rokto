@@ -73,7 +73,7 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
 
     const timeoutId = setTimeout(() => {
       localStorage.removeItem("donorData");
-    }, 20 * 60 * 1000);
+    }, 15 * 60 * 1000);
 
     return () => clearTimeout(timeoutId);
   }, [donorData]);

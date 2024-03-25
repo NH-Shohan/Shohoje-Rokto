@@ -132,7 +132,9 @@ const RequestedContainer = () => {
                 <Button>Request for blood</Button>
               </Link>
               <div className="flex items-center space-x-2 border border-primary rounded-md px-2 py-1.5">
-                <Label htmlFor="newPost">All New Post</Label>
+                <Label htmlFor="newPost" className="font-medium">
+                  All New Post
+                </Label>
                 <Switch
                   id="newPost"
                   checked={isChecked}

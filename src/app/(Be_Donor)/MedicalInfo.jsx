@@ -54,7 +54,7 @@ const MedicalInfo = ({
 
     const timeoutId = setTimeout(() => {
       localStorage.removeItem("medicalData");
-    }, 20 * 60 * 1000);
+    }, 15 * 60 * 1000);
 
     return () => clearTimeout(timeoutId);
   }, [answers]);
@@ -129,13 +129,21 @@ const MedicalInfo = ({
             {!isComplete && (
               <>
                 {currentStep !== 1 && (
-                  <Button variant="outline" onClick={handlePrev} className="w-1/5">
+                  <Button
+                    variant="outline"
+                    onClick={handlePrev}
+                    className="w-1/5"
+                  >
                     Previous
                   </Button>
                 )}
 
                 {currentStep !== stepsConfig.length && (
-                  <Button variant="outline" onClick={handleClickNext} className="w-1/5">
+                  <Button
+                    variant="outline"
+                    onClick={handleClickNext}
+                    className="w-1/5"
+                  >
                     Next
                   </Button>
                 )}
