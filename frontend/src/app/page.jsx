@@ -1,10 +1,10 @@
 import ContainerScroll from "@/components/ui/ContainerScroll";
 import Footer from "@/components/ui/footer";
-import BloodType from "./(home)/BloodType";
-import Criteria from "./(home)/Criteria";
-import DonationProcess from "./(home)/DonationProcess";
-import Hero from "./(home)/Hero";
-import MovingCards from "./(home)/MovingCards";
+import BloodType from "./(Home)/BloodType";
+import Criteria from "./(Home)/Criteria";
+import DonationProcess from "./(Home)/DonationProcess";
+import Hero from "./(Home)/Hero";
+import MovingCards from "./(Home)/MovingCards";
 
 export default function Home() {
   return (
