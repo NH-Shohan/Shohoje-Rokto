@@ -54,7 +54,7 @@ const SignIn = () => {
           animate={{ x: 0, zIndex: 1 }}
           transition={{ ease: "easeInOut", duration: 1 }}
         >
-          <div className="flex justify-center items-center h-screen w-full bg-light dark:bg-transparent sm:hidden md:block">
+          <div className="flex justify-center items-center h-screen w-full sm:hidden md:block">
             <div className="h-screen flex justify-center items-center">
               <Image src={bloodDrop} alt="Blood Drop Image" width={400} />
             </div>
@@ -62,11 +62,11 @@ const SignIn = () => {
         </motion.div>
 
         <motion.div
-          initial={{ x: "-100%", zIndex: 0 }}
+          initial={{ x: "-50%", zIndex: 0 }}
           animate={{ x: 0, zIndex: 0 }}
           transition={{ ease: "easeInOut", duration: 1 }}
         >
-          <div className="flex justify-center items-center h-screen">
+          <div className="flex justify-start items-center h-screen">
             <div className="space-y-4 shadow-[0_0_100px_0px_rgba(240,66,66,0.15)] p-8 rounded-2xl bg-white dark:bg-zinc-950 border w-[460px] relative ">
               <Button
                 onClick={() => router.push("/")}

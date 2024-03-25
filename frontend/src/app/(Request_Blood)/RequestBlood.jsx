@@ -242,7 +242,7 @@ const RequestBlood = () => {
                 placeholder="Patient's Age"
                 id="patientAge"
                 name="patientAge"
-                defaultValue={formData.patientAge}
+                value={formData.patientAge}
                 onChange={(e) => {
                   let patientAge = e.target.value.trim();
                   if (patientAge >= 100) {
