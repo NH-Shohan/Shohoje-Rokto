@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Drawer, DrawerTrigger } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
 import {
   InputOTP,
@@ -29,6 +30,7 @@ import logo from "../../../../public/assets/logo.png";
 import facebook from "../../../../public/icons/facebookColor.svg";
 import flag from "../../../../public/icons/flag.svg";
 import google from "../../../../public/icons/google.svg";
+import TermsCondition from "../TermsCondition";
 
 const SignUp = () => {
   const router = useRouter();
@@ -336,9 +338,14 @@ const SignUp = () => {
                   >
                     Accept{" "}
                   </label>
-                  <span className="text-sm font-medium text-primary cursor-pointer hover:underline">
-                    terms and conditions
-                  </span>
+                  <Drawer>
+                    <DrawerTrigger>
+                      <span className="text-sm font-medium text-primary cursor-pointer hover:underline">
+                        terms and conditions
+                      </span>
+                    </DrawerTrigger>
+                    <TermsCondition />
+                  </Drawer>
                 </div>
               </div>
 
