@@ -19,12 +19,12 @@ const questionAnswer = [
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam ducimus earum maiores libero nostrum dolor! Magni minima dolore est porro.",
   },
   {
-    question: "How to get the certificate?",
+    question: "How to post a request for blood?",
     answer:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam ducimus earum maiores libero nostrum dolor! Magni minima dolore est porro.",
   },
   {
-    question: "How to get the certificate?",
+    question: "How to use this website?",
     answer:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam ducimus earum maiores libero nostrum dolor! Magni minima dolore est porro.",
   },

@@ -88,21 +88,27 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-7 border border-primary rounded-xl p-10 shadow-3xl col-span-3 bg-white dark:bg-black">
+        <div className="space-y-2 border border-primary rounded-xl p-10 shadow-3xl col-span-3 bg-white dark:bg-black">
           <h3 className="text-primary">Support 🩸 Inquiries 🩸 Suggestions</h3>
 
-          <div className="grid w-full items-center gap-1.5">
-            <Label htmlFor="name">Name</Label>
+          <div className="w-full">
+            <Label className="text-xs text-zinc-400" htmlFor="name">
+              Name
+            </Label>
             <Input type="name" id="name" placeholder="Enter Your Name" />
           </div>
 
-          <div className="grid w-full items-center gap-1.5">
-            <Label htmlFor="email">Email</Label>
+          <div className="w-full">
+            <Label className="text-xs text-zinc-400" htmlFor="email">
+              Email
+            </Label>
             <Input type="email" id="email" placeholder="Enter Your Email" />
           </div>
 
-          <div className="grid w-full gap-1.5">
-            <Label htmlFor="message">Your message</Label>
+          <div className="w-full">
+            <Label className="text-xs text-zinc-400" htmlFor="message">
+              Your message
+            </Label>
             <Textarea
               placeholder="Enter Your Message or Suggestions"
               id="message"
@@ -110,7 +116,9 @@ const Footer = () => {
             />
           </div>
 
-          <Button variant="outline">Send</Button>
+          <Button variant="outline" className="w-1/3">
+            Submit
+          </Button>
         </div>
       </div>
 
