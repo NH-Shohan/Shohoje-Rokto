@@ -1,28 +1,25 @@
 "use client";
-import {
-  AlertDialog,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+
+import app from "@/app/firebaseConfig";
+import { AlertDialog } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Drawer, DrawerTrigger } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from "@/components/ui/input-otp";
 import { Label } from "@/components/ui/label";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
+import { AuthContext } from "@/context/AuthContext";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
+import {
+  getAuth,
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
+} from "firebase/auth";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IoReturnUpBack } from "react-icons/io5";
 import { toast } from "sonner";
 import bloodDrop from "../../../../public/assets/bloodDrop.gif";
@@ -30,18 +27,27 @@ import logo from "../../../../public/assets/logo.png";
 import facebook from "../../../../public/icons/facebookColor.svg";
 import flag from "../../../../public/icons/flag.svg";
 import google from "../../../../public/icons/google.svg";
+import OtpAlert from "../OtpAlert";
 import TermsCondition from "../TermsCondition";
 
 const SignUp = () => {
   const router = useRouter();
+  const { currentUser } = useContext(AuthContext);
+  const auth = getAuth(app);
+
+  const [open, setOpen] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false);
+  const [isSendingOTP, setIsSendingOTP] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const [isOptSent, setIsOptSent] = useState(false);
+  const [optConfirmationResult, setOptConfirmationResult] = useState(null);
   const [passwordStrength, setPasswordStrength] = useState("weak");
   const [registration, setRegistration] = useState({
-    name: "",
-    phoneNumber: "",
-    password: "",
-    confirmPassword: "",
+    name: "Shohan",
+    phoneNumber: "1738485570",
+    password: "Shohan@123",
+    confirmPassword: "Shohan@123",
   });
   const [criteriaMet, setCriteriaMet] = useState({
     lowercase: false,
@@ -50,40 +56,6 @@ const SignUp = () => {
     specialCharacter: false,
     minLength: false,
   });
-  const [minutes, setMinutes] = useState(4);
-  const [seconds, setSeconds] = useState(59);
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    let timerInterval;
-
-    if (open) {
-      timerInterval = setInterval(() => {
-        if (seconds === 0) {
-          if (minutes === 0) {
-            clearInterval(timerInterval);
-          } else {
-            setMinutes(minutes - 1);
-            setSeconds(59);
-          }
-        } else {
-          setSeconds(seconds - 1);
-        }
-      }, 1000);
-    } else {
-      clearInterval(timerInterval);
-      setMinutes(4);
-      setSeconds(59);
-    }
-
-    return () => clearInterval(timerInterval);
-  }, [minutes, seconds, open]);
-
-  useEffect(() => {
-    if (minutes === 0 && seconds === 0) {
-      setOpen(false);
-    }
-  }, [minutes, seconds]);
 
   const handleValueChange = (key, value) => {
     setRegistration((prevData) => ({
@@ -165,6 +137,11 @@ const SignUp = () => {
       return;
     }
 
+    if (!isChecked) {
+      toast.warning("Please accept the terms and conditions!");
+      return;
+    }
+
     if (passwordStrength === "medium") {
       let suggestion =
         "Consider using a stronger password for better security. Password must contain at least ";
@@ -183,10 +160,47 @@ const SignUp = () => {
       }
 
       toast.info(suggestion, {
-        duration: 8000,
+        duration: 7000,
       });
     } else {
       toast.success("Registration successful!");
+    }
+  };
+
+  // OPT Functionality
+  useEffect(() => {
+    if (auth) {
+      window.recaptchaVerifier = new RecaptchaVerifier(
+        auth,
+        "recaptcha-container",
+        {
+          size: "normal",
+          callback: (response) => {},
+          "expired-callback": () => {},
+        }
+      );
+    }
+  }, [auth]);
+
+  const handleSendOpt = async () => {
+    try {
+      setIsSendingOTP(true);
+
+      const fullPhoneNumber = `+880${registration.phoneNumber}`;
+      const confirmPhoneNumber = await signInWithPhoneNumber(
+        auth,
+        fullPhoneNumber,
+        window.recaptchaVerifier
+      );
+
+      setOptConfirmationResult(confirmPhoneNumber);
+      console.log(optConfirmationResult);
+      setIsOptSent(true);
+      setOpen(true);
+    } catch (error) {
+      toast.error("Error: OTP sending failed!");
+    } finally {
+      setIsSendingOTP(false);
     }
   };
 
@@ -214,14 +228,23 @@ const SignUp = () => {
                 Sign Up
               </h3>
 
-              <div>
+              <div className="text-foreground">
                 <div>
                   <Label className="text-xs text-zinc-400">Full Name</Label>
                   <Input
                     type="text"
                     placeholder="Full Name"
-                    value={registration.name}
-                    onChange={(e) => handleValueChange("name", e.target.value)}
+                    defaultValue={registration.name}
+                    onChange={(e) => {
+                      let name = e.target.value.trim();
+                      if (!/^[A-Za-z\s]*$/.test(name)) {
+                        e.target.value = "";
+                        toast.warning("Only letters are allowed.");
+                        return;
+                      } else {
+                        handleValueChange("name", name);
+                      }
+                    }}
                     required
                   />
                 </div>
@@ -330,7 +353,11 @@ const SignUp = () => {
               </div>
 
               <div className="flex items-center space-x-1.5">
-                <Checkbox id="terms" />
+                <Checkbox
+                  id="terms"
+                  checked={isChecked}
+                  onCheckedChange={() => setIsChecked(!isChecked)}
+                />
                 <div>
                   <label
                     htmlFor="terms"
@@ -394,91 +421,63 @@ const SignUp = () => {
                 )}
               </div>
 
-              <AlertDialog open={open} onOpenChange={setOpen}>
-                {registration.password !== "" &&
-                registration.confirmPassword !== "" &&
-                passwordStrength === "strong" &&
-                registration.password === registration.confirmPassword ? (
-                  <AlertDialogTrigger className="w-full">
-                    <p className="w-full bg-primary text-primary-foreground shadow hover:bg-[#f02030] h-9 flex items-center justify-center rounded-md font-medium">
-                      Sign Up
-                    </p>
-                  </AlertDialogTrigger>
-                ) : (
-                  <Button
-                    className="w-full text-base"
-                    onClick={handleConfirmRegistration}
-                  >
-                    Sign Up
-                  </Button>
-                )}
-
-                <AlertDialogContent>
-                  <AlertDialogHeader className={"space-y-4"}>
-                    <AlertDialogTitle className="text-center">
-                      Enter OTP Code
-                    </AlertDialogTitle>
-
-                    <AlertDialogDescription className="text-center">
-                      No worries! We sent you SMS with 6 digit <br />{" "}
-                      verification code (OTP) on
-                    </AlertDialogDescription>
-
-                    <p className="text-center font-medium">
-                      +880{registration.phoneNumber}
-                    </p>
-
-                    <InputOTP
-                      className="mx-auto"
-                      maxLength={6}
-                      render={({ slots }) => (
+              <div className="space-y-1">
+                <AlertDialog open={open} onOpenChange={setOpen}>
+                  {registration.password !== "" &&
+                  registration.confirmPassword !== "" &&
+                  passwordStrength === "strong" &&
+                  registration.password === registration.confirmPassword &&
+                  isChecked ? (
+                    <Button
+                      onClick={handleSendOpt}
+                      className="w-full space-x-1"
+                    >
+                      {isSendingOTP ? (
                         <>
-                          <InputOTPGroup>
-                            {slots.slice(0, 3).map((slot, index) => (
-                              <InputOTPSlot key={index} {...slot} />
-                            ))}{" "}
-                          </InputOTPGroup>
-
-                          <InputOTPGroup>
-                            {slots.slice(3).map((slot, index) => (
-                              <InputOTPSlot key={index + 3} {...slot} />
-                            ))}
-                          </InputOTPGroup>
+                          <LoadingSpinner className={"size-10 text-white"} />
+                          <p>Sending OPT...</p>
                         </>
+                      ) : (
+                        <p>Sign Up</p>
                       )}
-                    />
+                    </Button>
+                  ) : (
+                    <Button
+                      className="w-full"
+                      onClick={handleConfirmRegistration}
+                    >
+                      Sign Up
+                    </Button>
+                  )}
+                  <OtpAlert
+                    registration={registration}
+                    open={open}
+                    setOpen={setOpen}
+                    optConfirmationResult={optConfirmationResult}
+                  />
+                </AlertDialog>
 
-                    <Button className="w-1/2 mx-auto">Confirm Code</Button>
+                {!isOptSent ? (
+                  <div
+                    id="recaptcha-container"
+                    className="flex justify-center"
+                  ></div>
+                ) : null}
 
-                    <div className="mx-auto">
-                      <div className="flex gap-1 justify-center my-4">
-                        <p>Enter the code you have in </p>
-                        <p className="text-primary">{`${minutes
-                          .toString()
-                          .padStart(2, "0")}:${seconds
-                          .toString()
-                          .padStart(2, "0")}`}</p>
-                        <p>min</p>
-                      </div>
+                <div className="text-sm flex gap-1">
+                  <p>Already have an account?</p>
+                  <Link href={"/sign-in"} className="text-primary font-medium">
+                    Sign In
+                  </Link>
+                </div>
+              </div>
 
-                      <div className="flex gap-1 justify-center">
-                        <p>{"Didn't receive the email? "}</p>
-                        <Link
-                          href="#"
-                          className="text-green-600 hover:text-green-700 hover:underline"
-                        >
-                          Resend
-                        </Link>
-                      </div>
-                    </div>
-                  </AlertDialogHeader>
-                </AlertDialogContent>
-              </AlertDialog>
-
-              <div className="text-muted-foreground flex items-center gap-4 w-full">
-                <div className="h-[2px] bg-muted w-1/2 rounded-full"></div>
-                <p>or</p>
-                <div className="h-[2px] bg-muted w-1/2 rounded-full"></div>
+              <div className="text-muted-foreground flex items-center w-full">
+                <div className="h-[2px] bg-muted w-full rounded-full"></div>
+                <p className="uppercase text-xs w-full text-center">
+                  or continue with
+                </p>
+                <div className="h-[2px] bg-muted w-full rounded-full"></div>
               </div>
 
               <div className="flex gap-4">
@@ -497,13 +496,6 @@ const SignUp = () => {
                   FaceBook
                 </Button>
               </div>
-
-              <div className="text-sm flex gap-1 justify-center">
-                <p>Already have an account?</p>
-                <Link href={"/sign-in"} className="text-primary font-medium">
-                  Sign In
-                </Link>
-              </div>
             </div>
           </div>
         </motion.div>
@@ -515,7 +507,12 @@ const SignUp = () => {
         >
           <div className="flex justify-center items-center h-screen w-full sm:hidden md:block">
             <div className="h-screen flex justify-center items-center">
-              <Image src={bloodDrop} alt="Blood Drop Image" width={400} />
+              <Image
+                src={bloodDrop}
+                alt="Blood Drop Image"
+                width={400}
+                priority
+              />
             </div>
           </div>
         </motion.div>

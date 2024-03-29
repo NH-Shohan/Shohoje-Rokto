@@ -163,7 +163,7 @@ const RequestBlood = () => {
   return (
     <>
       {isClient ? (
-        <div className="max-w-3xl mx-auto py-10 container">
+        <div className="max-w-3xl mx-auto py-10 container text-foreground">
           <h3 className="mb-5 text-primary">Blood Request Form</h3>
           <div className="space-y-2">
             <div className="flex justify-between">

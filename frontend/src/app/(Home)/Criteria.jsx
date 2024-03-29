@@ -37,7 +37,7 @@ const Criteria = () => {
                 priority
               />
               <div className="flex flex-col gap-2">
-                <h3 className="uppercase group-hover:text-primary">
+                <h3 className="uppercase group-hover:text-primary text-foreground">
                   {criteria.title}
                 </h3>
                 <p className="leading-5 dark:text-gray-400">{criteria.desc}</p>

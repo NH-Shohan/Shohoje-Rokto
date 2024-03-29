@@ -29,7 +29,7 @@ const BloodType = () => {
         </div>
 
         <div className="flex justify-between items-end">
-          <h3 className="mt-3">ABO Blood Group System</h3>
+          <h3 className="mt-3 text-foreground">ABO Blood Group System</h3>
           <Link
             href="/be-donor"
             className="text-green-600 hover:text-green-700 hover:underline flex gap-1 items-center text-lg"
@@ -54,7 +54,7 @@ const BloodType = () => {
                 priority
               />
               <div className="flex flex-col gap-2">
-                <h3>
+                <h3 className="text-foreground">
                   {bloodType.title.split(" ")[0]}{" "}
                   <span className="text-primary">
                     {bloodType.title.split(" ")[1]}
@@ -66,7 +66,7 @@ const BloodType = () => {
           ))}
         </div>
 
-        <h3 className="mt-8">Rh Blood Group System</h3>
+        <h3 className="mt-8 text-foreground">Rh Blood Group System</h3>
         <p className="-mt-1">
           {
             "A person's Rh status is denoted by a plus (+) or minus (-) sign, suchas A+ or O-"
@@ -88,7 +88,7 @@ const BloodType = () => {
                 priority
               />
               <div className="flex flex-col gap-2">
-                <h3>
+                <h3 className="text-foreground">
                   {bloodType.title.split("-")[0]}
                   {"-"}
                   <span className="text-primary">

@@ -14,7 +14,7 @@ const Footer = () => {
         <div className="col-span-4">
           <div className="flex flex-col gap-4">
             <h2 className="text-primary">Get In Touch</h2>
-            <p className="w-2/3 text-justify">
+            <p className="w-2/3">
               {
                 "We're here to assist you. If you have any questions, need assistance, or would like to learn more about our blood donation community, please don't hesitate to reach out. Your feedback and inquiries are important to us, and we're committed to providing the information and support you need."
               }
@@ -61,27 +61,27 @@ const Footer = () => {
               </p>
             </div>
 
-            <div className="flex flex-col gap-1 text-left col-span-2">
+            <div className="flex flex-col gap-1 text-left col-span-2 text-foreground font-light">
               <h3 className="text-primary">Pages</h3>
-              <Link className="hover:font-semibold transition-all" href={"#"}>
+              <Link className="hover:font-medium transition-all" href={"#"}>
                 About Us
               </Link>
-              <Link className="hover:font-semibold transition-all" href={"#"}>
+              <Link className="hover:font-medium transition-all" href={"#"}>
                 Donor Search
               </Link>
-              <Link className="hover:font-semibold transition-all" href={"#"}>
+              <Link className="hover:font-medium transition-all" href={"#"}>
                 Be Donor
               </Link>
-              <Link className="hover:font-semibold transition-all" href={"#"}>
+              <Link className="hover:font-medium transition-all" href={"#"}>
                 Be Recipient
               </Link>
-              <Link className="hover:font-semibold transition-all" href={"#"}>
+              <Link className="hover:font-medium transition-all" href={"#"}>
                 Request Blood
               </Link>
-              <Link className="hover:font-semibold transition-all" href={"#"}>
+              <Link className="hover:font-medium transition-all" href={"#"}>
                 Blood Bank
               </Link>
-              <Link className="hover:font-semibold transition-all" href={"#"}>
+              <Link className="hover:font-medium transition-all" href={"#"}>
                 Privacy Policy
               </Link>
             </div>
@@ -92,21 +92,21 @@ const Footer = () => {
           <h3 className="text-primary">Support 🩸 Inquiries 🩸 Suggestions</h3>
 
           <div className="w-full">
-            <Label className="text-xs text-zinc-400" htmlFor="name">
+            <Label className="text-xs" htmlFor="name">
               Name
             </Label>
             <Input type="name" id="name" placeholder="Enter Your Name" />
           </div>
 
           <div className="w-full">
-            <Label className="text-xs text-zinc-400" htmlFor="email">
+            <Label className="text-xs" htmlFor="email">
               Email
             </Label>
             <Input type="email" id="email" placeholder="Enter Your Email" />
           </div>
 
           <div className="w-full">
-            <Label className="text-xs text-zinc-400" htmlFor="message">
+            <Label className="text-xs" htmlFor="message">
               Your message
             </Label>
             <Textarea

@@ -163,7 +163,7 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
   return (
     <>
       {isClient ? (
-        <div className="space-y-2">
+        <div className="space-y-2 text-foreground">
           <div className="flex justify-between">
             <p className="text-primary">
               Please fill up the form carefully for being a donor.

@@ -9,7 +9,7 @@ import conditions from "@/data/conditions.json";
 const TermsCondition = () => {
   return (
     <DrawerContent className="sm:w-full md:w-1/3 mx-auto p-6">
-      <DrawerTitle className="text-primary -mt-5 pb-3">
+      <DrawerTitle className="text-primary mt-0 pb-3">
         Terms and Conditions for Shohoje Rokto
       </DrawerTitle>
 

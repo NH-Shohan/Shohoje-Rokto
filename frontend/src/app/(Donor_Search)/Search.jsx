@@ -127,7 +127,7 @@ const Search = () => {
     <>
       {isClient ? (
         <>
-          <div className="bg-white dark:bg-secondary mt-5 p-4 rounded-2xl border grid grid-cols-5 gap-2 mx-20">
+          <div className="bg-white dark:bg-secondary mt-5 p-4 rounded-2xl border grid grid-cols-5 gap-2 mx-20 text-foreground">
             <Select
               value={filterValues.bloodGroup}
               onValueChange={(value) => handleValueChange("bloodGroup", value)}
@@ -463,13 +463,13 @@ const Search = () => {
             <div className="flex items-center gap-1 text-blue-500 text-sm">
               <PiSealCheckDuotone />
               <p>
-                Donated 3 times <sub className="text-xs">(Verified)</sub>
+                Donated 7 times <sub className="text-xs">(Verified)</sub>
               </p>
             </div>
             <div className="flex items-center gap-1 text-green-600 text-sm">
               <PiSealCheckDuotone />
               <p>
-                Donated more than 3 times{" "}
+                Donated more than 7 times{" "}
                 <sub className="text-xs">(Certified)</sub>
               </p>
             </div>

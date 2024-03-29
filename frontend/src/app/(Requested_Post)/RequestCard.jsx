@@ -43,8 +43,10 @@ const RequestCard = ({ index, post, setSelectedPost, isNewPost }) => {
           )}
         <div className="flex justify-between">
           <div>
-            <p className="text-xl group-hover:text-primary">{post.condition}</p>
-            <p className="text-sm text-zinc-500">Posted on {post.postedDate}</p>
+            <p className="text-xl group-hover:text-primary text-foreground">
+              {post.condition}
+            </p>
+            <p className="text-sm">Posted on {post.postedDate}</p>
           </div>
           <p
             className={`${
@@ -78,9 +80,9 @@ const RequestCard = ({ index, post, setSelectedPost, isNewPost }) => {
         <div className="bg-secondary dark:bg-border w-full h-[1px] my-4"></div>
 
         <div className="flex items-center justify-between">
-          <p className="text-sm text-zinc-500">
+          <p className="text-sm">
             Posted by:{" "}
-            <span className="text-primary dark:text-foreground">
+            <span className="text-primary dark:text-secondary-foreground">
               {post.requesterName}
             </span>
           </p>

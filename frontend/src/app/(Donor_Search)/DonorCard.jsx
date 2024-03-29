@@ -52,7 +52,7 @@ const DonorCard = ({ donor, setSelectedDonor, setOpen, index }) => {
           className="mx-auto capitalize"
           priority
         />
-        <p className="w-full flex gap-2 justify-center items-center">
+        <p className="w-full flex gap-2 justify-center items-center text-foreground text-lg">
           {donor.name}
           <TooltipProvider>
             <Tooltip>

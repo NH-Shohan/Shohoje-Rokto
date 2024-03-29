@@ -76,13 +76,18 @@ const SignIn = () => {
               </Button>
 
               <div className="flex justify-center">
-                <Image src={logo} alt="Logo Image" width={120} />
+                <Image
+                  src={logo}
+                  alt="Logo Image"
+                  width={120}
+                  height={"auto"}
+                />
               </div>
               <h3 className="text-primary text-center mb-6 font-semibold">
                 Sign In
               </h3>
 
-              <div>
+              <div className="text-foreground">
                 <div>
                   <Label className="text-xs text-zinc-400">Phone Number</Label>
                   <div className="flex">
@@ -167,14 +172,28 @@ const SignIn = () => {
                 </label>
               </div>
 
-              <Button className="w-full text-base" onClick={handleConfirmLogin}>
-                Sign In
-              </Button>
+              <div className="space-y-2">
+                <Button
+                  className="w-full text-base"
+                  onClick={handleConfirmLogin}
+                >
+                  Sign In
+                </Button>
 
-              <div className="text-muted-foreground flex items-center gap-4 w-full">
-                <div className="h-[2px] bg-muted w-1/2 rounded-full"></div>
-                <p>or</p>
-                <div className="h-[2px] bg-muted w-1/2 rounded-full"></div>
+                <div className="text-sm flex gap-1">
+                  <p>{"Don't have an account?"}</p>
+                  <Link href={"/sign-up"} className="text-primary font-medium">
+                    Sign Up
+                  </Link>
+                </div>
+              </div>
+
+              <div className="text-muted-foreground flex items-center w-full">
+                <div className="h-[2px] bg-muted w-full rounded-full"></div>
+                <p className="uppercase text-xs w-full text-center">
+                  or continue with
+                </p>
+                <div className="h-[2px] bg-muted w-full rounded-full"></div>
               </div>
 
               <div className="flex gap-4">
@@ -192,13 +211,6 @@ const SignIn = () => {
                   <Image src={facebook} alt="facebook Icon" />
                   FaceBook
                 </Button>
-              </div>
-
-              <div className="text-sm flex gap-1 justify-center">
-                <p>{"Don't have an account?"}</p>
-                <Link href={"/sign-up"} className="text-primary font-medium">
-                  Sign Up
-                </Link>
               </div>
             </div>
           </div>

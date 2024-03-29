@@ -183,7 +183,7 @@ const DonorRegistration = ({ isComplete, currentStep, handlePrev }) => {
 
   return (
     <div className="w-3/5 mx-auto">
-      <div className="space-y-4 border p-8 rounded-lg bg-light dark:bg-neutral-950">
+      <div className="space-y-4 border p-8 rounded-lg bg-light dark:bg-neutral-950 text-foreground">
         <h3 className="text-primary">Register As Donor</h3>
 
         <Input
@@ -299,7 +299,7 @@ const DonorRegistration = ({ isComplete, currentStep, handlePrev }) => {
 
           <AlertDialogContent>
             <AlertDialogHeader className={"space-y-4"}>
-              <AlertDialogTitle className="text-center">
+              <AlertDialogTitle className="text-center text-foreground">
                 Enter OTP Code
               </AlertDialogTitle>
 
@@ -308,7 +308,7 @@ const DonorRegistration = ({ isComplete, currentStep, handlePrev }) => {
                 code (OTP) on
               </AlertDialogDescription>
 
-              <p className="text-center font-medium">
+              <p className="text-center font-medium text-foreground">
                 +880{donorRegistration.phoneNumber}
               </p>
 
@@ -334,8 +334,8 @@ const DonorRegistration = ({ isComplete, currentStep, handlePrev }) => {
 
               <Button className="w-1/2 mx-auto">Confirm Code</Button>
 
-              <div className="mx-auto">
-                <div className="flex gap-1 justify-center">
+              <div className="mx-auto space-y-2">
+                <div className="flex gap-1 justify-center text-foreground">
                   <p>Enter the code you have in </p>
                   <p className="text-primary">{`${minutes
                     .toString()
@@ -346,7 +346,7 @@ const DonorRegistration = ({ isComplete, currentStep, handlePrev }) => {
                 </div>
 
                 <div className="flex gap-1 justify-center">
-                  <p>{"Didn't receive the email? "}</p>
+                  <p>{"Didn't receive the code? "}</p>
                   <Link
                     href="#"
                     className="text-green-600 hover:text-green-700 hover:underline"
@@ -356,11 +356,6 @@ const DonorRegistration = ({ isComplete, currentStep, handlePrev }) => {
                 </div>
               </div>
             </AlertDialogHeader>
-
-            {/* <Cross2Icon
-              onClick={() => setOpen(!open)}
-              className="h-5 w-5 top-4 right-4 absolute cursor-pointer"
-            /> */}
           </AlertDialogContent>
         </AlertDialog>
       </div>
