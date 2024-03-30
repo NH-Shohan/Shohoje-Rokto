@@ -1,4 +1,5 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -127,7 +128,7 @@ const Search = () => {
     <>
       {isClient ? (
         <>
-          <div className="bg-white dark:bg-secondary mt-5 p-4 rounded-2xl border grid grid-cols-5 gap-2 mx-20 text-foreground">
+          <div className="bg-white dark:bg-secondary mt-5 p-4 rounded-2xl border grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-2 mx-20 text-foreground">
             <Select
               value={filterValues.bloodGroup}
               onValueChange={(value) => handleValueChange("bloodGroup", value)}
@@ -437,7 +438,7 @@ const Search = () => {
             </Popover>
 
             <div
-              className={`col-span-2 bg-white dark:bg-background border flex gap-1 items-center rounded-md h-[35px] overflow-hidden ${
+              className={`md:col-span-2 lg:col-span-4 xl:col-span-2 bg-white dark:bg-background border flex gap-1 items-center rounded-md h-[35px] overflow-hidden ${
                 isInputActive ? "border-primary" : ""
               }`}
             >
@@ -453,7 +454,7 @@ const Search = () => {
             </div>
           </div>
 
-          <div className="mx-20 mt-1 flex gap-6 justify-center">
+          <div className="mx-20 mt-1 lg:flex gap-6 justify-center">
             <div className="flex items-center gap-1 text-primary text-sm">
               <PiSealCheckDuotone />
               <p>

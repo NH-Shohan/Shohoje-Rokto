@@ -1,5 +1,7 @@
 "use client";
 
+import { Drawer, DrawerTrigger } from "@/components/ui/drawer";
+import { UserAuth } from "@/context/AuthContext";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,14 +12,26 @@ import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import logo from "../../../public/assets/logo.png";
-import { Button } from "./button";
-import NavLink from "./navLink";
+import { Button } from "../../components/ui/button";
+import NavLink from "../../components/ui/navLink";
+import ProfileDrawer from "./profileDrawer";
 
 const Navbar = () => {
   const { setTheme } = useTheme();
   const path = usePathname();
+  const router = useRouter();
+  const { currentUser, logOut } = UserAuth();
+
+  const handleSignOut = async () => {
+    try {
+      await logOut();
+      router.push("/");
+    } catch (error) {
+      toast.error("Error: Could not sign out!");
+    }
+  };
 
   return (
     <>
@@ -78,9 +92,30 @@ const Navbar = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              <Link href={"sign-in"}>
-                <Button variant="outline">Sign In</Button>
-              </Link>
+              {currentUser ? (
+                <div>
+                  <Drawer direction="right">
+                    <DrawerTrigger>
+                      <Image
+                        className="border border-primary rounded-full mt-1.5"
+                        src={currentUser?.photoURL}
+                        alt="Profile Image"
+                        width={38}
+                        height={38}
+                        priority
+                      />
+                    </DrawerTrigger>
+                    <ProfileDrawer
+                      currentUser={currentUser}
+                      handleSignOut={handleSignOut}
+                    />
+                  </Drawer>
+                </div>
+              ) : (
+                <Link href={"sign-in"}>
+                  <Button variant="outline">Sign In</Button>
+                </Link>
+              )}
             </div>
           </div>
         </nav>

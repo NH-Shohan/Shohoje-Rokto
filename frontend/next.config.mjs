@@ -10,6 +10,17 @@ const withPWA = withPWAInit({
   disable: false,
   workboxOptions: { disableDevLogs: true },
 });
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
+  },
+};
 
 export default withPWA(nextConfig);

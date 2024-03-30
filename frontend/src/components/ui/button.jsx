@@ -13,7 +13,7 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-primary text-foreground bg-white dark:bg-secondary hover:bg-primary dark:hover:bg-primary",
+          "border border-primary text-foreground hover:text-white bg-white dark:bg-secondary hover:bg-primary dark:hover:bg-primary",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary",
         dropdown:
           "flex h-9 w-full items-center justify-between gap-2 whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",

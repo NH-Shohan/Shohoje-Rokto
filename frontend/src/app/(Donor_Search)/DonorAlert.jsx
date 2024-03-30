@@ -1,4 +1,5 @@
 "use client";
+
 import { AlertDialogContent } from "@/components/ui/alert-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import Image from "next/image";
@@ -87,7 +88,7 @@ const DonorAlert = ({ selectedDonor, setOpen }) => {
             <p className="text-foreground font-medium mb-1">Contact Details</p>
             <div className="flex gap-2 items-center">
               <LiaPhoneVolumeSolid />
-              <Link target="_blank" href={`tel:${selectedDonor.phoneNumber}`}>
+              <Link target="_blank" href={`tel:0${selectedDonor.phoneNumber}`}>
                 +880{selectedDonor.phoneNumber}
               </Link>
             </div>
@@ -126,7 +127,12 @@ const DonorAlert = ({ selectedDonor, setOpen }) => {
                 <tr className="border-b">
                   <td>Optional Phone Number</td>
                   <td className="text-foreground">
-                    +880{selectedDonor.optionalPhoneNumber}
+                    <Link
+                      target="_blank"
+                      href={`tel:0${selectedDonor.optionalPhoneNumber}`}
+                    >
+                      +880{selectedDonor.optionalPhoneNumber}
+                    </Link>
                   </td>
                 </tr>
                 <tr className="border-b">

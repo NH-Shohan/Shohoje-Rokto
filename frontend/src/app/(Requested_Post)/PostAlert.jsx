@@ -1,7 +1,9 @@
 "use client";
+
 import { AlertDialogContent } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Cross2Icon } from "@radix-ui/react-icons";
+import Link from "next/link";
 
 const PostAlert = ({
   selectedPost,
@@ -66,7 +68,9 @@ const PostAlert = ({
             <tr className="border-y">
               <td>{"Phone Number"}</td>
               <td className="text-foreground border-l pl-3">
-                +880{selectedPost?.phoneNumber}
+                <Link target="_blank" href={`tel:${selectedPost?.phoneNumber}`}>
+                  +880{selectedPost?.phoneNumber}
+                </Link>
               </td>
             </tr>
             <tr className="border-y">

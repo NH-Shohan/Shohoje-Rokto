@@ -1,4 +1,5 @@
 "use client";
+
 import { AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import {
   Tooltip,
@@ -84,6 +85,7 @@ const DonorCard = ({ donor, setSelectedDonor, setOpen, index }) => {
             </Tooltip>
           </TooltipProvider>
         </p>
+
         <div className="flex gap-5">
           <p className="bg-light rounded-xl flex justify-center items-center w-1/2 text-[48px] text-primary dark:text-white uppercase font-medium">
             {donor.bloodGroup}
@@ -100,7 +102,7 @@ const DonorCard = ({ donor, setSelectedDonor, setOpen, index }) => {
             </li>
             <li>{donor.division}</li>
             <li>{donor.gender}</li>
-            <li>{donor.age}</li>
+            <li>Age {donor.age}</li>
           </div>
         </div>
 

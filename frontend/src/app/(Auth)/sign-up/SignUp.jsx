@@ -8,7 +8,7 @@ import { Drawer, DrawerTrigger } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
-import { AuthContext } from "@/context/AuthContext";
+import { UserAuth } from "@/context/AuthContext";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 import {
   getAuth,
@@ -19,7 +19,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IoReturnUpBack } from "react-icons/io5";
 import { toast } from "sonner";
 import bloodDrop from "../../../../public/assets/bloodDrop.gif";
@@ -32,8 +32,8 @@ import TermsCondition from "../TermsCondition";
 
 const SignUp = () => {
   const router = useRouter();
-  const { currentUser } = useContext(AuthContext);
   const auth = getAuth(app);
+  const { currentUser, googleSignIn } = UserAuth();
 
   const [open, setOpen] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
@@ -202,6 +202,20 @@ const SignUp = () => {
       setIsSendingOTP(false);
     }
   };
+
+  // Google SignIn
+  const handleGoogleSignIn = async () => {
+    try {
+      await googleSignIn();
+    } catch (error) {
+      toast.error("Error: Could not sign in with google!");
+    }
+  };
+  useEffect(() => {
+    if (currentUser) {
+      router.push("/");
+    }
+  }, [currentUser, router]);
 
   return (
     <section className="overflow-hidden">
@@ -434,10 +448,10 @@ const SignUp = () => {
                       {isSendingOTP ? (
                         <>
                           <LoadingSpinner className={"size-10 text-white"} />
-                          <p>Sending OPT...</p>
+                          <div>Sending OPT...</div>
                         </>
                       ) : (
-                        <p>Sign Up</p>
+                        <div>Sign Up</div>
                       )}
                     </Button>
                   ) : (
@@ -482,14 +496,15 @@ const SignUp = () => {
               <div className="flex gap-4">
                 <Button
                   variant="ghost"
-                  className="border w-full flex items-center gap-2 hover:bg-transparent font-normal h-10 rounded-lg"
+                  onClick={handleGoogleSignIn}
+                  className="border w-full flex items-center gap-2 hover:bg-muted font-normal h-10 rounded-lg"
                 >
                   <Image src={google} alt="Google Icon" />
                   Google
                 </Button>
                 <Button
                   variant="ghost"
-                  className="border w-full flex items-center gap-2 hover:bg-transparent font-normal h-10 rounded-lg"
+                  className="border w-full flex items-center gap-2 hover:bg-muted font-normal h-10 rounded-lg"
                 >
                   <Image src={facebook} alt="facebook Icon" />
                   FaceBook

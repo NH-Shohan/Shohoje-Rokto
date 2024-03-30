@@ -1,6 +1,8 @@
 "use client";
+
 import { AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 import { useState } from "react";
 
 const RequestCard = ({ index, post, setSelectedPost, isNewPost }) => {
@@ -72,7 +74,11 @@ const RequestCard = ({ index, post, setSelectedPost, isNewPost }) => {
                 ? post.bagsQuantity + " Bags"
                 : post.bagsQuantity + " Bag"}
             </li>
-            <li>{post.phoneNumber}</li>
+            <li>
+              <Link target="_blank" href={`tel:${post.phoneNumber}`}>
+                {post.phoneNumber}
+              </Link>
+            </li>
             <li>{post.donationDate}</li>
           </div>
         </div>
@@ -92,7 +98,7 @@ const RequestCard = ({ index, post, setSelectedPost, isNewPost }) => {
               onClick={() => handleSelectPost(post)}
               className="p-0 m-0 text-primary hover:underline"
             >
-              More Details
+              Want to Donate
             </p>
           </AlertDialogTrigger>
         </div>

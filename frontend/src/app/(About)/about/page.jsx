@@ -1,4 +1,5 @@
 "use client";
+
 import MovingCards from "@/app/(Home)/MovingCards";
 import ContainerScroll from "@/components/ui/ContainerScroll";
 import Footer from "@/components/ui/footer";

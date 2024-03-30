@@ -117,7 +117,7 @@ const OtpAlert = ({ registration, open, setOpen, optConfirmationResult }) => {
         </Button>
 
         <div className="mx-auto">
-          <div className="flex gap-1 justify-center my-4 text-white">
+          <div className="flex gap-1 justify-center my-4 text-foreground">
             <p>Enter the code you have in </p>
             <p className="text-primary">{`${minutes
               .toString()

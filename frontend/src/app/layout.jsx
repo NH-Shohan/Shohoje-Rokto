@@ -1,4 +1,4 @@
-import Navbar from "@/components/ui/navbar";
+import Navbar from "@/app/(Navbar)/navbar";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { AuthProvider } from "@/context/AuthContext";
@@ -23,7 +23,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning={true}>
       <body className={`${roboto.className} bg-[#fff5f5] dark:bg-background`}>
         <AuthProvider>
           <ThemeProvider attribute="class" defaultTheme="system">

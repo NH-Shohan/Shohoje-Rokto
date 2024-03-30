@@ -1,14 +1,16 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { UserAuth } from "@/context/AuthContext";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoReturnUpBack } from "react-icons/io5";
 import { toast } from "sonner";
 import bloodDrop from "../../../../public/assets/bloodDrop.gif";
@@ -20,6 +22,7 @@ import google from "../../../../public/icons/google.svg";
 const SignIn = () => {
   const router = useRouter();
   const [isShowPassword, setIsShowPassword] = useState(false);
+  const { currentUser, googleSignIn } = UserAuth();
   const [loginData, setLoginData] = useState({
     phoneNumber: "",
     password: "",
@@ -45,6 +48,20 @@ const SignIn = () => {
       toast.success("Login successful!");
     }
   };
+
+  // Google SignIn
+  const handleGoogleSignIn = async () => {
+    try {
+      await googleSignIn();
+    } catch (error) {
+      toast.error("Error: Could not sign in with google!");
+    }
+  };
+  useEffect(() => {
+    if (currentUser) {
+      router.push("/");
+    }
+  }, [currentUser, router]);
 
   return (
     <section>
@@ -199,14 +216,15 @@ const SignIn = () => {
               <div className="flex gap-4">
                 <Button
                   variant="ghost"
-                  className="border w-full flex items-center gap-2 hover:bg-transparent font-normal h-10 rounded-lg"
+                  onClick={handleGoogleSignIn}
+                  className="border w-full flex items-center gap-2 hover:bg-muted font-normal h-10 rounded-lg"
                 >
                   <Image src={google} alt="Google Icon" />
                   Google
                 </Button>
                 <Button
                   variant="ghost"
-                  className="border w-full flex items-center gap-2 hover:bg-transparent font-normal h-10 rounded-lg"
+                  className="border w-full flex items-center gap-2 hover:bg-muted font-normal h-10 rounded-lg"
                 >
                   <Image src={facebook} alt="facebook Icon" />
                   FaceBook
