@@ -33,7 +33,7 @@ import TermsCondition from "../TermsCondition";
 const SignUp = () => {
   const router = useRouter();
   const auth = getAuth(app);
-  const { currentUser, googleSignIn } = UserAuth();
+  const { currentUser, googleSignIn, facebookSignIn } = UserAuth();
 
   const [open, setOpen] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
@@ -203,7 +203,7 @@ const SignUp = () => {
     }
   };
 
-  // Google SignIn
+  // Google Sign Up
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn();
@@ -211,6 +211,16 @@ const SignUp = () => {
       toast.error("Error: Could not sign in with google!");
     }
   };
+
+  // Facebook Sign Up
+  const handleFacebookSignIn = async () => {
+    try {
+      await facebookSignIn();
+    } catch (error) {
+      toast.error("Error: Could not sign in with facebook!");
+    }
+  };
+
   useEffect(() => {
     if (currentUser) {
       router.push("/");
@@ -504,6 +514,7 @@ const SignUp = () => {
                 </Button>
                 <Button
                   variant="ghost"
+                  onClick={handleFacebookSignIn}
                   className="border w-full flex items-center gap-2 hover:bg-muted font-normal h-10 rounded-lg"
                 >
                   <Image src={facebook} alt="facebook Icon" />

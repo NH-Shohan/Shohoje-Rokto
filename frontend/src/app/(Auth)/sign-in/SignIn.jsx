@@ -22,7 +22,7 @@ import google from "../../../../public/icons/google.svg";
 const SignIn = () => {
   const router = useRouter();
   const [isShowPassword, setIsShowPassword] = useState(false);
-  const { currentUser, googleSignIn } = UserAuth();
+  const { currentUser, googleSignIn, facebookSignIn } = UserAuth();
   const [loginData, setLoginData] = useState({
     phoneNumber: "",
     password: "",
@@ -49,7 +49,7 @@ const SignIn = () => {
     }
   };
 
-  // Google SignIn
+  // Google Sign In
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn();
@@ -57,6 +57,16 @@ const SignIn = () => {
       toast.error("Error: Could not sign in with google!");
     }
   };
+
+  // Facebook Sign In
+  const handleFacebookSignIn = async () => {
+    try {
+      await facebookSignIn();
+    } catch (error) {
+      toast.error("Error: Could not sign in with facebook!");
+    }
+  };
+
   useEffect(() => {
     if (currentUser) {
       router.push("/");
@@ -224,6 +234,7 @@ const SignIn = () => {
                 </Button>
                 <Button
                   variant="ghost"
+                  onClick={handleFacebookSignIn}
                   className="border w-full flex items-center gap-2 hover:bg-muted font-normal h-10 rounded-lg"
                 >
                   <Image src={facebook} alt="facebook Icon" />

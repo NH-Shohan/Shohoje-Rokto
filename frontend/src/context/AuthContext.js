@@ -2,6 +2,7 @@
 
 import app from "@/app/firebaseConfig";
 import {
+  FacebookAuthProvider,
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
@@ -22,6 +23,11 @@ const AuthProvider = ({ children }) => {
     signInWithPopup(auth, googleProvider);
   };
 
+  const facebookSignIn = () => {
+    const googleProvider = new FacebookAuthProvider();
+    signInWithPopup(auth, googleProvider);
+  };
+
   const logOut = () => {
     signOut(auth);
   };
@@ -35,7 +41,9 @@ const AuthProvider = ({ children }) => {
   }, [currentUser]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, googleSignIn, logOut }}>
+    <AuthContext.Provider
+      value={{ currentUser, googleSignIn, facebookSignIn, logOut }}
+    >
       {children}
     </AuthContext.Provider>
   );
