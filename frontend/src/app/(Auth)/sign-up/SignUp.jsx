@@ -44,10 +44,10 @@ const SignUp = () => {
   const [optConfirmationResult, setOptConfirmationResult] = useState(null);
   const [passwordStrength, setPasswordStrength] = useState("weak");
   const [registration, setRegistration] = useState({
-    name: "Shohan",
-    phoneNumber: "1738485570",
-    password: "Shohan@123",
-    confirmPassword: "Shohan@123",
+    name: "",
+    phoneNumber: "",
+    password: "",
+    confirmPassword: "",
   });
   const [criteriaMet, setCriteriaMet] = useState({
     lowercase: false,
@@ -194,7 +194,6 @@ const SignUp = () => {
       );
 
       setOptConfirmationResult(confirmPhoneNumber);
-      console.log(optConfirmationResult);
       setIsOptSent(true);
       setOpen(true);
     } catch (error) {
