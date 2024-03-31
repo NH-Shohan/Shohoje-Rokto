@@ -22,7 +22,7 @@ const Navbar = () => {
   const { setTheme } = useTheme();
   const path = usePathname();
   const router = useRouter();
-  const { currentUser, logOut } = UserAuth();
+  const { currentUser, logOut, loading } = UserAuth();
 
   const handleSignOut = async () => {
     try {
@@ -92,7 +92,7 @@ const Navbar = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              {currentUser ? (
+              {loading ? null : currentUser ? (
                 <div>
                   <Drawer direction="right">
                     <DrawerTrigger>

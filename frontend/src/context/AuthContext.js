@@ -17,6 +17,7 @@ const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const googleSignIn = () => {
     const googleProvider = new GoogleAuthProvider();
@@ -24,8 +25,8 @@ const AuthProvider = ({ children }) => {
   };
 
   const facebookSignIn = () => {
-    const googleProvider = new FacebookAuthProvider();
-    signInWithPopup(auth, googleProvider);
+    const facebookProvider = new FacebookAuthProvider();
+    signInWithPopup(auth, facebookProvider);
   };
 
   const logOut = () => {
@@ -35,6 +36,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
+      setLoading(false);
     });
 
     return unsubscribe;
@@ -42,7 +44,7 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ currentUser, googleSignIn, facebookSignIn, logOut }}
+      value={{ currentUser, loading, googleSignIn, facebookSignIn, logOut }}
     >
       {children}
     </AuthContext.Provider>

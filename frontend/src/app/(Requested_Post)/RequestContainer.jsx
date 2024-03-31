@@ -132,8 +132,11 @@ const RequestedContainer = () => {
               <Link href="/request-blood">
                 <Button>Request for blood</Button>
               </Link>
-              <div className="flex items-center space-x-2 border border-primary rounded-md px-2 py-1.5">
-                <Label htmlFor="newPost" className="font-medium">
+              <div className="flex items-center space-x-2 border border-primary rounded-md px-4 py-1.5">
+                <Label
+                  htmlFor="newPost"
+                  className="font-medium text-foreground"
+                >
                   All New Post
                 </Label>
                 <Switch

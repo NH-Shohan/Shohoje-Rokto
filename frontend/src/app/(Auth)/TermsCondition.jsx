@@ -5,6 +5,7 @@ import {
 } from "@/components/ui/drawer";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import conditions from "@/data/conditions.json";
+import Link from "next/link";
 
 const TermsCondition = () => {
   return (
@@ -27,6 +28,15 @@ const TermsCondition = () => {
               <p>{condition.description}</p>
             </div>
           ))}
+          <p className="font-semibold text-foreground mt-3">Privacy Policy</p>
+          <p>
+            Your privacy is important to us. Please review our{" "}
+            <Link href="privacy-policy" className="text-primary">
+              Privacy Policy
+            </Link>{" "}
+            to understand how we collect, use, and protect your personal
+            information.
+          </p>
           <div className="mt-5">
             By using Shohoje Rokto, you acknowledge that you have read,
             understood, and agreed to these terms and conditions. Thank you for

@@ -61,27 +61,42 @@ const Footer = () => {
               </p>
             </div>
 
-            <div className="flex flex-col gap-1 text-left col-span-2 text-foreground font-light">
+            <div className="flex flex-col gap-2 text-left col-span-2 text-foreground font-thin">
               <h3 className="text-primary">Pages</h3>
-              <Link className="hover:font-medium transition-all" href={"#"}>
-                About Us
+              <Link
+                className="hover:font-bold hover:text-primary w-fit transition-all"
+                href={"about"}
+              >
+                <p>About Us</p>
               </Link>
-              <Link className="hover:font-medium transition-all" href={"#"}>
+              <Link
+                className="hover:font-bold hover:text-primary w-fit transition-all"
+                href={"donor-search"}
+              >
                 Donor Search
               </Link>
-              <Link className="hover:font-medium transition-all" href={"#"}>
+              <Link
+                className="hover:font-bold hover:text-primary w-fit transition-all"
+                href={"be-donor"}
+              >
                 Be Donor
               </Link>
-              <Link className="hover:font-medium transition-all" href={"#"}>
-                Be Recipient
+              <Link
+                className="hover:font-bold hover:text-primary w-fit transition-all"
+                href={"requested-post"}
+              >
+                Requested Post
               </Link>
-              <Link className="hover:font-medium transition-all" href={"#"}>
+              <Link
+                className="hover:font-bold hover:text-primary w-fit transition-all"
+                href={"request-blood"}
+              >
                 Request Blood
               </Link>
-              <Link className="hover:font-medium transition-all" href={"#"}>
-                Blood Bank
-              </Link>
-              <Link className="hover:font-medium transition-all" href={"#"}>
+              <Link
+                className="hover:font-bold hover:text-primary w-fit transition-all"
+                href={"privacy-policy"}
+              >
                 Privacy Policy
               </Link>
             </div>
