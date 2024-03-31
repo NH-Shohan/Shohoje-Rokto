@@ -11,7 +11,6 @@ import DonorCard from "./DonorCard";
 import DonorPagination from "./DonorPagination";
 
 const DonorContainer = ({ donors }) => {
-  const postsPerPage = 16;
   const { filterValues } = useFilter();
   const { searchQuery } = useDonorSearch();
 
@@ -26,10 +25,36 @@ const DonorContainer = ({ donors }) => {
   } = filterValues;
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(16);
   const [filteredDonors, setFilteredDonors] = useState([]);
   const [isClient, setIsClient] = useState(false);
   const [open, setOpen] = useState(false);
   const [selectedDonor, setSelectedDonor] = useState(null);
+
+  const updatePostsPerPage = () => {
+    const windowWidth = window.innerWidth;
+
+    const breakpoints = [
+      { width: 640, postsPerPage: 8 },
+      { width: 768, postsPerPage: 12 },
+      { width: 1535, postsPerPage: 15 },
+    ];
+
+    const matchingBreakpoint = breakpoints.find(
+      (breakpoint) => windowWidth <= breakpoint.width
+    );
+
+    setPostsPerPage(matchingBreakpoint ? matchingBreakpoint.postsPerPage : 16);
+  };
+
+  useEffect(() => {
+    updatePostsPerPage();
+    window.addEventListener("resize", updatePostsPerPage);
+
+    return () => {
+      window.removeEventListener("resize", updatePostsPerPage);
+    };
+  }, []);
 
   useEffect(() => {
     setIsClient(true);

@@ -453,6 +453,7 @@ const SignUp = () => {
                   isChecked ? (
                     <Button
                       onClick={handleSendOpt}
+                      variant={`${isSendingOTP ? "disabled" : "default"}`}
                       className="w-full space-x-1"
                     >
                       {isSendingOTP ? (

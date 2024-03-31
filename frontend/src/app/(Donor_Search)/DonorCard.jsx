@@ -22,7 +22,7 @@ const DonorCard = ({ donor, setSelectedDonor, setOpen, index }) => {
 
   return (
     <div
-      className="relative group block p-2 h-full w-full"
+      className="relative block p-2 h-full w-full"
       onMouseEnter={() => setHoveredIndex(index)}
       onMouseLeave={() => setHoveredIndex(null)}
     >
@@ -44,7 +44,7 @@ const DonorCard = ({ donor, setSelectedDonor, setOpen, index }) => {
         )}
       </AnimatePresence>
 
-      <div className="border bg-white rounded-2xl p-6 space-y-3 transition dark:bg-secondary relative group">
+      <div className="border bg-white rounded-2xl p-6 space-y-3 transition-all dark:bg-secondary relative group">
         <Image
           src={donor.image}
           alt="user image"
@@ -54,7 +54,9 @@ const DonorCard = ({ donor, setSelectedDonor, setOpen, index }) => {
           priority
         />
         <p className="w-full flex gap-2 justify-center items-center text-foreground text-lg">
-          {donor.name}
+          <p className="group-hover:text-primary dark:group-hover:text-foreground">
+            {donor.name}
+          </p>
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
@@ -87,7 +89,7 @@ const DonorCard = ({ donor, setSelectedDonor, setOpen, index }) => {
         </p>
 
         <div className="flex gap-5">
-          <p className="bg-light rounded-xl flex justify-center items-center w-1/2 text-[48px] text-primary dark:text-white uppercase font-medium">
+          <p className="bg-light dark:bg-transparent dark:border rounded-xl flex justify-center items-center w-1/2 text-[48px] text-primary dark:text-white uppercase font-medium">
             {donor.bloodGroup}
           </p>
           <div className="capitalize">

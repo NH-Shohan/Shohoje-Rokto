@@ -105,7 +105,11 @@ const OtpAlert = ({ registration, open, setOpen, optConfirmationResult }) => {
           )}
         />
 
-        <Button className="w-1/2 mx-auto space-x-1" onClick={handleSubmitOtp}>
+        <Button
+          className="w-1/2 mx-auto space-x-1"
+          variant={`${isConfirming ? "disabled" : "default"}`}
+          onClick={handleSubmitOtp}
+        >
           {isConfirming ? (
             <>
               <LoadingSpinner className={"size-10 text-white"} />

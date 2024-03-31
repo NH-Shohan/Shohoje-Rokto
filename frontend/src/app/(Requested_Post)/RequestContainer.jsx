@@ -27,6 +27,7 @@ const RequestedContainer = () => {
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [selectedSubdistrict, setSelectedSubdistrict] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(9);
   const [selectedPost, setSelectedPost] = useState();
   const [iframeSrc, setIframeSrc] = useState("");
 
@@ -95,10 +96,34 @@ const RequestedContainer = () => {
     setChecked(false);
   };
 
-  const postsPerPage = 9;
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentItems = filteredPosts.slice(firstPostIndex, lastPostIndex);
+
+  const updatePostsPerPage = () => {
+    const windowWidth = window.innerWidth;
+
+    const breakpoints = [
+      { width: 640, postsPerPage: 9 },
+      { width: 768, postsPerPage: 12 },
+      { width: 1023, postsPerPage: 12 },
+    ];
+
+    const matchingBreakpoint = breakpoints.find(
+      (breakpoint) => windowWidth <= breakpoint.width
+    );
+
+    setPostsPerPage(matchingBreakpoint ? matchingBreakpoint.postsPerPage : 9);
+  };
+
+  useEffect(() => {
+    updatePostsPerPage();
+    window.addEventListener("resize", updatePostsPerPage);
+
+    return () => {
+      window.removeEventListener("resize", updatePostsPerPage);
+    };
+  }, []);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 

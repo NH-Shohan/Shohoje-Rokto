@@ -101,13 +101,25 @@ const PrivacyPolicy = () => {
           You have the right to ensure that your personal data is being
           processed lawfully ("Subject Access Right"). Your subject access right
           can be exercised in accordance with data protection laws and
-          regulations. Any subject access request must be made in writing to
-          [insert contact details]. We will provide your personal data to you
-          within the statutory time frames. To enable us to trace any of your
-          personal data that we may be holding, we may need to request further
-          information from you. If you complain about how we have used your
-          information, you have the right to complain to the Information
-          Commissioner's Office (ICO).
+          regulations. We will provide your personal data to you within the
+          statutory time frames. To enable us to trace any of your personal data
+          that we may be holding, we may need to request further information
+          from you. If you complain about how we have used your information, you
+          have the right to complain to the Information Commissioner's Office
+          (ICO).
+        </p>
+      </div>
+
+      <div className="my-6" />
+
+      <div className="space-y-2">
+        <h3 className="text-foreground">Data Deletion Request</h3>
+        <p>
+          You have the right to request the deletion of your personal data from
+          our records. To do so, please contact us via email or through the
+          footer form on our website. Upon receiving your request, we will
+          promptly delete your personal data from our systems, subject to any
+          legal obligations that may require us to retain certain information.
         </p>
       </div>
 

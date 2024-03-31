@@ -55,7 +55,6 @@ const Navbar = () => {
               <NavLink href="/be-donor">Be Donor</NavLink>
               <NavLink href="/requested-post">Requested Post</NavLink>
               <NavLink href="/request-blood">Request Blood</NavLink>
-              {/* <NavLink href="/blood-bank">Blood Bank</NavLink> */}
               <NavLink href="/about">About</NavLink>
             </div>
 
@@ -92,13 +91,15 @@ const Navbar = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              {loading ? null : currentUser ? (
+              {currentUser ? (
                 <div>
                   <Drawer direction="right">
                     <DrawerTrigger>
                       <Image
-                        className="border border-primary rounded-full mt-1.5"
-                        src={currentUser?.photoURL}
+                        className={`${
+                          currentUser?.photoURL ? "border border-primary" : ""
+                        } rounded-full mt-1.5`}
+                        src={currentUser?.photoURL || "/assets/user.svg"}
                         alt="Profile Image"
                         width={38}
                         height={38}

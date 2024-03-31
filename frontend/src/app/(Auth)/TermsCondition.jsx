@@ -31,7 +31,10 @@ const TermsCondition = () => {
           <p className="font-semibold text-foreground mt-3">Privacy Policy</p>
           <p>
             Your privacy is important to us. Please review our{" "}
-            <Link href="privacy-policy" className="text-primary">
+            <Link
+              href="privacy-policy"
+              className="text-primary underline hover:font-medium transition-all"
+            >
               Privacy Policy
             </Link>{" "}
             to understand how we collect, use, and protect your personal
