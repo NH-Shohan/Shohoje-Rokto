@@ -55,6 +55,9 @@ const Navbar = () => {
               <NavLink href="/be-donor">Be Donor</NavLink>
               <NavLink href="/requested-post">Requested Post</NavLink>
               <NavLink href="/request-blood">Request Blood</NavLink>
+              {currentUser ? (
+                <NavLink href="/dashboard">Dashboard</NavLink>
+              ) : null}
               <NavLink href="/about">About</NavLink>
             </div>
 

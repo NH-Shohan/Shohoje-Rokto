@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Nahim Hossain Shohan",
     "age": 27,
     "email": "nahim.hossain.shohan@gmail.com",
@@ -30,7 +30,7 @@
   },
   {
     "id": 2,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Anshi Twinkle",
     "age": 45,
     "email": "anshi.twinkle@gmail.com",
@@ -59,7 +59,7 @@
   },
   {
     "id": 3,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Riya Singh",
     "age": 30,
     "email": "riya.singh@example.com",
@@ -88,7 +88,7 @@
   },
   {
     "id": 4,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Aryan Patel",
     "age": 35,
     "email": "aryan.patel@example.com",
@@ -117,7 +117,7 @@
   },
   {
     "id": 5,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Aditi Chakraborty",
     "age": 44,
     "email": "aditi.chakraborty@example.com",
@@ -146,7 +146,7 @@
   },
   {
     "id": 6,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Shahin Alam",
     "age": 29,
     "email": "shahin.alam@example.com",
@@ -175,7 +175,7 @@
   },
   {
     "id": 7,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Ratul Ahmed",
     "age": 39,
     "email": "ratul.ahmed@example.com",
@@ -204,7 +204,7 @@
   },
   {
     "id": 8,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Sumaiya Jahan",
     "age": 34,
     "email": "sumaiya.jahan@example.com",
@@ -233,7 +233,7 @@
   },
   {
     "id": 9,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Farhan Rahman",
     "age": 31,
     "email": "farhan.rahman@example.com",
@@ -262,7 +262,7 @@
   },
   {
     "id": 10,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Afsana Islam",
     "age": 41,
     "email": "afsana.islam@example.com",
@@ -291,7 +291,7 @@
   },
   {
     "id": 11,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Tanzila Khan",
     "age": 32,
     "email": "tanzila.khan@example.com",
@@ -320,7 +320,7 @@
   },
   {
     "id": 12,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Arif Khan",
     "age": 36,
     "email": "arif.khan@example.com",
@@ -349,7 +349,7 @@
   },
   {
     "id": 13,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Sadia Akter",
     "age": 27,
     "email": "sadia.akter@example.com",
@@ -378,7 +378,7 @@
   },
   {
     "id": 14,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Anisur Rahman",
     "age": 44,
     "email": "anisur.rahman@example.com",
@@ -407,7 +407,7 @@
   },
   {
     "id": 15,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Rasheda Islam",
     "age": 31,
     "email": "rasheda.islam@example.com",
@@ -436,7 +436,7 @@
   },
   {
     "id": 16,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Shamim Ahmed",
     "age": 39,
     "email": "shamim.ahmed@example.com",
@@ -465,7 +465,7 @@
   },
   {
     "id": 17,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Farzana Sultana",
     "age": 42,
     "email": "farzana.sultana@example.com",
@@ -494,7 +494,7 @@
   },
   {
     "id": 18,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Imran Khan",
     "age": 37,
     "email": "imran.khan@example.com",
@@ -523,7 +523,7 @@
   },
   {
     "id": 19,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Nazmul Islam",
     "age": 31,
     "email": "nazmul.islam@example.com",
@@ -552,7 +552,7 @@
   },
   {
     "id": 20,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Jannatul Ferdous",
     "age": 29,
     "email": "jannatul.ferdous@example.com",
@@ -581,7 +581,7 @@
   },
   {
     "id": 21,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Fahim Ahmed",
     "age": 38,
     "email": "fahim.ahmed@example.com",
@@ -610,7 +610,7 @@
   },
   {
     "id": 22,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Nusrat Jahan",
     "age": 26,
     "email": "nusrat.jahan@example.com",
@@ -639,7 +639,7 @@
   },
   {
     "id": 23,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Rakib Hasan",
     "age": 35,
     "email": "rakib.hasan@example.com",
@@ -668,7 +668,7 @@
   },
   {
     "id": 24,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Sadia Afrin",
     "age": 37,
     "email": "sadia.afrin@example.com",
@@ -697,7 +697,7 @@
   },
   {
     "id": 25,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Ashikur Rahman",
     "age": 30,
     "email": "ashikur.rahman@example.com",
@@ -726,7 +726,7 @@
   },
   {
     "id": 26,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Fatema Begum",
     "age": 41,
     "email": "fatema.begum@example.com",
@@ -755,7 +755,7 @@
   },
   {
     "id": 27,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Sajjadul Islam",
     "age": 31,
     "email": "sajjadul.islam@example.com",
@@ -784,7 +784,7 @@
   },
   {
     "id": 28,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Rina Akter",
     "age": 28,
     "email": "rina.akter@example.com",
@@ -813,7 +813,7 @@
   },
   {
     "id": 29,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Arif Hossain",
     "age": 39,
     "email": "arif.hossain@example.com",
@@ -842,7 +842,7 @@
   },
   {
     "id": 30,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Sadia Rahman",
     "age": 38,
     "email": "sadia.rahman@example.com",
@@ -871,7 +871,7 @@
   },
   {
     "id": 31,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Mahmudul Hasan",
     "age": 27,
     "email": "mahmudul.hasan@example.com",
@@ -900,7 +900,7 @@
   },
   {
     "id": 28,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Rehana Akter",
     "age": 36,
     "email": "rehana.akter@example.com",
@@ -929,7 +929,7 @@
   },
   {
     "id": 29,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Aminul Islam",
     "age": 31,
     "email": "aminul.islam@example.com",
@@ -958,7 +958,7 @@
   },
   {
     "id": 30,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Tamanna Islam",
     "age": 35,
     "email": "tamanna.islam@example.com",
@@ -987,7 +987,7 @@
   },
   {
     "id": 31,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Mahmudul Hasan",
     "age": 32,
     "email": "mahmudul.hasan@example.com",
@@ -1016,7 +1016,7 @@
   },
   {
     "id": 32,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Afifa Rahman",
     "age": 29,
     "email": "afifa.rahman@example.com",
@@ -1045,7 +1045,7 @@
   },
   {
     "id": 33,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Kamal Hossain",
     "age": 39,
     "email": "kamal.hossain@example.com",
@@ -1074,7 +1074,7 @@
   },
   {
     "id": 34,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Ritu Khatun",
     "age": 35,
     "email": "ritu.khatun@example.com",
@@ -1103,7 +1103,7 @@
   },
   {
     "id": 35,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Sohel Ahmed",
     "age": 32,
     "email": "sohel.ahmed@example.com",
@@ -1132,7 +1132,7 @@
   },
   {
     "id": 36,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Nazma Akter",
     "age": 29,
     "email": "nazma.akter@example.com",
@@ -1161,7 +1161,7 @@
   },
   {
     "id": 37,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Kamrul Hasan",
     "age": 33,
     "email": "kamrul.hasan@example.com",
@@ -1190,7 +1190,7 @@
   },
   {
     "id": 38,
-    "image": "/assets/user.svg",
+    "image": "",
     "name": "Tasnim Islam",
     "age": 29,
     "email": "tasnim.islam@example.com",

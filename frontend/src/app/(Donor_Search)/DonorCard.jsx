@@ -46,11 +46,17 @@ const DonorCard = ({ donor, setSelectedDonor, setOpen, index }) => {
 
       <div className="border bg-white rounded-2xl p-6 space-y-3 transition-all dark:bg-secondary relative group">
         <Image
-          src={donor.image}
+          src={
+            donor.image
+              ? donor.image
+              : donor.gender === "male"
+              ? "/assets/avatarMan.svg"
+              : "/assets/avatarWoman.svg"
+          }
           alt="user image"
           width={120}
           height={120}
-          className="mx-auto capitalize"
+          className="mx-auto rounded-full border"
           priority
         />
         <p className="w-full flex gap-2 justify-center items-center text-foreground text-lg">
