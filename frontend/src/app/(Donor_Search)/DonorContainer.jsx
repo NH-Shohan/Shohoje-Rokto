@@ -150,45 +150,47 @@ const DonorContainer = ({ donors }) => {
 
   return (
     <>
-      {filteredDonors.length === 0 ? (
-        <div className="flex flex-col justify-center items-center h-[calc(100vh-174px)] w-full relative">
-          <h1 className="font-light text-primary absolute top-[10%]">
-            No Donors Found 😔
-          </h1>
-          <div className="relative w-[100%] h-[80%]">
-            <Image src={noData} alt="No data Found Image" fill />
-          </div>
-        </div>
-      ) : (
+      {isClient ? (
         <>
-          <AlertDialog open={open} onOpenChange={setOpen}>
-            {isClient ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 my-10">
-                {currentItems.map((donor, index) => (
-                  <DonorCard
-                    key={index}
-                    donor={donor}
-                    index={index}
-                    setSelectedDonor={setSelectedDonor}
-                    setOpen={setOpen}
-                  />
-                ))}
+          {filteredDonors.length === 0 ? (
+            <div className="flex flex-col justify-center items-center h-[calc(100vh-174px)] w-full relative">
+              <h1 className="font-light text-primary absolute top-[10%]">
+                No Donors Found 😔
+              </h1>
+              <div className="relative w-[100%] h-[80%]">
+                <Image src={noData} alt="No data Found Image" fill />
               </div>
-            ) : null}
-            <DonorAlert selectedDonor={selectedDonor} setOpen={setOpen} />
-          </AlertDialog>
+            </div>
+          ) : (
+            <>
+              <AlertDialog open={open} onOpenChange={setOpen}>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 my-10">
+                  {currentItems.map((donor, index) => (
+                    <DonorCard
+                      key={index}
+                      donor={donor}
+                      index={index}
+                      setSelectedDonor={setSelectedDonor}
+                      setOpen={setOpen}
+                    />
+                  ))}
+                </div>
+                <DonorAlert selectedDonor={selectedDonor} setOpen={setOpen} />
+              </AlertDialog>
 
-          {filteredDonors.length > 16 && (
-            <DonorPagination
-              currentPage={currentPage}
-              filteredDonors={filteredDonors}
-              postsPerPage={postsPerPage}
-              setCurrentPage={setCurrentPage}
-              paginate={paginate}
-            />
+              {filteredDonors.length > 16 && (
+                <DonorPagination
+                  currentPage={currentPage}
+                  filteredDonors={filteredDonors}
+                  postsPerPage={postsPerPage}
+                  setCurrentPage={setCurrentPage}
+                  paginate={paginate}
+                />
+              )}
+            </>
           )}
         </>
-      )}
+      ) : null}
     </>
   );
 };

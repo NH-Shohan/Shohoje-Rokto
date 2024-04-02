@@ -69,7 +69,7 @@ const SignIn = () => {
 
   useEffect(() => {
     if (currentUser) {
-      router.push("/");
+      router.push("/dashboard");
     }
   }, [currentUser, router]);
 

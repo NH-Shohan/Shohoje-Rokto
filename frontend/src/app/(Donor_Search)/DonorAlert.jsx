@@ -16,8 +16,19 @@ const DonorAlert = ({ selectedDonor, setOpen }) => {
         <div className="space-y-4 text-sm text-muted-foreground">
           <div className="flex items-center gap-4 relative">
             <Image
-              src={selectedDonor.image}
+              src={
+                selectedDonor.image
+                  ? selectedDonor.image
+                  : selectedDonor.gender === "male"
+                  ? "/assets/avatarMan.svg"
+                  : "/assets/avatarWoman.svg"
+              }
               alt="Donor Image"
+              className={`${
+                selectedDonor.image
+                  ? " border"
+                  : "border border-primary bg-white"
+              } rounded-full`}
               width={70}
               height={70}
             />

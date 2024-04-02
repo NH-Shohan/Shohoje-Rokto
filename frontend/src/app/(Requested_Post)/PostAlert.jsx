@@ -107,13 +107,16 @@ const PostAlert = ({
           </tbody>
         </table>
 
-        <div className="mb-5">
+        <div>
           <p className="text-foreground">
             <span className="font-medium">Note:</span> {selectedPost?.extraInfo}
           </p>
         </div>
 
         <div className="w-full rounded overflow-hidden">
+          <p className="text-xs text-primary mb-1">
+            *Map results may be delayed based on your internet connection.
+          </p>
           {selectedPost?.mapLink && iframeSrc ? (
             <iframe width="100%" height="270" src={iframeSrc}></iframe>
           ) : (

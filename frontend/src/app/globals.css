@@ -13,7 +13,7 @@
     --primary: 0, 85%, 60%;
     --primary-foreground: 0 85.7% 97.3%;
     --secondary: 0 0% 90%;
-    --secondary-foreground: 0 0% 30%;
+    --secondary-foreground: 0 0% 35%;
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
     --accent: 0 0% 90%;
@@ -98,4 +98,13 @@ h3 {
 .small-bold {
   font-size: 13px;
   font-weight: bold;
+}
+
+/* Custom CSS */
+.truncate-2-lines {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

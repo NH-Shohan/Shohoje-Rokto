@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation";
 
 const NavLink = ({ href, children }) => {
   const path = usePathname();
-  const isActive = path === href;
+  const isActive = path === href || (path.startsWith(href) && href !== "/");
 
   return (
     <div className={`inline relative`}>
