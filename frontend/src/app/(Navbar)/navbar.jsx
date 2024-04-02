@@ -80,8 +80,12 @@ const Navbar = () => {
                   >
                     <DropdownMenuLabel>Notifications</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem className="p-0 space-x-1 rounded-md outline-none">
-                      <div className="bg-secondary border rounded-md p-3 space-y-1 overflow-hidden">
+                    <div className="space-y-1">
+                      <div className="hover:bg-muted border rounded-md px-3 py-2 space-y-1 overflow-hidden relative transition-all">
+                        <p className="flex items-center gap-1 text-xs text-secondary-foreground">
+                          <GoBell className="size-3" />{" "}
+                          <span className="mb-0.5">now</span>
+                        </p>
                         <p className="text-foreground text-base">
                           Here is the notification title
                         </p>
@@ -90,12 +94,30 @@ const Navbar = () => {
                           elit. Qui maiores dignissimos officiis beatae,
                           perspiciatis ad nam? Iusto consectetur excepturi non!
                         </p>
+                        <Cross2Icon
+                          onClick={() => setOpen(!open)}
+                          className="h-4 w-4 top-2 right-2 absolute cursor-pointer text-secondary-foreground hover:text-foreground"
+                        />
                       </div>
-                      <Cross2Icon
-                        onClick={() => setOpen(!open)}
-                        className="h-4 w-4 top-2 right-2 absolute cursor-pointer text-zinc-500 hover:text-foreground"
-                      />
-                    </DropdownMenuItem>
+                      <div className="hover:bg-muted border rounded-md px-3 py-2 space-y-1 overflow-hidden relative transition-all">
+                        <p className="flex items-center gap-1 text-xs text-secondary-foreground">
+                          <GoBell className="size-3" />{" "}
+                          <span className="mb-0.5">now</span>
+                        </p>
+                        <p className="text-foreground text-base">
+                          Here is the notification title
+                        </p>
+                        <p className="text-xs overflow-hidden truncate-2-lines text-secondary-foreground">
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Qui maiores dignissimos officiis beatae,
+                          perspiciatis ad nam? Iusto consectetur excepturi non!
+                        </p>
+                        <Cross2Icon
+                          onClick={() => setOpen(!open)}
+                          className="h-4 w-4 top-2 right-2 absolute cursor-pointer text-secondary-foreground hover:text-foreground"
+                        />
+                      </div>
+                    </div>
                   </DropdownMenuContent>
                 </DropdownMenu>
               )}

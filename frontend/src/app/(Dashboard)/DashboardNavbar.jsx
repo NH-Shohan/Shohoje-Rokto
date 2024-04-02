@@ -18,10 +18,10 @@ import {
   GoHeart,
   GoHistory,
   GoInbox,
+  GoMention,
   GoPerson,
   GoVersions,
 } from "react-icons/go";
-import { LuDroplets } from "react-icons/lu";
 
 const P = ({ children }) => (
   <div className="flex items-center gap-2 hover:text-foreground h-11 px-4 hover:bg-secondary/60 dark:hover:bg-zinc-800/60 bg-transparent cursor-pointer rounded-md transition-all text-sm">
@@ -31,7 +31,8 @@ const P = ({ children }) => (
 
 const ActiveLink = ({ href, children }) => {
   const path = usePathname();
-  const isActive = path === href;
+  const isActive =
+    path.startsWith(href) || (path === href && href !== "/dashboard");
 
   return (
     <Link
@@ -70,7 +71,7 @@ const DashboardNavbar = ({ className, isCollapsible }) => {
     {
       href: "/dashboard/requested-blood",
       label: "Requested Blood",
-      icon: LuDroplets,
+      icon: GoMention,
     },
     {
       href: "/dashboard/requests-notifications",
@@ -123,7 +124,7 @@ const DashboardNavbar = ({ className, isCollapsible }) => {
                 ? currentUser?.displayName.split("(")[0].split(" ").reverse()[1]
                 : currentUser?.displayName.trim().split(" ").pop()}
             </p>
-            <p className="text-xs">{currentUser?.email}</p>
+            <p className="text-sm">{currentUser?.email}</p>
           </div>
         )}
       </div>
