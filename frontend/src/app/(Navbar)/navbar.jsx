@@ -35,7 +35,7 @@ const Navbar = () => {
       await logOut();
       router.push("/");
     } catch (error) {
-      toast.error("Error: Could not sign out!");
+      toast.error("Sorry Could not sign out!");
     }
   };
 
