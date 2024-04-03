@@ -9,8 +9,13 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import Image from "next/image";
+import ProfileDrawerLink from "./ProfileDrawerLink";
 
-const ProfileDrawer = ({ currentUser, handleSignOut }) => {
+const ProfileDrawer = ({
+  currentUser,
+  handleSignOut,
+  setOpenPrifileDrawer,
+}) => {
   return (
     <>
       {currentUser?.photoURL !== null ? (
@@ -22,7 +27,7 @@ const ProfileDrawer = ({ currentUser, handleSignOut }) => {
           <DrawerHeader>
             <div className="flex items-center gap-3 mt-5">
               <Image
-                className="border-2 border-primary rounded-full"
+                className="border border-primary rounded-full"
                 src={currentUser?.photoURL}
                 alt="Profile Image"
                 width={50}
@@ -36,6 +41,10 @@ const ProfileDrawer = ({ currentUser, handleSignOut }) => {
                 <DrawerDescription>{currentUser?.email}</DrawerDescription>
               </div>
             </div>
+
+            <Separator className="my-4" />
+
+            <ProfileDrawerLink setOpenPrifileDrawer={setOpenPrifileDrawer} />
 
             <Separator className="my-4" />
 

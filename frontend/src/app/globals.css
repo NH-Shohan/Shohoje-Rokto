@@ -108,3 +108,20 @@ h3 {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-thin::-webkit-scrollbar {
+  width: 3px;
+  display: none;
+}
+.scrollbar:hover .scrollbar-thin::-webkit-scrollbar {
+  display: block;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  @apply bg-zinc-400 dark:bg-zinc-600 rounded-full;
+}

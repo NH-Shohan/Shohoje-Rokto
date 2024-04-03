@@ -24,7 +24,7 @@ import {
 } from "react-icons/go";
 
 const P = ({ children }) => (
-  <div className="flex items-center gap-2 hover:text-foreground h-11 px-4 hover:bg-secondary/60 dark:hover:bg-zinc-800/60 bg-transparent cursor-pointer rounded-md transition-all text-sm">
+  <div className="flex items-center gap-2 hover:text-primary dark:hover:text-foreground h-11 px-4 hover:bg-red-100/60 dark:hover:bg-zinc-800/60 bg-transparent cursor-pointer rounded-md transition-all text-sm">
     {children}
   </div>
 );
@@ -32,14 +32,14 @@ const P = ({ children }) => (
 const ActiveLink = ({ href, children }) => {
   const path = usePathname();
   const isActive =
-    path.startsWith(href) || (path === href && href !== "/dashboard");
+    path === href || (path.startsWith(href) && href !== "/dashboard");
 
   return (
     <Link
       href={href}
       className={
         isActive
-          ? "text-foreground bg-secondary dark:bg-zinc-800 cursor-pointer rounded-md"
+          ? "text-primary dark:text-foreground bg-light dark:bg-zinc-800 cursor-pointer rounded-md"
           : ""
       }
     >
@@ -101,7 +101,7 @@ const DashboardNavbar = ({ className, isCollapsible }) => {
   ];
 
   return (
-    <div className={cn("container px-2", className)}>
+    <div className={cn("container px-2 scrollbar", className)}>
       <div
         className={`flex items-center mt-10 ${
           isCollapsible ? "justify-center" : "gap-2"
@@ -131,39 +131,43 @@ const DashboardNavbar = ({ className, isCollapsible }) => {
 
       <Separator className="my-5" />
 
-      <TooltipProvider>
-        {navItems.map(({ href, label, icon: Icon }, index) => (
-          <Tooltip key={index} id={`tooltip-${index}`}>
-            <TooltipTrigger className="w-full">
-              <div
-                className={`flex flex-col mb-1 justify-center ${
-                  isCollapsible && "items-center"
-                }`}
-              >
-                <ActiveLink href={href}>
-                  <P>
-                    {isCollapsible ? (
-                      <>
+      <div className="overflow-y-auto h-[calc(100vh-200px)] scrollbar-thin">
+        <TooltipProvider>
+          {navItems.map(({ href, label, icon: Icon }, index) => (
+            <Tooltip key={index} id={`tooltip-${index}`}>
+              <TooltipTrigger className="w-full">
+                <div
+                  className={`flex flex-col mb-1 justify-center ${
+                    isCollapsible && "items-center"
+                  }`}
+                >
+                  <ActiveLink href={href}>
+                    <P>
+                      {isCollapsible ? (
+                        <>
+                          <Icon className="text-xl" />
+                          <TooltipContent
+                            side="right"
+                            id={`tooltip-content-${index}`}
+                          >
+                            <p className="text-xs">{label}</p>
+                          </TooltipContent>
+                        </>
+                      ) : (
                         <Icon className="text-xl" />
-                        <TooltipContent
-                          side="right"
-                          id={`tooltip-content-${index}`}
-                        >
-                          <p className="text-xs">{label}</p>
-                        </TooltipContent>
-                      </>
-                    ) : (
-                      <Icon className="text-xl" />
-                    )}
-                    {!isCollapsible && label}
-                  </P>
-                </ActiveLink>
-                {(index === 4 || index === 7) && <Separator className="my-5" />}
-              </div>
-            </TooltipTrigger>
-          </Tooltip>
-        ))}
-      </TooltipProvider>
+                      )}
+                      {!isCollapsible && label}
+                    </P>
+                  </ActiveLink>
+                  {(index === 4 || index === 7) && (
+                    <Separator className="my-5" />
+                  )}
+                </div>
+              </TooltipTrigger>
+            </Tooltip>
+          ))}
+        </TooltipProvider>
+      </div>
     </div>
   );
 };

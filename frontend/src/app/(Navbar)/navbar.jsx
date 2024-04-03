@@ -20,7 +20,7 @@ import { GoBell } from "react-icons/go";
 import logo from "../../../public/assets/logo.png";
 import { Button } from "../../components/ui/button";
 import NavLink from "../../components/ui/navLink";
-import ProfileDrawer from "./profileDrawer";
+import ProfileDrawer from "./ProfileDrawer";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
@@ -28,6 +28,7 @@ const Navbar = () => {
   const router = useRouter();
   const { currentUser, logOut } = UserAuth();
   const [open, setOpen] = useState(false);
+  const [openPrifileDrawer, setOpenPrifileDrawer] = useState(false);
 
   const handleSignOut = async () => {
     try {
@@ -135,7 +136,7 @@ const Navbar = () => {
                 >
                   <DropdownMenuItem
                     onClick={() => setTheme("light")}
-                    className={`cursor-pointer px-4 hover:bg-light dark:hover:bg-zinc-800 rounded-sm outline-none py-1.5 ${
+                    className={`cursor-pointer px-4 focus:bg-light dark:hover:bg-zinc-800 rounded-sm outline-none py-1.5 ${
                       theme === "light" && "bg-light dark:bg-zinc-800"
                     }`}
                   >
@@ -143,7 +144,7 @@ const Navbar = () => {
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     onClick={() => setTheme("dark")}
-                    className={`cursor-pointer px-4 hover:bg-light dark:hover:bg-zinc-800 rounded-sm outline-none py-1.5 ${
+                    className={`cursor-pointer px-4 focus:bg-light dark:hover:bg-zinc-800 rounded-sm outline-none py-1.5 ${
                       theme === "dark" && "bg-light dark:bg-zinc-800"
                     }`}
                   >
@@ -151,7 +152,7 @@ const Navbar = () => {
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     onClick={() => setTheme("system")}
-                    className={`cursor-pointer px-4 hover:bg-light dark:hover:bg-zinc-800 rounded-sm outline-none py-1.5 ${
+                    className={`cursor-pointer px-4 focus:bg-light dark:hover:bg-zinc-800 rounded-sm outline-none py-1.5 ${
                       theme === "system" && "bg-light dark:bg-zinc-800"
                     }`}
                   >
@@ -162,7 +163,11 @@ const Navbar = () => {
 
               {currentUser ? (
                 <div>
-                  <Drawer direction="right">
+                  <Drawer
+                    direction="right"
+                    open={openPrifileDrawer}
+                    onOpenChange={setOpenPrifileDrawer}
+                  >
                     <DrawerTrigger>
                       <Image
                         className={`${
@@ -178,6 +183,7 @@ const Navbar = () => {
                     <ProfileDrawer
                       currentUser={currentUser}
                       handleSignOut={handleSignOut}
+                      setOpenPrifileDrawer={setOpenPrifileDrawer}
                     />
                   </Drawer>
                 </div>

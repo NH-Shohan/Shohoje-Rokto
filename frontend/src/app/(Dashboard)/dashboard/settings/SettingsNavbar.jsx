@@ -11,15 +11,16 @@ const ActiveLink = ({ href, children }) => {
     <div className={`inline relative`}>
       <Link
         href={href}
-        className={`py-2 px-4 rounded-md hover:text-foreground group ${
-          isActive && "text-foreground"
+        className={`py-2 px-4 rounded-md hover:text-primary dark:hover:text-foreground group ${
+          isActive &&
+          "bg-light text-primary dark:text-foreground dark:bg-zinc-800"
         }`}
       >
         {children}
         {isActive ? (
-          <div className="w-full h-[34.5px] absolute left-0 -top-[8px] rounded-md bg-muted/100 scale-100 transition-all -z-10" />
+          <div className="w-full h-[34.5px] absolute left-0 -top-[8px] rounded-md bg-light/100 dark:group-hover:bg-zinc-800/100 scale-100 transition-all -z-10" />
         ) : (
-          <div className="w-full h-[34.5px] absolute left-0 -top-[8px] rounded-md bg-muted/60 scale-0 group-hover:scale-100 transition-all -z-10" />
+          <div className="w-full h-[34.5px] absolute left-0 -top-[8px] rounded-md bg-red-100/60 dark:group-hover:bg-zinc-800/60 scale-0 group-hover:scale-100 transition-all -z-10" />
         )}
       </Link>
     </div>
