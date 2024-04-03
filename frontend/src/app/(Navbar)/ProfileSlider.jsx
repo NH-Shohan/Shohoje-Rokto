@@ -11,7 +11,7 @@ import { Cross2Icon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import ProfileDrawerLink from "./ProfileDrawerLink";
 
-const ProfileDrawer = ({
+const ProfileSlider = ({
   currentUser,
   handleSignOut,
   setOpenPrifileDrawer,
@@ -99,4 +99,4 @@ const ProfileDrawer = ({
   );
 };
 
-export default ProfileDrawer;
+export default ProfileSlider;

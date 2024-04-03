@@ -20,7 +20,7 @@ import { GoBell } from "react-icons/go";
 import logo from "../../../public/assets/logo.png";
 import { Button } from "../../components/ui/button";
 import NavLink from "../../components/ui/navLink";
-import ProfileDrawer from "./ProfileDrawer";
+import ProfileSlider from "./ProfileSlider";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
@@ -35,7 +35,7 @@ const Navbar = () => {
       await logOut();
       router.push("/");
     } catch (error) {
-      toast.error("Sorry Could not sign out!");
+      toast.error("Error: Could not sign out!");
     }
   };
 
@@ -180,7 +180,7 @@ const Navbar = () => {
                         priority
                       />
                     </DrawerTrigger>
-                    <ProfileDrawer
+                    <ProfileSlider
                       currentUser={currentUser}
                       handleSignOut={handleSignOut}
                       setOpenPrifileDrawer={setOpenPrifileDrawer}
