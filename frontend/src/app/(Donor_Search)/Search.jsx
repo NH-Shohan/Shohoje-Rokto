@@ -225,7 +225,7 @@ const Search = () => {
 
             <Button
               variant="outline"
-              className="flex items-center gap-2 font-light"
+              className="flex items-center gap-2 font-light bg-white dark:bg-neutral-900"
               onClick={resetLocalStorage}
             >
               <ResetIcon className="text-2xl" /> Reset
@@ -238,7 +238,7 @@ const Search = () => {
                   variant="dropdown"
                   role="combobox"
                   aria-expanded={openDivision}
-                  className="pl-2.5 bg-white dark:bg-background"
+                  className="pl-2.5 bg-white dark:bg-neutral-900"
                 >
                   <Image
                     src={location}
@@ -295,7 +295,7 @@ const Search = () => {
                   variant="dropdown"
                   role="combobox"
                   aria-expanded={openDistrict}
-                  className="pl-2.5 bg-white dark:bg-background"
+                  className="pl-2.5 bg-white dark:bg-neutral-900"
                 >
                   <Image
                     src={location}
@@ -365,7 +365,7 @@ const Search = () => {
                   variant="dropdown"
                   role="combobox"
                   aria-expanded={openSubdistrict}
-                  className="pl-2.5 bg-white dark:bg-background"
+                  className="pl-2.5 bg-white dark:bg-neutral-900"
                 >
                   <Image
                     src={location}
@@ -438,7 +438,7 @@ const Search = () => {
             </Popover>
 
             <div
-              className={`md:col-span-2 lg:col-span-4 xl:col-span-2 bg-white dark:bg-background border flex gap-1 items-center rounded-md h-[35px] overflow-hidden ${
+              className={`md:col-span-2 lg:col-span-4 xl:col-span-2 bg-white dark:bg-neutral-900 border flex gap-1 items-center rounded-md h-[35px] overflow-hidden ${
                 isInputActive ? "border-primary" : ""
               }`}
             >
@@ -449,7 +449,7 @@ const Search = () => {
                 onBlur={handleInputBlur}
                 onClick={() => setIsInputActive((prevState) => !prevState)}
                 placeholder="Search Donor Name"
-                className="h-9 bg-white dark:bg-background focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-ring border-none"
+                className="h-9 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-ring border-none"
               />
             </div>
           </div>

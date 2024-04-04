@@ -100,7 +100,7 @@ const ProfileDrawerLink = ({ className, setOpenPrifileDrawer }) => {
         )}
       >
         {navItems.map(({ href, label, icon: Icon }, index) => (
-          <div className={`flex flex-col mb-1 justify-center`}>
+          <div key={index} className={`flex flex-col mb-1 justify-center`}>
             <ActiveLink href={href} setOpenPrifileDrawer={setOpenPrifileDrawer}>
               <P>
                 <Icon className="text-xl" />

@@ -134,26 +134,30 @@ const RequestBlood = () => {
         "bagsQuantity",
       ];
 
-      requiredFields.forEach((field) => {
-        if (!formData[field]) {
-          const fieldType =
-            [
-              "requesterName",
-              "patientName",
-              "condition",
-              "hospitalName",
-            ].includes(field) || ["phoneNumber"].includes(field)
-              ? "provide"
-              : "select";
-          toast.warning(
-            `Please ${fieldType} ${field
-              .replace(/([A-Z])/g, " $1")
-              .toLowerCase()}.`
-          );
-        } else if (!formData[field]) {
-          toast.warning("Please fill up all the fields.");
-        }
-      });
+      const allFieldsEmpty = requiredFields.every((field) => !formData[field]);
+
+      if (allFieldsEmpty) {
+        toast.warning("Please fill up all the fields.");
+      } else {
+        requiredFields.forEach((field) => {
+          if (!formData[field]) {
+            const fieldType =
+              [
+                "requesterName",
+                "patientName",
+                "condition",
+                "hospitalName",
+              ].includes(field) || ["phoneNumber"].includes(field)
+                ? "provide"
+                : "select";
+            toast.warning(
+              `Please ${fieldType} ${field
+                .replace(/([A-Z])/g, " $1")
+                .toLowerCase()}.`
+            );
+          }
+        });
+      }
     }
   };
 

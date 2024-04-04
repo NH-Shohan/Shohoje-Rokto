@@ -5,7 +5,7 @@ const SettingsLayout = ({ children }) => {
   return (
     <div>
       <SettingsNavbar />
-      <Separator className="my-5" />
+      <Separator className="my-5 mb-10" />
       {children}
     </div>
   );

@@ -94,7 +94,7 @@ const GeneralSettings = () => {
 
             <div className="col-span-2">{formContent.Component}</div>
           </div>
-          {index === 0 && <Separator className="my-5 mt-10 w-full" />}
+          {index === 0 && <Separator className="my-5 mb-8 w-full" />}
         </div>
       ))}
 
