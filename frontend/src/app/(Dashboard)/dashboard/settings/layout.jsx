@@ -1,9 +1,11 @@
+import { Separator } from "@/components/ui/separator";
 import SettingsNavbar from "./SettingsNavbar";
 
 const SettingsLayout = ({ children }) => {
   return (
-    <div className="space-y-5">
+    <div>
       <SettingsNavbar />
+      <Separator className="my-5" />
       {children}
     </div>
   );

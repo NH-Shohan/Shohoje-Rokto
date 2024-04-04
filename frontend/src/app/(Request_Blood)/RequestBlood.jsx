@@ -277,7 +277,7 @@ const RequestBlood = () => {
               </Select>
 
               <div className="flex w-1/2">
-                <div className="flex border px-3 gap-2 rounded-tl-md rounded-bl-md items-center bg-white dark:bg-background">
+                <div className="flex border px-3 gap-1 rounded-tl-md rounded-bl-md items-center bg-white dark:bg-neutral-900">
                   <Image
                     src={flag}
                     alt="flag bd icon"
@@ -285,7 +285,7 @@ const RequestBlood = () => {
                     height={22}
                     priority
                   />
-                  <p className="mr-3 text-sm">+880</p>
+                  <p className="mr-4 text-sm">+880</p>
                 </div>
                 <Input
                   className="rounded-tl-none rounded-bl-none border-l-0"
@@ -322,7 +322,7 @@ const RequestBlood = () => {
                     variant="dropdown"
                     role="combobox"
                     aria-expanded={openDivision}
-                    className="pl-2.5 bg-white dark:bg-background"
+                    className="pl-2.5 bg-white dark:bg-neutral-900"
                   >
                     <div className="flex justify-between items-center w-full font-normal capitalize">
                       {formData.division
@@ -364,7 +364,7 @@ const RequestBlood = () => {
                     variant="dropdown"
                     role="combobox"
                     aria-expanded={openDistrict}
-                    className="pl-2.5 bg-white dark:bg-background"
+                    className="pl-2.5 bg-white dark:bg-neutral-900"
                   >
                     <div className="flex justify-between items-center w-full font-normal capitalize">
                       {formData.district
@@ -428,7 +428,7 @@ const RequestBlood = () => {
                     variant="dropdown"
                     role="combobox"
                     aria-expanded={openSubdistrict}
-                    className="pl-2.5 bg-white dark:bg-background"
+                    className="pl-2.5 bg-white dark:bg-neutral-900"
                   >
                     <div className="flex justify-between items-center w-full font-normal capitalize">
                       {formData.subdistrict
@@ -509,7 +509,7 @@ const RequestBlood = () => {
                   <Button
                     variant={"dropdown"}
                     className={cn(
-                      "flex justify-start text-left font-normal pl-2 gap-2 bg-white dark:bg-background"
+                      "flex justify-start text-left font-normal pl-2 gap-2 bg-white dark:bg-neutral-900"
                     )}
                   >
                     <CalendarIcon className="h-5 w-auto pl-1" />
@@ -572,7 +572,6 @@ const RequestBlood = () => {
 
             <Textarea
               placeholder="Any Special Instructions or Additional Information"
-              className="bg-white dark:bg-background"
               value={formData.extraInfo}
               onChange={(e) => handleValueChange("extraInfo", e.target.value)}
             />

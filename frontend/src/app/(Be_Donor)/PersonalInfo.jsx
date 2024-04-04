@@ -177,6 +177,7 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
               <ArrowRightIcon className="w-5 h-5" />
             </Link>
           </div>
+
           <Input
             type="text"
             placeholder="Full Name"
@@ -226,7 +227,7 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
                 <Button
                   variant={"dropdown"}
                   className={cn(
-                    "flex justify-start text-left font-normal pl-2 gap-3 bg-white dark:bg-background",
+                    "flex justify-start text-left font-normal pl-2 gap-3 bg-white dark:bg-neutral-900",
                     !donorData.dateOfBirth && "text-foreground"
                   )}
                 >
@@ -274,9 +275,9 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
             </Select>
 
             <div className="flex w-1/2">
-              <div className="flex border px-3 gap-2 rounded-tl-md rounded-bl-md items-center bg-white dark:bg-background">
+              <div className="flex border px-3 gap-1 rounded-tl-md rounded-bl-md items-center bg-white dark:bg-neutral-900">
                 <Image src={flag} alt="flag bd icon" width={22} height={22} />
-                <p className="mr-3 text-sm">+880</p>
+                <p className="mr-4 text-sm">+880</p>
               </div>
               <Input
                 className="rounded-tl-none rounded-bl-none border-l-0"
@@ -317,7 +318,7 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
                   variant="dropdown"
                   role="combobox"
                   aria-expanded={openDivision}
-                  className="pl-2.5 bg-white dark:bg-background"
+                  className="pl-2.5 bg-white dark:bg-neutral-900"
                 >
                   <div className="flex justify-between items-center w-full font-normal capitalize">
                     {donorData.division
@@ -359,7 +360,7 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
                   variant="dropdown"
                   role="combobox"
                   aria-expanded={openDistrict}
-                  className="pl-2.5 bg-white dark:bg-background"
+                  className="pl-2.5 bg-white dark:bg-neutral-900"
                 >
                   <div className="flex justify-between items-center w-full font-normal capitalize">
                     {donorData.district
@@ -420,7 +421,7 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
                   variant="dropdown"
                   role="combobox"
                   aria-expanded={openSubdistrict}
-                  className="pl-2.5 bg-white dark:bg-background"
+                  className="pl-2.5 bg-white dark:bg-neutral-900"
                 >
                   <div className="flex justify-between items-center w-full font-normal capitalize">
                     {donorData.subdistrict
@@ -558,9 +559,9 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
             </Select>
 
             <div className="flex w-1/2">
-              <div className="flex border px-3 gap-2 rounded-tl-md rounded-bl-md items-center bg-white dark:bg-background">
+              <div className="flex border px-3 gap-1 rounded-tl-md rounded-bl-md items-center bg-white dark:bg-neutral-900">
                 <Image src={flag} alt="flag bd icon" width={22} height={22} />
-                <p className="mr-3 text-sm">+880</p>
+                <p className="mr-4 text-sm">+880</p>
               </div>
               <Input
                 className="rounded-tl-none rounded-bl-none border-l-0"
@@ -606,7 +607,6 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
 
           <Textarea
             placeholder="Type Your Bio Here"
-            className="bg-white dark:bg-background"
             defaultValue={donorData.bio}
             onChange={(e) => handleValueChange("bio", e.target.value)}
           />

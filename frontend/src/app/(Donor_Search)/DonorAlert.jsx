@@ -168,14 +168,14 @@ const DonorAlert = ({ selectedDonor, setOpen }) => {
                     </td>
                   </tr>
                 )}
-                {selectedDonor.contactMethod && (
-                  <tr className="border-b">
-                    <td>Prefered Contect Method</td>
-                    <td className="text-foreground">
-                      {selectedDonor.contactMethod}
-                    </td>
-                  </tr>
-                )}
+                <tr className="border-b">
+                  <td>Prefered Contect Method</td>
+                  <td className="text-foreground capitalize">
+                    {selectedDonor.contectMethod
+                      ? selectedDonor.contectMethod
+                      : "Any"}
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>

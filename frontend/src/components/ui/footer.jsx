@@ -61,40 +61,40 @@ const Footer = () => {
               </p>
             </div>
 
-            <div className="flex flex-col gap-2 text-left col-span-2 text-foreground font-light">
+            <div className="flex flex-col gap-2 text-left col-span-2 text-foreground">
               <h3 className="text-primary">Pages</h3>
               <Link
-                className="hover:font-normal hover:text-primary w-fit transition-all"
+                className="hover:font-semibold hover:text-primary w-fit transition-all"
                 href={"about"}
               >
                 <p>About Us</p>
               </Link>
               <Link
-                className="hover:font-normal hover:text-primary w-fit transition-all"
+                className="hover:font-semibold hover:text-primary w-fit transition-all"
                 href={"donor-search"}
               >
                 Donor Search
               </Link>
               <Link
-                className="hover:font-normal hover:text-primary w-fit transition-all"
+                className="hover:font-semibold hover:text-primary w-fit transition-all"
                 href={"be-donor"}
               >
                 Be Donor
               </Link>
               <Link
-                className="hover:font-normal hover:text-primary w-fit transition-all"
+                className="hover:font-semibold hover:text-primary w-fit transition-all"
                 href={"requested-post"}
               >
                 Requested Post
               </Link>
               <Link
-                className="hover:font-normal hover:text-primary w-fit transition-all"
+                className="hover:font-semibold hover:text-primary w-fit transition-all"
                 href={"request-blood"}
               >
                 Request Blood
               </Link>
               <Link
-                className="hover:font-normal hover:text-primary w-fit transition-all"
+                className="hover:font-semibold hover:text-primary w-fit transition-all"
                 href={"privacy-policy"}
               >
                 Privacy Policy
