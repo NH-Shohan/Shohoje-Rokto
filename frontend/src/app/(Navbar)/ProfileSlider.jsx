@@ -35,7 +35,7 @@ const ProfileSlider = ({
                 priority
               />
               <div>
-                <DrawerTitle className="text-foreground">
+                <DrawerTitle className="text-foreground font-normal">
                   {currentUser?.displayName}
                 </DrawerTitle>
                 <DrawerDescription>{currentUser?.email}</DrawerDescription>

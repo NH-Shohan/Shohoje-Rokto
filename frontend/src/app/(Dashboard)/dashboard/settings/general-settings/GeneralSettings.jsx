@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
 import { toast } from "sonner";
 import OptionalInfo from "./OptionalInfo";
@@ -76,6 +77,11 @@ const GeneralSettings = () => {
         />
       ),
     },
+    {
+      title: "Available to Donate",
+      subTitle: "Are you available for donation? Turn on if Yes",
+      Component: <Switch />,
+    },
   ];
 
   const handleClickSave = () => {
@@ -83,9 +89,9 @@ const GeneralSettings = () => {
   };
 
   return (
-    <>
+    <div className="overflow-y-auto h-[calc(100vh-200px)] scrollbar-thin">
       {formContents.map((formContent, index) => (
-        <div key={index}>
+        <div key={index} className="my-1">
           <div className="grid grid-cols-3">
             <div className="w-80 grid-cols-auto">
               <h4 className="text-foreground">{formContent.title}</h4>
@@ -94,7 +100,9 @@ const GeneralSettings = () => {
 
             <div className="col-span-2">{formContent.Component}</div>
           </div>
-          {index === 0 && <Separator className="my-5 mb-8 w-full" />}
+          {(index === 0 || index === 1) && (
+            <Separator className="my-5 mb-8 w-full" />
+          )}
         </div>
       ))}
 
@@ -104,13 +112,13 @@ const GeneralSettings = () => {
           <Button
             variant="outline"
             onClick={handleClickSave}
-            className="w-1/5 mt-7"
+            className="w-1/5 my-7"
           >
             Save
           </Button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -9,7 +9,6 @@ import {
   GoHistory,
   GoInbox,
   GoLock,
-  GoMention,
   GoMoon,
   GoPeople,
   GoPerson,
@@ -60,11 +59,6 @@ const ProfileDrawerLink = ({ className, setOpenPrifileDrawer }) => {
       icon: GoChecklist,
     },
     {
-      href: "/dashboard/requested-blood",
-      label: "Requested Blood",
-      icon: GoMention,
-    },
-    {
       href: "/dashboard/settings/general-settings",
       label: "General Settings",
       icon: GoPeople,
@@ -107,7 +101,7 @@ const ProfileDrawerLink = ({ className, setOpenPrifileDrawer }) => {
                 {label}
               </P>
             </ActiveLink>
-            {(index === 4 || index === 7) && <Separator className="my-5" />}
+            {(index === 3 || index === 6) && <Separator className="my-5" />}
           </div>
         ))}
       </div>

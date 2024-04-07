@@ -18,7 +18,6 @@ import {
   GoHeart,
   GoHistory,
   GoInbox,
-  GoMention,
   GoPerson,
   GoVersions,
 } from "react-icons/go";
@@ -67,11 +66,6 @@ const DashboardNavbar = ({ className, isCollapsible }) => {
       href: "/dashboard/blood-posts",
       label: "My Blood Posts",
       icon: GoChecklist,
-    },
-    {
-      href: "/dashboard/requested-blood",
-      label: "Requested Blood",
-      icon: GoMention,
     },
     {
       href: "/dashboard/requests-notifications",
@@ -159,7 +153,7 @@ const DashboardNavbar = ({ className, isCollapsible }) => {
                       {!isCollapsible && label}
                     </P>
                   </ActiveLink>
-                  {(index === 4 || index === 7) && (
+                  {(index === 3 || index === 6) && (
                     <Separator className="my-5" />
                   )}
                 </div>

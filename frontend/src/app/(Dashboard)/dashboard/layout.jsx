@@ -31,7 +31,7 @@ const DashboardLayout = ({ children }) => {
           <DashboardNavbar isCollapsible={isCollapsible} />
         </ResizablePanel>
         <ResizableHandle withHandle />
-        <ResizablePanel className="p-10">{children}</ResizablePanel>
+        <ResizablePanel className="p-10 scrollbar">{children}</ResizablePanel>
       </ResizablePanelGroup>
     </div>
   );
