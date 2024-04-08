@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
 import { toast } from "sonner";
 import OptionalInfo from "./OptionalInfo";
@@ -77,11 +76,6 @@ const GeneralSettings = () => {
         />
       ),
     },
-    {
-      title: "Available to Donate",
-      subTitle: "Are you available for donation? Turn on if Yes",
-      Component: <Switch />,
-    },
   ];
 
   const handleClickSave = () => {
@@ -100,9 +94,7 @@ const GeneralSettings = () => {
 
             <div className="col-span-2">{formContent.Component}</div>
           </div>
-          {(index === 0 || index === 1) && (
-            <Separator className="my-5 mb-8 w-full" />
-          )}
+          {index === 0 && <Separator className="my-5 mb-8 w-full" />}
         </div>
       ))}
 

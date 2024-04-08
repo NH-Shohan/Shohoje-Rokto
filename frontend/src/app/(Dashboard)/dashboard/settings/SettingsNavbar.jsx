@@ -33,8 +33,8 @@ const SettingsNavbar = () => {
       <ActiveLink href={"/dashboard/settings/general-settings"}>
         General Settings
       </ActiveLink>
-      <ActiveLink href={"/dashboard/settings/security-settings"}>
-        Security Settings
+      <ActiveLink href={"/dashboard/settings/account-settings"}>
+        Account Settings
       </ActiveLink>
       <ActiveLink href={"/dashboard/settings/appearance"}>
         Appearance

@@ -173,7 +173,7 @@ const Navbar = () => {
                         className={`${
                           currentUser?.photoURL ? "border border-primary" : ""
                         } rounded-full mt-1.5`}
-                        src={currentUser?.photoURL || "/assets/user.svg"}
+                        src={currentUser?.photoURL || "/assets/defaultUser.svg"}
                         alt="Profile Image"
                         width={38}
                         height={38}

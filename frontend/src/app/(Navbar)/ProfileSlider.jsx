@@ -69,7 +69,7 @@ const ProfileSlider = ({
                 className={`${
                   currentUser?.photoURL ? "border-2 border-primary" : ""
                 } rounded-full`}
-                src={"/assets/user.svg"}
+                src={"/assets/defaultUser.svg"}
                 alt="Profile Image"
                 width={50}
                 height={50}

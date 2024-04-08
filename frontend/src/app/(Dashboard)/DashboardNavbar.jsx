@@ -105,7 +105,11 @@ const DashboardNavbar = ({ className, isCollapsible }) => {
           className={`${
             currentUser?.photoURL ? "border border-primary" : ""
           } rounded-full`}
-          src={currentUser?.photoURL || "/assets/user.svg"}
+          src={
+            currentUser?.photoURL
+              ? currentUser?.photoURL
+              : "/assets/defaultUser.svg"
+          }
           alt="Profile Image"
           width={!isCollapsible ? 60 : 50}
           height={50}
@@ -118,7 +122,9 @@ const DashboardNavbar = ({ className, isCollapsible }) => {
                 ? currentUser?.displayName.split("(")[0].split(" ").reverse()[1]
                 : currentUser?.displayName.trim().split(" ").pop()}
             </p>
-            <p className="text-sm">{currentUser?.email}</p>
+            <p className="text-sm capitalize text-primary">
+              {currentUser?.role}
+            </p>
           </div>
         )}
       </div>

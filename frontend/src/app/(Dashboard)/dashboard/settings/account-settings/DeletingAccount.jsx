@@ -58,7 +58,7 @@ const DeletingAccount = () => {
 
               <div className="flex flex-col items-center justify-center text-center">
                 <Image
-                  src={currentUser?.photoURL || "/assets/user.svg"}
+                  src={currentUser?.photoURL || "/assets/defaultUser.svg"}
                   alt="Profile Image"
                   width={70}
                   height={70}
@@ -97,7 +97,7 @@ const DeletingAccount = () => {
                 </p>
                 <Input
                   type="text"
-                  className="text-foreground font-medium"
+                  className="text-foreground font-medium border-neutral-600"
                   onChange={handleValueChange}
                 />
               </div>

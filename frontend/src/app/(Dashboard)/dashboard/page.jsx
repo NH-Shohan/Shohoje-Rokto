@@ -13,7 +13,7 @@ const DashBoardContainer = () => {
         <span className="text-primary">
           {currentUser?.displayName.includes("(")
             ? currentUser?.displayName.split("(")[0]
-            : currentUser?.displayName.trim().split(" ").pop()}
+            : currentUser?.displayName}
         </span>
       </h3>
       <p>Your overall informations</p>

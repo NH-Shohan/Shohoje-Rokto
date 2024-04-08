@@ -79,17 +79,21 @@
 h1 {
   font-size: 48px;
   font-weight: bold;
+  @apply text-foreground;
 }
 h2 {
   font-size: 36px;
   font-weight: bold;
+  @apply text-foreground;
 }
 h3 {
   font-size: 24px;
   font-weight: 500;
+  @apply text-foreground;
 }
 h4 {
   font-size: 20px;
+  @apply text-foreground;
 }
 .body-bold {
   font-size: 16px;
@@ -127,4 +131,8 @@ h4 {
 }
 .scrollbar-thin::-webkit-scrollbar-thumb {
   @apply bg-zinc-400 dark:bg-zinc-600 rounded-full;
+}
+.text-stroke {
+  text-shadow: -1px -1px 0 #f04242, 1px -1px 0 #f04242, -1px 1px 0 #f04242,
+    1px 1px 0 #f04242;
 }

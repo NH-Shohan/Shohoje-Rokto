@@ -64,8 +64,8 @@ const ProfileDrawerLink = ({ className, setOpenPrifileDrawer }) => {
       icon: GoPeople,
     },
     {
-      href: "/dashboard/settings/security-settings",
-      label: "Security Settings",
+      href: "/dashboard/settings/account-settings",
+      label: "Account Settings",
       icon: GoLock,
     },
     {

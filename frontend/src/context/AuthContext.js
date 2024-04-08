@@ -19,6 +19,52 @@ const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // For development -> Will be removed later
+  const [donorData, setDonorData] = useState(() => {
+    if (typeof window !== "undefined") {
+      const storedData = localStorage.getItem("donorData");
+      return storedData
+        ? JSON.parse(storedData)
+        : {
+            name: "",
+            email: "",
+            bloodGroup: "",
+            dateOfBirth: "",
+            gender: "",
+            phoneNumber: "",
+            optionalPhoneNumber: "",
+            division: "",
+            district: "",
+            subdistrict: "",
+            donatedBefore: "",
+            lastDonationDate: "",
+            maritalStatus: "",
+            socialMediaLink: "",
+            bio: "",
+            contectMethod: "",
+          };
+    }
+    return {
+      name: "",
+      email: "",
+      bloodGroup: "",
+      dateOfBirth: "",
+      gender: "",
+      phoneNumber: "",
+      optionalPhoneNumber: "",
+      division: "",
+      district: "",
+      subdistrict: "",
+      donatedBefore: "",
+      lastDonationDate: "",
+      maritalStatus: "",
+      socialMediaLink: "",
+      bio: "",
+      contectMethod: "",
+    };
+  });
+  // ----------------------------------------
+
   const googleSignIn = () => {
     const googleProvider = new GoogleAuthProvider();
     signInWithPopup(auth, googleProvider);
@@ -33,14 +79,29 @@ const AuthProvider = ({ children }) => {
     signOut(auth);
   };
 
+  const getUserRole = (user) => {
+    return "donor";
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
+      if (user) {
+        const role = getUserRole(user);
+        user.role = role;
+
+        if (role === "donor") {
+          setCurrentUser({ ...user, ...donorData });
+        } else {
+          setCurrentUser(user);
+        }
+      } else {
+        setCurrentUser(null);
+      }
       setLoading(false);
     });
 
     return unsubscribe;
-  }, [currentUser]);
+  }, [donorData]);
 
   return (
     <AuthContext.Provider
