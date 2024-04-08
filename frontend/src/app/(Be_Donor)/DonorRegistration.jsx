@@ -195,7 +195,7 @@ const DonorRegistration = ({ isComplete, currentStep, handlePrev }) => {
         />
 
         <div className="flex">
-          <div className="flex border px-3 gap-1 rounded-tl-md rounded-bl-md items-center bg-white dark:bg-background">
+          <div className="flex border px-3 gap-1 rounded-tl-md rounded-bl-md items-center bg-white dark:bg-neutral-900">
             <Image src={flag} alt="flag bd icon" width={22} height={22} />
             <p className="mr-3 text-sm">+880</p>
           </div>

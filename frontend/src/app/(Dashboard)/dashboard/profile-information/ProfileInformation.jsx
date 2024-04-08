@@ -1,17 +1,23 @@
 "use client";
 
+import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import Dropzone from "@/components/ui/drop-zone";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { UserAuth } from "@/context/AuthContext";
 import { format } from "date-fns";
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import { FiEdit } from "react-icons/fi";
 
 const ProfileInformation = () => {
+  const { currentUser } = UserAuth();
+  const [open, setOpen] = useState(false);
+
   const P = ({ children }) => {
     return <p className="text-foreground -mt-1 capitalize">{children}</p>;
   };
-
-  const { currentUser } = UserAuth();
 
   return (
     <>
@@ -23,7 +29,7 @@ const ProfileInformation = () => {
 
         <div className="overflow-auto h-[calc(100vh-220px)] scrollbar-thin">
           {/* Profile */}
-          <div className="flex items-center justify-between border p-5 rounded-lg">
+          <div className="flex items-center justify-between border p-5 rounded-lg relative">
             <div className="flex items-center gap-5">
               <Image
                 src={
@@ -50,10 +56,17 @@ const ProfileInformation = () => {
             <p className="text-8xl font-bold text-stroke text-background lg:mr-20">
               {currentUser?.bloodGroup}
             </p>
+
+            <AlertDialog open={open} onOpenChange={setOpen}>
+              <AlertDialogTrigger asChild>
+                <FiEdit className="absolute top-5 right-5 size-5 cursor-pointer" />
+              </AlertDialogTrigger>
+              <Dropzone setOpen={setOpen} />
+            </AlertDialog>
           </div>
 
           {/* Personal */}
-          <div className="flex flex-col items-start gap-2 border p-5 rounded-lg mt-5">
+          <div className="flex flex-col items-start gap-2 border p-5 rounded-lg mt-5 relative">
             <h4 className="text-primary">Personal Information</h4>
 
             <div className="grid grid-cols-2 w-full">
@@ -119,10 +132,14 @@ const ProfileInformation = () => {
               <Label className="text-xs">Bio</Label>
               <P>{currentUser?.bio}</P>
             </div>
+
+            <Link href={"/dashboard/settings/general-settings"}>
+              <FiEdit className="absolute top-5 right-5 size-5 cursor-pointer" />
+            </Link>
           </div>
 
           {/* Address */}
-          <div className="flex flex-col items-start gap-2 border p-5 rounded-lg mt-5">
+          <div className="flex flex-col items-start gap-2 border p-5 rounded-lg mt-5 relative">
             <h4 className="text-primary">Address</h4>
 
             <div className="grid grid-cols-2 w-full">
@@ -153,10 +170,14 @@ const ProfileInformation = () => {
 
             <div>
               <Label className="text-xs">Prefered Contact Method</Label>
-              <p className="text-foreground -mt-1 lowercase">
+              <p className="text-foreground -mt-1 capitalize">
                 {currentUser?.contectMethod}
               </p>
             </div>
+
+            <Link href={"/dashboard/settings/general-settings"}>
+              <FiEdit className="absolute top-5 right-5 size-5 cursor-pointer" />
+            </Link>
           </div>
         </div>
       </div>

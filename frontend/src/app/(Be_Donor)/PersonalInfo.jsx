@@ -505,7 +505,7 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
                   <Button
                     variant={"dropdown"}
                     className={cn(
-                      "flex justify-start text-left font-normal pl-2 gap-3 bg-white dark:bg-background",
+                      "flex justify-start text-left font-normal pl-2 gap-3 bg-white dark:bg-neutral-900",
                       !donorData.lastDonationDate && "text-foreground"
                     )}
                   >

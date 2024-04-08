@@ -6,6 +6,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import OptionalInfo from "./OptionalInfo";
 import RequiredInfo from "./RequiredInfo";
+import SetAvatar from "./SetAvatar";
 
 const GeneralSettings = () => {
   const [donorData, setDonorData] = useState({
@@ -57,6 +58,11 @@ const GeneralSettings = () => {
 
   const formContents = [
     {
+      title: "Set Avatar",
+      subTitle: "Update your profile picture",
+      Component: <SetAvatar />,
+    },
+    {
       title: "Personal Information",
       subTitle: "Update your personal informations",
       Component: (
@@ -94,7 +100,9 @@ const GeneralSettings = () => {
 
             <div className="col-span-2">{formContent.Component}</div>
           </div>
-          {index === 0 && <Separator className="my-5 mb-8 w-full" />}
+          {(index === 0 || index === 1) && (
+            <Separator className="my-5 mb-8 w-full" />
+          )}
         </div>
       ))}
 
