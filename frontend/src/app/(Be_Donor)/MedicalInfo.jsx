@@ -10,7 +10,7 @@ const questions = [
   {
     id: 1,
     question:
-      "Do you have any pre-existing medical conditions (e.g. Diabetes, Thyroid, etc.)?",
+      "Do you have any pre-existing medical conditions (e.g. Diabetes, Thyroid, Heart Disease, TB etc.)?",
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const questions = [
   },
   {
     id: 3,
-    question: "Have you received any vaccinations in the past four weeks?",
+    question: "Is your weight above 50kg?",
   },
   {
     id: 4,

@@ -13,13 +13,14 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { UserAuth } from "@/context/AuthContext";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 const DeletingAccount = () => {
   const { currentUser } = UserAuth();
   const [isConfirm, setIsConfirm] = useState(false);
   const [open, setOpen] = useState(false);
+  const [isSad, setIsSad] = useState(false);
   const [value, setValue] = useState("");
 
   const handleValueChange = (event) => {
@@ -27,11 +28,23 @@ const DeletingAccount = () => {
     setValue(value);
   };
 
+  useEffect(() => {
+    if (isConfirm) {
+      const timer = setTimeout(() => {
+        setOpen(false);
+        setIsSad(false);
+        setIsConfirm(false);
+        toast.info("Account will be deleted within 3 working days!");
+      }, 6000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isConfirm]);
+
   const handleDelete = () => {
     if (value === "CONFIRM") {
-      setOpen(false);
-      setIsConfirm(false);
-      toast.info("Account will be deleted within 3 working days!");
+      setIsSad(true);
+      setIsConfirm(true);
     } else {
       toast.error("Please type 'CONFIRM' in the input box!");
     }
@@ -76,7 +89,7 @@ const DeletingAccount = () => {
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
-        ) : (
+        ) : !isSad ? (
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle className="text-foreground">
@@ -108,6 +121,22 @@ const DeletingAccount = () => {
               </AlertDialogCancel>
               <Button onClick={handleDelete}>Continue</Button>
             </AlertDialogFooter>
+          </AlertDialogContent>
+        ) : (
+          <AlertDialogContent className="flex flex-col items-center">
+            <h3 className="text-primary text-center">We will miss you!</h3>
+            <picture>
+              <source
+                srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f979/512.webp"
+                type="image/webp"
+              />
+              <img
+                src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f979/512.gif"
+                alt="🥹"
+                width="200"
+                height="200"
+              />
+            </picture>
           </AlertDialogContent>
         )}
       </AlertDialog>

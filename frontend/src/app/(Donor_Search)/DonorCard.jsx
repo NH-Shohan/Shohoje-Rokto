@@ -1,6 +1,7 @@
 "use client";
 
 import { AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
@@ -59,7 +60,7 @@ const DonorCard = ({ donor, setSelectedDonor, setOpen, index }) => {
           className="mx-auto rounded-full border"
           priority
         />
-        <p className="w-full flex gap-2 justify-center items-center text-foreground text-lg">
+        <div className="w-full flex gap-2 justify-center items-center text-foreground text-lg">
           <p className="group-hover:text-primary dark:group-hover:text-foreground">
             {donor.name}
           </p>
@@ -92,7 +93,7 @@ const DonorCard = ({ donor, setSelectedDonor, setOpen, index }) => {
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
-        </p>
+        </div>
 
         <div className="flex gap-5">
           <p className="bg-light dark:bg-transparent dark:border rounded-xl flex justify-center items-center w-1/2 text-[48px] text-primary dark:text-white uppercase font-medium">
@@ -114,13 +115,10 @@ const DonorCard = ({ donor, setSelectedDonor, setOpen, index }) => {
           </div>
         </div>
 
-        <AlertDialogTrigger className="w-full">
-          <p
-            className="border border-primary bg-white dark:bg-secondary hover:bg-primary dark:hover:bg-primary hover:text-primary-foreground transition-all h-9 px-4 rounded-lg flex items-center justify-center text-sm"
-            onClick={() => handleSeeDetails(donor)}
-          >
+        <AlertDialogTrigger className="w-full" asChild>
+          <Button variant="outline" onClick={() => handleSeeDetails(donor)}>
             See Details
-          </p>
+          </Button>
         </AlertDialogTrigger>
       </div>
     </div>

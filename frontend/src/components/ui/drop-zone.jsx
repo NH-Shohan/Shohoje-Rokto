@@ -83,7 +83,7 @@ const Dropzone = ({ className, setOpen }) => {
                 <p className="text-green-600 capitalize">Drop the file here</p>
               ) : (
                 <p className="font-normal capitalize text-sm text-center">
-                  Drag & drop here or click to select file
+                  Drag & drop here or click to select image
                 </p>
               )}
             </div>
@@ -104,12 +104,12 @@ const Dropzone = ({ className, setOpen }) => {
             {!rejected.length > 0 && (
               <>
                 <h3 className="title text-lg font-normal mt-4 border-b border-gray-light pb-1">
-                  Accepted Images
+                  Accepted Image
                 </h3>
                 <ul className="my-5">
                   {files.map((file) => (
                     <li key={file.name}>
-                      <div className="relative rounded-lg shadow-lg flex flex-col items-center">
+                      <div className="relative rounded-xl shadow-lg overflow-hidden flex flex-col items-center">
                         <Image
                           src={file.preview}
                           alt={file.name}
@@ -148,8 +148,8 @@ const Dropzone = ({ className, setOpen }) => {
 
             {rejected.length > 0 && (
               <>
-                <h3 className="title text-lg font-normal mt-10 border-b border-gray-light pb-1 text-red">
-                  Rejected Images
+                <h3 className="title text-lg font-normal mt-5 border-b border-gray-light pb-1 text-red">
+                  Rejected Image
                 </h3>
                 <ul className="mt-2 flex flex-col">
                   {rejected.map(({ file, errors }) => (

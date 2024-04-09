@@ -45,7 +45,7 @@ const ProfileInformation = () => {
               <div>
                 <div className="flex gap-2 items-center">
                   <h4>{currentUser?.displayName}</h4>
-                  <p className="bg-light dark:bg-muted text-primary dark:text-foreground w-fit h-fit px-3 rounded-md capitalize">
+                  <p className="bg-light dark:bg-muted text-primary dark:text-foreground w-fit h-fit px-2 rounded-md capitalize text-sm">
                     {currentUser?.role}
                   </p>
                 </div>
@@ -59,7 +59,9 @@ const ProfileInformation = () => {
 
             <AlertDialog open={open} onOpenChange={setOpen}>
               <AlertDialogTrigger asChild>
-                <FiEdit className="absolute top-5 right-5 size-5 cursor-pointer" />
+                <div className="text-neutral-400 dark:text-neutral-600 absolute top-5 right-5">
+                  <FiEdit className="size-5 cursor-pointer" />
+                </div>
               </AlertDialogTrigger>
               <Dropzone setOpen={setOpen} />
             </AlertDialog>
@@ -134,7 +136,7 @@ const ProfileInformation = () => {
             </div>
 
             <Link href={"/dashboard/settings/general-settings"}>
-              <FiEdit className="absolute top-5 right-5 size-5 cursor-pointer" />
+              <FiEdit className="text-neutral-400 dark:text-neutral-600 absolute top-5 right-5 size-5 cursor-pointer" />
             </Link>
           </div>
 
@@ -176,7 +178,7 @@ const ProfileInformation = () => {
             </div>
 
             <Link href={"/dashboard/settings/general-settings"}>
-              <FiEdit className="absolute top-5 right-5 size-5 cursor-pointer" />
+              <FiEdit className="text-neutral-400 dark:text-neutral-600 absolute top-5 right-5 size-5 cursor-pointer" />
             </Link>
           </div>
         </div>

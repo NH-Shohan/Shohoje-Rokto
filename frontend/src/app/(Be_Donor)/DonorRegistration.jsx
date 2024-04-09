@@ -1,24 +1,12 @@
-import {
-  AlertDialog,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from "@/components/ui/input-otp";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import flag from "../../../public/icons/flag.svg";
+import DonorRegistrationAlert from "./DonorRegistrationAlert";
 
 const DonorRegistration = ({ isComplete, currentStep, handlePrev }) => {
   const [isShowPassword, setIsShowPassword] = useState(false);
@@ -37,40 +25,6 @@ const DonorRegistration = ({ isComplete, currentStep, handlePrev }) => {
     specialCharacter: false,
     minLength: false,
   });
-  const [minutes, setMinutes] = useState(4);
-  const [seconds, setSeconds] = useState(59);
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    let timerInterval;
-
-    if (open) {
-      timerInterval = setInterval(() => {
-        if (seconds === 0) {
-          if (minutes === 0) {
-            clearInterval(timerInterval);
-          } else {
-            setMinutes(minutes - 1);
-            setSeconds(59);
-          }
-        } else {
-          setSeconds(seconds - 1);
-        }
-      }, 1000);
-    } else {
-      clearInterval(timerInterval);
-      setMinutes(4);
-      setSeconds(59);
-    }
-
-    return () => clearInterval(timerInterval);
-  }, [minutes, seconds, open]);
-
-  useEffect(() => {
-    if (minutes === 0 && seconds === 0) {
-      setOpen(false);
-    }
-  }, [minutes, seconds]);
 
   useEffect(() => {
     const donorData = localStorage.getItem("donorData");
@@ -174,7 +128,7 @@ const DonorRegistration = ({ isComplete, currentStep, handlePrev }) => {
       }
 
       toast.info(suggestion, {
-        duration: 8000,
+        duration: 7000,
       });
     } else {
       toast.success("Registration successful!");
@@ -183,8 +137,8 @@ const DonorRegistration = ({ isComplete, currentStep, handlePrev }) => {
 
   return (
     <div className="w-3/5 mx-auto">
-      <div className="space-y-4 border p-8 rounded-lg bg-light dark:bg-neutral-950 text-foreground">
-        <h3 className="text-primary">Register As Donor</h3>
+      <div className="space-y-4 border p-10 rounded-xl bg-white dark:bg-neutral-950 shadow-[0_0_100px_0px_rgba(240,66,66,0.15)] text-foreground">
+        <h3 className="text-primary">Register as Donor</h3>
 
         <Input
           type="text"
@@ -247,9 +201,9 @@ const DonorRegistration = ({ isComplete, currentStep, handlePrev }) => {
           <div
             className={`relative w-full h-[3px] ${
               donorRegistration.password === ""
-                ? "bg-light dark:bg-neutral-950"
+                ? "bg-white dark:bg-neutral-950"
                 : ""
-            } bg-gray-300 rounded-full overflow-hidden`}
+            } bg-neutral-200 rounded-full overflow-hidden`}
           >
             <div
               className={`absolute top-0 h-full transition-all ${
@@ -283,12 +237,12 @@ const DonorRegistration = ({ isComplete, currentStep, handlePrev }) => {
           )}
         </div>
 
-        <AlertDialog open={open} onOpenChange={setOpen}>
+        <AlertDialog>
           {donorRegistration.password !== "" &&
           donorRegistration.confirmPassword !== "" &&
           passwordStrength === "strong" &&
           donorRegistration.password === donorRegistration.confirmPassword ? (
-            <AlertDialogTrigger className="w-full">
+            <AlertDialogTrigger className="w-full" asChild>
               <Button className="w-full">Confirm Registration</Button>
             </AlertDialogTrigger>
           ) : (
@@ -297,66 +251,7 @@ const DonorRegistration = ({ isComplete, currentStep, handlePrev }) => {
             </Button>
           )}
 
-          <AlertDialogContent>
-            <AlertDialogHeader className={"space-y-4"}>
-              <AlertDialogTitle className="text-center text-foreground">
-                Enter OTP Code
-              </AlertDialogTitle>
-
-              <AlertDialogDescription className="text-center">
-                No worries! We sent you SMS with 6 digit <br /> verification
-                code (OTP) on
-              </AlertDialogDescription>
-
-              <p className="text-center font-medium text-foreground">
-                +880{donorRegistration.phoneNumber}
-              </p>
-
-              <InputOTP
-                className="mx-auto"
-                maxLength={6}
-                render={({ slots }) => (
-                  <>
-                    <InputOTPGroup>
-                      {slots.slice(0, 3).map((slot, index) => (
-                        <InputOTPSlot key={index} {...slot} />
-                      ))}{" "}
-                    </InputOTPGroup>
-
-                    <InputOTPGroup>
-                      {slots.slice(3).map((slot, index) => (
-                        <InputOTPSlot key={index + 3} {...slot} />
-                      ))}
-                    </InputOTPGroup>
-                  </>
-                )}
-              />
-
-              <Button className="w-1/2 mx-auto">Confirm Code</Button>
-
-              <div className="mx-auto space-y-2">
-                <div className="flex gap-1 justify-center text-foreground">
-                  <p>Enter the code you have in </p>
-                  <p className="text-primary">{`${minutes
-                    .toString()
-                    .padStart(2, "0")}:${seconds
-                    .toString()
-                    .padStart(2, "0")}`}</p>
-                  <p>min</p>
-                </div>
-
-                <div className="flex gap-1 justify-center">
-                  <p>{"Didn't receive the code? "}</p>
-                  <Link
-                    href="#"
-                    className="text-green-600 hover:text-green-700 hover:underline"
-                  >
-                    Resend
-                  </Link>
-                </div>
-              </div>
-            </AlertDialogHeader>
-          </AlertDialogContent>
+          <DonorRegistrationAlert donorRegistration={donorRegistration} />
         </AlertDialog>
       </div>
 

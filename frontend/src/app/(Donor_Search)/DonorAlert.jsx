@@ -181,7 +181,7 @@ const DonorAlert = ({ selectedDonor, setOpen }) => {
           </div>
 
           <div>
-            <p className="text-foreground font-medium mb-1">Medical Info</p>
+            <p className="text-primary font-medium mb-1">Medical Info</p>
 
             {selectedDonor.question1 === "yes" && (
               <li>
@@ -193,7 +193,7 @@ const DonorAlert = ({ selectedDonor, setOpen }) => {
               <li>Currently taking antibiotics</li>
             )}
             {selectedDonor.question3 === "yes" && (
-              <li>Received vaccinations in the past four weeks?</li>
+              <li>Weight less than 50kg</li>
             )}
             {selectedDonor.question4 === "yes" && (
               <li>Has allergies to medicine or other substances</li>

@@ -405,7 +405,7 @@ const SignUp = () => {
                     registration.password === ""
                       ? "bg-white dark:bg-neutral-950"
                       : ""
-                  } bg-gray-300 rounded-full overflow-hidden`}
+                  } bg-neutral-200 rounded-full overflow-hidden`}
                 >
                   <div
                     className={`absolute top-0 h-full transition-all ${

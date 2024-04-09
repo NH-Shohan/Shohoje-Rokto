@@ -643,7 +643,7 @@ const PersonalInfo = ({ isComplete, currentStep, handleNext, stepsConfig }) => {
                   <Button
                     variant="outline"
                     onClick={handleClickNext}
-                    className="w-1/5"
+                    className="w-1/5 mt-3"
                   >
                     Next
                   </Button>
