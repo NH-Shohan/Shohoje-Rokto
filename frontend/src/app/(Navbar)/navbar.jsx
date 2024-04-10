@@ -188,7 +188,7 @@ const Navbar = () => {
                   </Drawer>
                 </div>
               ) : (
-                <Link href={"sign-in"}>
+                <Link href={"/sign-in"}>
                   <Button variant="outline">Sign In</Button>
                 </Link>
               )}

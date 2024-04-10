@@ -22,7 +22,8 @@ import google from "../../../../public/icons/google.svg";
 const SignIn = () => {
   const router = useRouter();
   const [isShowPassword, setIsShowPassword] = useState(false);
-  const { currentUser, googleSignIn, facebookSignIn } = UserAuth();
+  const { currentUser, numberSignIn, googleSignIn, facebookSignIn } =
+    UserAuth();
   const [loginData, setLoginData] = useState({
     phoneNumber: "",
     password: "",
@@ -45,7 +46,16 @@ const SignIn = () => {
       toast.warning("Please provide your password!");
       return;
     } else {
-      toast.success("Login successful!");
+      numberSignIn(phoneNumber, password)
+        .then((message) => {
+          toast.success(message);
+          if (currentUser) {
+            router.push("/dashboard");
+          }
+        })
+        .catch((error) => {
+          toast.error(error);
+        });
     }
   };
 
@@ -118,7 +128,7 @@ const SignIn = () => {
                 <div>
                   <Label className="text-xs text-zinc-400">Phone Number</Label>
                   <div className="flex">
-                    <div className="flex border px-3 gap-1 rounded-tl-md rounded-bl-md items-center bg-white dark:bg-background">
+                    <div className="flex border px-3 gap-1 rounded-tl-md rounded-bl-md items-center bg-white dark:bg-neutral-900">
                       <Image
                         src={flag}
                         alt="flag bd icon"

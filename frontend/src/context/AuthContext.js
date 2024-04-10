@@ -1,6 +1,7 @@
 "use client";
 
 import app from "@/app/firebaseConfig";
+import fakeUsers from "@/fakeDB/fakeUsers.json";
 import {
   FacebookAuthProvider,
   getAuth,
@@ -12,7 +13,6 @@ import {
 import { createContext, useContext, useEffect, useState } from "react";
 
 const auth = getAuth(app);
-
 const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
@@ -65,6 +65,33 @@ const AuthProvider = ({ children }) => {
   });
   // ----------------------------------------
 
+  const numberSignIn = (phoneNumber, password) => {
+    return new Promise((resolve, reject) => {
+      const isSignedIn = localStorage.getItem("isSignedIn");
+      if (isSignedIn === "true") {
+        const user = fakeUsers.find((user) => user.phoneNumber === phoneNumber);
+        if (!user) {
+          reject("User does not exist!");
+        } else {
+          setCurrentUser(user);
+          resolve("User is already signed in!");
+        }
+      } else {
+        const user = fakeUsers.find((user) => user.phoneNumber === phoneNumber);
+
+        if (!user) {
+          reject("Invalid phone number or User does not exist!");
+        } else if (user.password !== password) {
+          reject("Wrong Password, please try again.");
+        } else {
+          setCurrentUser(user);
+          localStorage.setItem("isSignedIn", "true");
+          resolve("Login successful!");
+        }
+      }
+    });
+  };
+
   const googleSignIn = () => {
     const googleProvider = new GoogleAuthProvider();
     signInWithPopup(auth, googleProvider);
@@ -77,6 +104,8 @@ const AuthProvider = ({ children }) => {
 
   const logOut = () => {
     signOut(auth);
+    setCurrentUser(null);
+    localStorage.setItem("isSignedIn", "false");
   };
 
   const getUserRole = (user) => {
@@ -105,7 +134,14 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ currentUser, loading, googleSignIn, facebookSignIn, logOut }}
+      value={{
+        currentUser,
+        loading,
+        numberSignIn,
+        googleSignIn,
+        facebookSignIn,
+        logOut,
+      }}
     >
       {children}
     </AuthContext.Provider>

@@ -35,7 +35,7 @@ const DeletingAccount = () => {
         setIsSad(false);
         setIsConfirm(false);
         toast.info("Account will be deleted within 3 working days!");
-      }, 6000);
+      }, 7000);
 
       return () => clearTimeout(timer);
     }

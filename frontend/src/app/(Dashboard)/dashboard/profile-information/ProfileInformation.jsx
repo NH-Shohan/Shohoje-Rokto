@@ -114,7 +114,7 @@ const ProfileInformation = () => {
                     format(currentUser?.dateOfBirth, "PPP")}
                 </P>
               </div>
-              {currentUser?.donatedBefore === "yes" ? (
+              {currentUser?.donatedBefore.toLowerCase() === "yes" ? (
                 <div>
                   <Label className="text-xs">Last Donated On</Label>
                   <P>

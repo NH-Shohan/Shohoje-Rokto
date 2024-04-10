@@ -4,11 +4,13 @@ import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { UserAuth } from "@/context/AuthContext";
 import Link from "next/link";
+import { useState } from "react";
 import DeletingAccount from "./DeletingAccount";
 import PrivacySettings from "./PrivacySettings";
 
 const AccountSettings = () => {
   const { currentUser } = UserAuth();
+  const [checked, setChecked] = useState(true);
 
   const formContents = [
     {
@@ -31,7 +33,9 @@ const AccountSettings = () => {
     {
       title: "Available to Donate",
       subTitle: "Are you available for donation?",
-      Component: <Switch />,
+      Component: (
+        <Switch onChange={() => setChecked(!checked)} defaultChecked />
+      ),
     },
     {
       title: "Request Deleting Account",

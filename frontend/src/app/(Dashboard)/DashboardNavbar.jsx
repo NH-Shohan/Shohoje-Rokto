@@ -118,9 +118,12 @@ const DashboardNavbar = ({ className, isCollapsible }) => {
         {!isCollapsible && (
           <div>
             <p className="text-foreground font-medium text-xl">
-              {currentUser?.displayName.includes("(")
-                ? currentUser?.displayName.split("(")[0].split(" ").reverse()[1]
-                : currentUser?.displayName.trim().split(" ").pop()}
+              {currentUser?.displayName?.includes("(")
+                ? currentUser?.displayName
+                    ?.split("(")[0]
+                    .split(" ")
+                    .reverse()[1]
+                : currentUser?.displayName?.trim().split(" ").pop()}
             </p>
             <p className="text-sm capitalize text-primary">
               {currentUser?.role}
