@@ -1,0 +1,31 @@
+export class User {
+  userId: number;
+  photoURL: string;
+  displayName: string;
+  age: number;
+  email: string;
+  bloodGroup: string;
+  dateOfBirth: string;
+  gender: string;
+  phoneNumber: string;
+  optionalPhoneNumber: string;
+  password: string;
+  division: string;
+  district: string;
+  subdistrict: string;
+  donatedBefore: string;
+  lastDonationDate: string;
+  maritalStatus: string;
+  socialMediaLink: string;
+  bio: string;
+  contectMethod: string;
+  availability: string;
+  type: string;
+  role: string;
+  question1: string;
+  question2: string;
+  question3: string;
+  question4: string;
+  question5: string;
+  question6: string;
+}
