@@ -1,7 +1,7 @@
 "use client";
 
 import app from "@/app/firebaseConfig";
-import fakeUsers from "@/fakeDB/fakeUsers.json";
+import axios from "axios";
 import {
   FacebookAuthProvider,
   getAuth,
@@ -67,28 +67,25 @@ const AuthProvider = ({ children }) => {
 
   const numberSignIn = (phoneNumber, password) => {
     return new Promise((resolve, reject) => {
-      const isSignedIn = localStorage.getItem("isSignedIn");
-      if (isSignedIn === "true") {
-        const user = fakeUsers.find((user) => user.phoneNumber === phoneNumber);
-        if (!user) {
-          reject("User does not exist!");
-        } else {
-          setCurrentUser(user);
-          resolve("User is already signed in!");
-        }
-      } else {
-        const user = fakeUsers.find((user) => user.phoneNumber === phoneNumber);
-
-        if (!user) {
-          reject("Invalid phone number or User does not exist!");
-        } else if (user.password !== password) {
-          reject("Wrong Password, please try again.");
-        } else {
-          setCurrentUser(user);
-          localStorage.setItem("isSignedIn", "true");
-          resolve("Login successful!");
-        }
-      }
+      axios
+        .post("http://localhost:3333/api/auth/login", {
+          phoneNumber,
+          password,
+        })
+        .then((response) => {
+          console.log(response);
+          const { data } = response;
+          if (data) {
+            setCurrentUser(data);
+            localStorage.setItem("isSignedIn", "true");
+            resolve(data.message || "Login successful!");
+          } else {
+            reject(data.message || "Login failed, please try again!");
+          }
+        })
+        .catch((error) => {
+          reject("An error occurred while signing in.");
+        });
     });
   };
 
