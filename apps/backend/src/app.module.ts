@@ -11,7 +11,7 @@ import { UsersModule } from './users/users.module';
   imports: [
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../..', 'frontend', '.next'),
-      exclude: ['api/*'],
+      exclude: ['/api/(.*)'],
     }),
     AuthModule,
     UsersModule,
