@@ -7,13 +7,13 @@
     "build": "turbo run build",
     "deploy": "turbo run build --scope=apps/backend --includeDependencies --no-deps"
   },
-  "devDependencies": {
-    "turbo": "^1.13.2"
-  },
   "workspaces": [
     "apps/backend",
     "apps/frontend"
   ],
+  "devDependencies": {
+    "turbo": "^1.13.2"
+  },
   "keywords": [],
   "author": "Nahim Hossain Shohan",
   "license": "ISC"
