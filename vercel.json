@@ -2,12 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "/apps/backend/src/main.ts",
-      "use": "@vercel/node"
+      "src": "apps/backend/src/main.ts",
+      "use": "@vercel/node",
+      "config": { "distDir": "dist" }
     },
     {
-      "src": "/apps/frontend/package.json",
-      "use": "@vercel/next"
+      "src": "apps/frontend/next.config.js",
+      "use": "@vercel/next",
+      "config": { "buildCommand": "pnpm run build" }
     }
   ],
   "routes": [
