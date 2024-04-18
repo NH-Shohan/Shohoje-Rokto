@@ -4,7 +4,8 @@
   "description": "A website for donors and blood needed people",
   "scripts": {
     "dev": "turbo run dev",
-    "build": "turbo run build"
+    "build": "turbo run build",
+    "deploy": "turbo run build --scope=apps/backend --includeDependencies --no-deps"
   },
   "devDependencies": {
     "turbo": "^1.13.2"

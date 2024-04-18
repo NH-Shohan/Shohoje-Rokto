@@ -4,3 +4,4 @@ buid
 .turbo
 .env.*
 .DS_Store
+.vercel
