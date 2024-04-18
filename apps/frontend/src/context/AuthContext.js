@@ -49,7 +49,6 @@ const AuthProvider = ({ children }) => {
           password,
         })
         .then((response) => {
-          console.log(response.data);
           const { data } = response;
           if (data) {
             localStorage.setItem("accessToken", data.access_token);
