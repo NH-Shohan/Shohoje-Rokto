@@ -1,0 +1,6 @@
+node_modules
+dist
+buid
+.turbo
+.env.*
+.DS_Store

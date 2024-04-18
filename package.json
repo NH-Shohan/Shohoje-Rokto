@@ -1,0 +1,19 @@
+{
+  "name": "shohoje-rokto",
+  "version": "1.0.0",
+  "description": "A website for donors and blood needed people",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build"
+  },
+  "devDependencies": {
+    "turbo": "^1.13.2"
+  },
+  "workspaces": [
+    "apps/backend",
+    "apps/frontend"
+  ],
+  "keywords": [],
+  "author": "Nahim Hossain Shohan",
+  "license": "ISC"
+}
