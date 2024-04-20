@@ -3,15 +3,12 @@
   "version": "1.0.0",
   "description": "A website for donors and blood needed people",
   "scripts": {
-    "dev": "turbo run dev",
-    "build": "turbo run build"
+    "dev": "pnpm run --parallel dev",
+    "build": "pnpm run --parallel build"
   },
   "workspaces": [
     "apps/*"
   ],
-  "devDependencies": {
-    "turbo": "^1.13.2"
-  },
   "keywords": [],
   "author": "Nahim Hossain Shohan",
   "license": "ISC"
