@@ -4,11 +4,10 @@
   "description": "A website for donors and blood needed people",
   "scripts": {
     "dev": "turbo run dev",
-    "build": "turbo run build --scope=apps/frontend --no-deps"
+    "build": "turbo run build"
   },
   "workspaces": [
-    "apps/backend",
-    "apps/frontend"
+    "apps/*"
   ],
   "devDependencies": {
     "turbo": "^1.13.2"

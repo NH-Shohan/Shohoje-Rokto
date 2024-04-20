@@ -4,13 +4,8 @@
     "build": {
       "inputs": ["src/**/*", "package.json"],
       "outputMode": "full",
-      "dependsOn": ["^build"]
-    },
-    "test": {
-      "outputs": []
-    },
-    "lint": {
-      "outputs": []
+      "dependsOn": ["^build"],
+      "outputs": ["apps/frontend/.next", "apps/backend/dist"]
     },
     "dev": {
       "cache": false
