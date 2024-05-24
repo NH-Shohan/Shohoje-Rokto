@@ -30,7 +30,7 @@
   .dark {
     --background: 0 0% 6%;
     --foreground: 0 0% 85%;
-    --card: 0 0% 3.9%;
+    --card: 0 0% 7%;
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 3.9%;
     --popover-foreground: 0 0% 98%;
@@ -133,6 +133,12 @@ h4 {
   @apply bg-zinc-400 dark:bg-zinc-600 rounded-full;
 }
 .text-stroke {
-  text-shadow: -1px -1px 0 #f04242, 1px -1px 0 #f04242, -1px 1px 0 #f04242,
+  text-shadow:
+    -1px -1px 0 #f04242,
+    1px -1px 0 #f04242,
+    -1px 1px 0 #f04242,
     1px 1px 0 #f04242;
+}
+strong {
+  font-weight: 500;
 }

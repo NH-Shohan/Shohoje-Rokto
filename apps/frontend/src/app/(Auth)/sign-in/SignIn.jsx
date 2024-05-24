@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoReturnUpBack } from "react-icons/io5";
 import { toast } from "sonner";
 import bloodDrop from "../../../../public/assets/bloodDrop.gif";
@@ -20,6 +20,7 @@ import flag from "../../../../public/icons/flag.svg";
 import google from "../../../../public/icons/google.svg";
 
 const SignIn = () => {
+  const formRef = useRef(null);
   const router = useRouter();
   const [isShowPassword, setIsShowPassword] = useState(false);
   const {
@@ -42,7 +43,9 @@ const SignIn = () => {
     }));
   };
 
-  const handleConfirmLogin = () => {
+  const handleConfirmLogin = (event) => {
+    event.preventDefault();
+
     const { phoneNumber, password } = loginData;
 
     if (phoneNumber === "") {
@@ -56,15 +59,15 @@ const SignIn = () => {
         .then(() => {
           getUserProfile()
             .then((response) => {
-              console.log(response);
               setCurrentUser(response);
+              toast.success("Login successful!");
             })
             .catch(() => {
               toast.error("Error during signing in!");
             });
         })
         .catch(() => {
-          toast.error("Error during signing in!");
+          toast.error("Invalide phonenumber or password.");
         });
     }
   };
@@ -220,12 +223,11 @@ const SignIn = () => {
               </div>
 
               <div className="space-y-2">
-                <Button
-                  className="w-full text-base"
-                  onClick={handleConfirmLogin}
-                >
-                  Sign In
-                </Button>
+                <form ref={formRef} onSubmit={handleConfirmLogin}>
+                  <Button type="submit" className="w-full text-base">
+                    Sign In
+                  </Button>
+                </form>
 
                 <div className="text-sm flex gap-1">
                   <p>{"Don't have an account?"}</p>

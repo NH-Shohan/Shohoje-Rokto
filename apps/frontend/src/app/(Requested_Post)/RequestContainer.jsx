@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import Celebrate from "../../../public/assets/celebrate.gif";
 import noData from "../../../public/assets/noData.svg";
-import requestedPost from "../../data/requestedPost.json";
+import requestedPost from "../../fakeDB/requestedPost.json";
 import FilterButton from "./FilterButton";
 import PostAlert from "./PostAlert";
 import RequestCard from "./RequestCard";

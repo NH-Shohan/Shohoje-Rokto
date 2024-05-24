@@ -49,6 +49,7 @@ const ActiveLink = ({ href, children }) => {
 
 const DashboardNavbar = ({ className, isCollapsible }) => {
   const { currentUser } = UserAuth();
+  // console.log(currentUser);
 
   const navItems = [
     { href: "/dashboard", label: "Dashboard", icon: GoInbox },
@@ -95,83 +96,87 @@ const DashboardNavbar = ({ className, isCollapsible }) => {
   ];
 
   return (
-    <div className={cn("container px-2 scrollbar", className)}>
-      <div
-        className={`flex items-center mt-10 ${
-          isCollapsible ? "justify-center" : "gap-2"
-        }`}
-      >
-        <Image
-          className={`${
-            currentUser?.photoURL ? "border border-primary" : ""
-          } rounded-full`}
-          src={
-            currentUser?.photoURL
-              ? currentUser?.photoURL
-              : "/assets/defaultUser.svg"
-          }
-          alt="Profile Image"
-          width={!isCollapsible ? 60 : 50}
-          height={50}
-          priority
-        />
-        {!isCollapsible && (
-          <div>
-            <p className="text-foreground font-medium text-xl">
-              {currentUser?.displayName?.includes("(")
-                ? currentUser?.displayName
-                    ?.split("(")[0]
-                    .split(" ")
-                    .reverse()[1]
-                : currentUser?.displayName?.trim().split(" ").pop()}
-            </p>
-            <p className="text-sm capitalize text-primary">
-              {currentUser?.role}
-            </p>
+    <>
+      {currentUser && (
+        <div className={cn("container px-2 scrollbar", className)}>
+          <div
+            className={`flex items-center mt-10 ${
+              isCollapsible ? "justify-center" : "gap-2"
+            }`}
+          >
+            <Image
+              className={`${
+                currentUser?.photoURL ? "border border-primary" : ""
+              } rounded-full`}
+              src={
+                currentUser?.photoURL
+                  ? currentUser?.photoURL
+                  : "/assets/defaultUser.svg"
+              }
+              alt="Profile Image"
+              width={!isCollapsible ? 60 : 50}
+              height={50}
+              priority
+            />
+            {!isCollapsible && (
+              <div>
+                <p className="text-foreground font-medium text-xl">
+                  {currentUser?.displayName?.includes("(")
+                    ? currentUser?.displayName
+                        ?.split("(")[0]
+                        .split(" ")
+                        .reverse()[1]
+                    : currentUser?.displayName?.trim().split(" ").pop()}
+                </p>
+                <p className="text-sm capitalize text-primary">
+                  {currentUser?.role}
+                </p>
+              </div>
+            )}
           </div>
-        )}
-      </div>
 
-      <Separator className="my-5" />
+          <Separator className="my-5" />
 
-      <div className="overflow-y-auto h-[calc(100vh-200px)] scrollbar-thin">
-        <TooltipProvider>
-          {navItems.map(({ href, label, icon: Icon }, index) => (
-            <Tooltip key={index} id={`tooltip-${index}`}>
-              <TooltipTrigger className="w-full">
-                <div
-                  className={`flex flex-col mb-1 justify-center ${
-                    isCollapsible && "items-center"
-                  }`}
-                >
-                  <ActiveLink href={href}>
-                    <P>
-                      {isCollapsible ? (
-                        <>
-                          <Icon className="text-xl" />
-                          <TooltipContent
-                            side="right"
-                            id={`tooltip-content-${index}`}
-                          >
-                            <p className="text-xs">{label}</p>
-                          </TooltipContent>
-                        </>
-                      ) : (
-                        <Icon className="text-xl" />
-                      )}
-                      {!isCollapsible && label}
-                    </P>
-                  </ActiveLink>
+          <div className="overflow-y-auto h-[calc(100vh-200px)] scrollbar-thin">
+            <TooltipProvider>
+              {navItems.map(({ href, label, icon: Icon }, index) => (
+                <Tooltip key={index} id={`tooltip-${index}`}>
+                  <TooltipTrigger className="w-full">
+                    <div
+                      className={`flex flex-col mb-1 justify-center ${
+                        isCollapsible && "items-center"
+                      }`}
+                    >
+                      <ActiveLink href={href}>
+                        <P>
+                          {isCollapsible ? (
+                            <>
+                              <Icon className="text-xl" />
+                              <TooltipContent
+                                side="right"
+                                id={`tooltip-content-${index}`}
+                              >
+                                <p className="text-xs">{label}</p>
+                              </TooltipContent>
+                            </>
+                          ) : (
+                            <Icon className="text-xl" />
+                          )}
+                          {!isCollapsible && label}
+                        </P>
+                      </ActiveLink>
+                    </div>
+                  </TooltipTrigger>
                   {(index === 3 || index === 6) && (
                     <Separator className="my-5" />
                   )}
-                </div>
-              </TooltipTrigger>
-            </Tooltip>
-          ))}
-        </TooltipProvider>
-      </div>
-    </div>
+                </Tooltip>
+              ))}
+            </TooltipProvider>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

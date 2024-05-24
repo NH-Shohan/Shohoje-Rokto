@@ -14,8 +14,8 @@ import { Cross2Icon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { GoBell } from "react-icons/go";
 import logo from "../../../public/assets/logo.png";
 import { Button } from "../../components/ui/button";
@@ -25,19 +25,11 @@ import ProfileSlider from "./ProfileSlider";
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const path = usePathname();
-  const router = useRouter();
-  const { currentUser, logOut } = UserAuth();
+  const { currentUser } = UserAuth();
   const [open, setOpen] = useState(false);
   const [openPrifileDrawer, setOpenPrifileDrawer] = useState(false);
 
-  const handleSignOut = async () => {
-    try {
-      await logOut();
-      router.push("/");
-    } catch (error) {
-      toast.error("Error: Could not sign out!");
-    }
-  };
+  useEffect(() => {}, [currentUser]);
 
   return (
     <>
@@ -61,9 +53,7 @@ const Navbar = () => {
               <NavLink href="/be-donor">Be Donor</NavLink>
               <NavLink href="/requested-post">Requested Post</NavLink>
               <NavLink href="/request-blood">Request Blood</NavLink>
-              {currentUser ? (
-                <NavLink href="/dashboard">Dashboard</NavLink>
-              ) : null}
+              {currentUser && <NavLink href="/dashboard">Dashboard</NavLink>}
               <NavLink href="/about">About</NavLink>
             </div>
 
@@ -182,7 +172,6 @@ const Navbar = () => {
                     </DrawerTrigger>
                     <ProfileSlider
                       currentUser={currentUser}
-                      handleSignOut={handleSignOut}
                       setOpenPrifileDrawer={setOpenPrifileDrawer}
                     />
                   </Drawer>

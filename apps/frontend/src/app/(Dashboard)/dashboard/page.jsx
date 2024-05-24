@@ -13,8 +13,8 @@ const DashBoardContainer = () => {
           <h3 className="text-foreground">
             Hello,{" "}
             <span className="text-primary">
-              {currentUser?.displayName.includes("(")
-                ? currentUser?.displayName.split("(")[0]
+              {currentUser?.displayName?.includes("(")
+                ? currentUser?.displayName?.split("(")[0]
                 : currentUser?.displayName}
             </span>
           </h3>

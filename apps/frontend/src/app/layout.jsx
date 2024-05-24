@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
           <ThemeProvider attribute="class" defaultTheme="system">
             <Navbar />
             {children}
-            <Toaster position="top-right" richColors />
+            <Toaster position="top-right" richColors closeButton />
           </ThemeProvider>
         </AuthProvider>
         <SpeedInsights />

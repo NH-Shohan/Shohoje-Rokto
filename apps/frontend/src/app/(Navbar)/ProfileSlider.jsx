@@ -7,15 +7,27 @@ import {
   DrawerTitle,
 } from "@/components/ui/drawer";
 import { Separator } from "@/components/ui/separator";
+import { UserAuth } from "@/context/AuthContext";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import ProfileDrawerLink from "./ProfileDrawerLink";
 
-const ProfileSlider = ({
-  currentUser,
-  handleSignOut,
-  setOpenPrifileDrawer,
-}) => {
+const ProfileSlider = ({ currentUser, setOpenPrifileDrawer }) => {
+  const { logOut } = UserAuth();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    try {
+      await logOut();
+      router.push("/");
+      setOpenPrifileDrawer(false);
+    } catch (error) {
+      toast.error("Error: Could not sign out!");
+    }
+  };
+
   return (
     <>
       {currentUser?.photoURL !== null ? (
